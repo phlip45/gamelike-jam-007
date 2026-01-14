@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://gm1pgv1dawcp"]
+
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="1_bjd7b"]
+
+[resource]
+script = ExtResource("1_bjd7b")
+hp = 97
+hp_max = 150
+hunger = 750
+hunger_max = 1000
+mp = 75
+mp_max = 150
+stremf = 5
+woowoo = 5
+whoosh = 5
+metadata/_custom_type_script = "uid://s27656rvpvo7"

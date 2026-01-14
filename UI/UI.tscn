@@ -1,0 +1,133 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvkes44jj2fea"]
+
+[ext_resource type="Script" uid="uid://sffu4mef7xwj" path="res://UI/ui.gd" id="1_dhe1o"]
+[ext_resource type="Script" uid="uid://b5hylbi272160" path="res://UI/combat_log.gd" id="2_q0uhn"]
+[ext_resource type="Theme" uid="uid://qvfqj7buuvpx" path="res://UI/default_theme.tres" id="3_q0uhn"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("combat_log")]
+script = ExtResource("1_dhe1o")
+combat_log = NodePath("UI/TopPanel/LeftPanel/CombatLog")
+
+[node name="UI" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopPanel" type="HBoxContainer" parent="UI"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LeftPanel" type="VBoxContainer" parent="UI/TopPanel"]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CombatLog" type="VBoxContainer" parent="UI/TopPanel/LeftPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_q0uhn")
+
+[node name="View" type="HBoxContainer" parent="UI/TopPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Stats" type="VBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(0, 122)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Line 1" type="HBoxContainer" parent="UI/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HPBar" type="RichTextLabel" parent="UI/Stats/Line 1/HPBarHolder"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_q0uhn")
+bbcode_enabled = true
+text = "[color=lightgreen][#################--Health--################]"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StremfText" type="RichTextLabel" parent="UI/Stats/Line 1/StatBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Stremf:"
+vertical_alignment = 1
+
+[node name="Line 2" type="HBoxContainer" parent="UI/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MPBar" type="RichTextLabel" parent="UI/Stats/Line 2/MPBarHolder"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_q0uhn")
+bbcode_enabled = true
+text = "[color=lightblue][#################--Mana--##################]"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WoowooText" type="RichTextLabel" parent="UI/Stats/Line 2/StatBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Woowoo:"
+vertical_alignment = 1
+
+[node name="Line 3" type="HBoxContainer" parent="UI/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Hunger" type="HBoxContainer" parent="UI/Stats/Line 3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HungerText" type="RichTextLabel" parent="UI/Stats/Line 3/Hunger"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_q0uhn")
+bbcode_enabled = true
+text = "Hunger: [color=Green]Sated [color=white]Content [color=Yellow]Peckish [color=red]Starving"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WhooshText" type="RichTextLabel" parent="UI/Stats/Line 3/StatBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Whoosh:"
+vertical_alignment = 1

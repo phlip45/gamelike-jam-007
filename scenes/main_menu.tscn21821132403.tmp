@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=4 uid="uid://bbgbsh61547bf"]
+
+[ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_8ln24"]
+[ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_rtw2f"]
+[ext_resource type="Script" uid="uid://c0h5al4wqct4j" path="res://enemies/goblin.ai.gd" id="3_oa1go"]
+[ext_resource type="PackedScene" uid="uid://lcvhdr41todm" path="res://player/player.tscn" id="6_oa1go"]
+[ext_resource type="Script" uid="uid://byhqejgx61old" path="res://turn_manager.gd" id="6_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://ogjq01f3q1pj" path="res://example_tilemap.tscn" id="8_jk1qb"]
+[ext_resource type="PackedScene" uid="uid://bvkes44jj2fea" path="res://UI/UI.tscn" id="8_tbmy8"]
+[ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="9_jk1qb"]
+
+[sub_resource type="Gradient" id="Gradient_vue75"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l6cm7"]
+gradient = SubResource("Gradient_vue75")
+width = 1
+height = 1
+fill = 1
+fill_from = Vector2(0.48387095, 0.50537634)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_oa1go"]
+resource_local_to_scene = true
+script = ExtResource("2_rtw2f")
+hp = 14
+stremf = 10
+woowoo = 10
+whoosh = 10
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_tbmy8"]
+resource_local_to_scene = true
+script = ExtResource("2_rtw2f")
+hp = 14
+stremf = 10
+woowoo = 10
+whoosh = 10
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("actors")]
+script = ExtResource("6_rtw2f")
+actors = [NodePath("../Player"), NodePath("../Goblin"), NodePath("../Goblin2")]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-23, 0)
+rotation = 1.5735891
+scale = Vector2(800.172, -1379.8967)
+texture = SubResource("GradientTexture2D_l6cm7")
+
+[node name="Tile" parent="." instance=ExtResource("8_jk1qb")]
+position = Vector2(11, -58)
+tile_map_data = PackedByteArray("AAD6//7/AQAAAAAAAAD7//7/AQABAAAAAAD8//7/AQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD///7/AQABAAAAAAAAAP7/AQABAAAAAAABAP7/AQABAAAAAAACAP7/AQABAAAAAAAGAP7/AQAEAAAAAAADAP7/AQABAAAAAAAEAP7/AQABAAAAAAAFAP7/AQABAAAAAAD6////AQAAAAEAAAD6/wAAAQAAAAEAAAD6/wEAAQAAAAEAAAD6/wIAAQAAAAEAAAD6/wMAAQAAAAEAAAD6/wQAAQAAAAEAAAD6/wUAAQAAAAEAAAD6/wYAAQAAAAEAAAD6/wcAAQAAAAEAAAAGAP//AQAAAAEAAAAGAAAAAQAAAAEAAAAGAAEAAQAAAAEAAAAGAAIAAQAAAAEAAAAGAAMAAQAAAAEAAAAGAAQAAQAAAAEAAAAGAAUAAQAAAAEAAAAGAAYAAQAAAAEAAAAGAAcAAQAAAAEAAAD7/wgAAQABAAAAAAD8/wgAAQABAAAAAAD9/wgAAQABAAAAAAD+/wgAAQABAAAAAAD//wgAAQABAAAAAAAAAAgAAQABAAAAAAABAAgAAQABAAAAAAACAAgAAQABAAAAAAADAAgAAQABAAAAAAAEAAgAAQABAAAAAAAFAAgAAQABAAAAAAD6/wgAAQAEAAAAAAAGAAgAAQAAAAAAAAA=")
+collision_visibility_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Goblin" type="Area2D" parent="."]
+position = Vector2(69, -23)
+script = ExtResource("1_8ln24")
+stats = SubResource("Resource_oa1go")
+_ai_script = ExtResource("3_oa1go")
+actor_name = "Goblin1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin"]
+shape = ExtResource("1_ekxnf")
+
+[node name="Symbol" type="RichTextLabel" parent="Goblin"]
+texture_filter = 1
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+pivot_offset = Vector2(23, 23)
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_font_sizes/normal_font_size = 33
+text = "g"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Goblin2" type="Area2D" parent="."]
+position = Vector2(-69, -69)
+script = ExtResource("1_8ln24")
+stats = SubResource("Resource_tbmy8")
+_ai_script = ExtResource("3_oa1go")
+actor_name = "Gobline2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin2"]
+shape = ExtResource("1_ekxnf")
+
+[node name="Symbol" type="RichTextLabel" parent="Goblin2"]
+texture_filter = 1
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+pivot_offset = Vector2(23, 23)
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_font_sizes/normal_font_size = 33
+text = "g"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("6_oa1go")]
+
+[node name="UI" parent="." instance=ExtResource("8_tbmy8")]
+
+[node name="Level" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
+script = ExtResource("9_jk1qb")
+tilemap = NodePath("../Tile")

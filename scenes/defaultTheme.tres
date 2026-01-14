@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bmbfxl0p5i5bh"]
+
+[ext_resource type="FontFile" uid="uid://bxi50dpvufl0w" path="res://DEPARTUREMONO-REGULAR.OTF" id="1_33t7m"]
+
+[resource]
+Label/fonts/font = ExtResource("1_33t7m")

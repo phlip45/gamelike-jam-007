@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bnn0m1li4otoe"]
+
+[node name="ItemRichText" type="RichTextLabel"]
+texture_filter = 1
+bbcode_enabled = true
+text = "1x Potion of Healing"
+fit_content = true
+scroll_active = false

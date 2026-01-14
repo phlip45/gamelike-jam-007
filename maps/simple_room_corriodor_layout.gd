@@ -7,6 +7,7 @@ class_name SimpleRoomCorridorLayout
 var rooms:Dictionary[Vector2i,Room]
 var corridors:Dictionary[Vector2i,Corridor]
 var options:Options
+var triangulator:Delaunay
 
 static func generate(opts:Options = null) -> LevelLayout:
 	opts.rng.seed = opts.rng_seed
@@ -54,7 +55,7 @@ func make_room() -> Room:
 	return room
 
 func make_corridors():
-	var triangulator = Delaunay.new(rect)
+	triangulator = Delaunay.new(rect)
 	var center_to_room:Dictionary[Vector2,Room]
 	for room:Room in rooms.values():
 		var center:Vector2 = room.rect.get_center()

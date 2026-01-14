@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dtorwcdjttur7"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_gju77"]
+
+[resource]
+script = ExtResource("1_gju77")
+name = "Batman's Passion"
+type = 9
+equippable = true
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

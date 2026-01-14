@@ -17,6 +17,19 @@ static func push_message(rich_text:String, duration:float = 8):
 	if !ui: return
 	ui.combat_log.add_log(rich_text,duration)
 
+static func random_name(length:int = 10) -> String:
+	var consonants:Array[String] = ["s","w","p"]
+	var vowels:Array[String] = ["a","e","i"]
+	var _name = ""
+	var choose_cons:bool = true if randi_range(0,1) == 0 else false
+	for i in length:
+		if choose_cons:
+			_name += consonants.pick_random()
+		else:
+			_name += vowels.pick_random()
+		choose_cons = !choose_cons
+	return _name
+
 class BusEvents:
 	signal ui_loaded()
 	signal actor_moved(player, location)

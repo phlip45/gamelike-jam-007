@@ -9,6 +9,7 @@ class_name UI
 @onready var woowoo_text: RichTextLabel = $"UI/Stats/Line 2/StatBox/WoowooText"
 @onready var hunger_text: RichTextLabel = $"UI/Stats/Line 3/Hunger/HungerText"
 @onready var whoosh_text: RichTextLabel = $"UI/Stats/Line 3/StatBox/WhooshText"
+@onready var inventory: InventoryUI = $"UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory"
 
 func _ready() -> void:
 	Global.ui = self
@@ -63,3 +64,8 @@ func stat_changed(stat_name:String, _new_amount:int):
 		"whoosh":
 			whoosh_text.text = "Whoosh:" + str(player.stats.whoosh)
 		
+
+
+func _on_button_pressed() -> void:
+	print("clicked")
+	inventory.inventory.remove(inventory.inventory.items.pick_random())

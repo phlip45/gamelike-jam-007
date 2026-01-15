@@ -21,6 +21,7 @@ func add(item:Item) -> bool:
 		return false
 	items.append(item)
 	sort()
+	
 	return true
 
 func drop(item:Item) -> void:
@@ -32,6 +33,7 @@ func remove(item:Item) -> bool:
 	var index = items.find(item)
 	if index == -1: return false
 	items.remove_at(index)
+	sort()
 	return true
 
 func consume(item:Item, amount:int = 1) -> bool:
@@ -44,9 +46,6 @@ func consume(item:Item, amount:int = 1) -> bool:
 
 func sort() -> void:
 	items.sort_custom(sort_alphabetical)
-	print("Start of items:")
-	for item in items:
-		print(item.name)
 	order_changed.emit()
 
 func sort_alphabetical(a:Item, b:Item) -> bool:

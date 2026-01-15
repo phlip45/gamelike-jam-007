@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_gju77")
 name = "Batman's Passion"
+description = "Batman once ate a crab and now all he cares about is going to Maryland."
+symbol = "🦀"
 type = 9
 equippable = true
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"

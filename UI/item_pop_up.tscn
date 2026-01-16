@@ -1,0 +1,149 @@
+[gd_scene load_steps=3 format=3 uid="uid://c623addwcis1o"]
+
+[ext_resource type="Texture2D" uid="uid://cxs34shna7h1s" path="res://assets/sprite_sheet.png" id="1_dr5hg"]
+[ext_resource type="Script" uid="uid://cti7bxecf52tp" path="res://UI/item_pop_up.ui.gd" id="1_tpver"]
+
+[node name="ItemPopUp" type="ColorRect"]
+texture_filter = 1
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_tpver")
+blinder_color = Color(0, 0, 0, 0.8901961)
+disabled_color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_dr5hg")
+draw_center = false
+region_rect = Rect2(115, 115, 69, 69)
+patch_margin_left = 23
+patch_margin_top = 23
+patch_margin_right = 23
+patch_margin_bottom = 23
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="ItemDetails" type="HBoxContainer" parent="MarginContainer/Border/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Border/MarginContainer/ItemDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "This is the name of the item"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Look at this sweet description of an item that doesn't exist. This will take up an entier description size box so we can see how much the minimum size should be."
+scroll_active = false
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Border/MarginContainer/ItemDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2"]
+layout_mode = 2
+
+[node name="Verb" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Use"
+scroll_active = false
+
+[node name="Equip" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Equip"
+scroll_active = false
+
+[node name="Drop" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Drop"
+scroll_active = false
+
+[node name="Throw" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Throw
+"
+scroll_active = false
+
+[node name="Cancel" type="RichTextLabel" parent="MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Cancel"
+scroll_active = false
+
+[node name="Selector" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6664063
+anchor_top = 0.09583333
+anchor_right = 0.6664063
+anchor_bottom = 0.09583333
+offset_left = 20.0
+offset_top = 19.0
+offset_right = 40.0
+offset_bottom = 52.0
+bbcode_enabled = true
+text = ">"
+metadata/_edit_use_anchors_ = true

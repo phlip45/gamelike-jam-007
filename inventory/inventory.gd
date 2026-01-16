@@ -49,7 +49,7 @@ func sort() -> void:
 	order_changed.emit()
 
 func sort_alphabetical(a:Item, b:Item) -> bool:
-	if a.equippable != b.equippable:
-		return a.equippable
+	if a.equipped != b.equipped:
+		return a.equipped
 	else:
 		return a.name.naturalnocasecmp_to(b.name) <= 0

@@ -8,7 +8,9 @@ var inventory:Inventory
 @export var items_per_panel:int = 13
 @onready var left_panel: VBoxContainer = $"Left Panel"
 @onready var right_panel: VBoxContainer = $"Right Panel"
+@onready var pop_up_holder: MarginContainer = $"../../../PopUpHolder"
 @onready var selector: RichTextLabel = $"../../../Selector"
+@onready var blinder: ColorRect = $"../../Blinder"
 var selector_index:int = 0
 
 @export var hold_cooldown:Vector2 = Vector2(0,.5)
@@ -30,6 +32,7 @@ func _ready() -> void:
 	for i in 20:
 		var item = Item.new()
 		item.name = Global.random_name(20)
+		item.description = Global.random_name(180)
 		if randi_range(0,5) == 1:
 			item.equipped = true
 		inventory.add(item)
@@ -52,16 +55,22 @@ func select_process(_delta:float) -> void:
 	var move = Input.get_vector("left","right","up","down", Global.Settings.deadzone)
 	if move.length() > 0:
 		move_selector(move)
-		hold_cooldown.x = hold_cooldown.y
+		#hold_cooldown.x = hold_cooldown.y
+		if hold_cooldown.x <= 0:
+			hold_cooldown.x = hold_cooldown.y/10 if holding else hold_cooldown.y
+			holding = true
 	else:  # for example if a mouse is clicked or something.
 		hold_cooldown.x = 0
 		holding = false
-		return
+	if Input.is_action_just_pressed("action"):
+		select(inventory.items[selector_index])
 
 func select(item:Item):
-	## TODO Have item be selected and display it in some sort of
-	## item display popup
-	pass
+	var popup:PopUpItemUI = PopUpItemUI.create(item,blinder)
+	pop_up_holder.add_child(popup)
+	state = State.SUBMENU
+	var option:PopUpItemUI.Option = await popup.option_chosen
+	state = State.SELECTING
 
 func move_selector(move:Vector2):
 	var item_count:int = inventory.items.size()
@@ -76,7 +85,7 @@ func move_selector(move:Vector2):
 	#actually move the selector
 	var label:RichTextLabel = item_labels[inventory.items[selector_index]]
 	selector.global_position = label.global_position - Vector2(Global.tile_size.x,0)
-	
+
 func move_selector_index_vertical(negative:bool):
 	var _size = inventory.items.size()
 	selector_index += -1 if negative else 1

@@ -84,6 +84,16 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="ItemRichText" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory/Right Panel" instance=ExtResource("4_nm1m0")]
+layout_mode = 2
+
+[node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="Selector" type="RichTextLabel" parent="UI/TopPanel/InventoryBackground"]
 texture_filter = 1
 layout_mode = 0
@@ -94,6 +104,13 @@ offset_bottom = 52.0
 bbcode_enabled = true
 text = ">"
 metadata/_edit_use_anchors_ = true
+
+[node name="PopUpHolder" type="MarginContainer" parent="UI/TopPanel/InventoryBackground"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 115.0
+offset_right = 784.0
+offset_bottom = 437.0
 
 [node name="Stats" type="VBoxContainer" parent="UI"]
 custom_minimum_size = Vector2(0, 122)

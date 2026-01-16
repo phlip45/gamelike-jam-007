@@ -15,9 +15,7 @@ var coord:Vector2i
 @export var quantity:int = 1
 @export var equippable:bool
 @export var consumable:bool
-@export var quaffable:bool
-@export var readable:bool
-@export var edible:bool
+@export var consume_verb:String
 @export var consumable_script:GDScript
 var equipped:bool = false
 

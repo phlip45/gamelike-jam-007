@@ -64,13 +64,13 @@ func select(item:Item):
 	var option:PopUpItemUI.Option = await popup.option_chosen
 	match(option):
 		PopUpItemUI.Option.VERB:
-			pass
+			state = State.SELECTING
 		PopUpItemUI.Option.EQUIP:
-			pass
+			state = State.SELECTING
 		PopUpItemUI.Option.DROP:
-			pass
+			state = State.SELECTING
 		PopUpItemUI.Option.THROW:
-			pass
+			state = State.SELECTING
 		PopUpItemUI.Option.CANCEL:
 			state = State.SELECTING
 

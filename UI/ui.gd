@@ -80,6 +80,9 @@ func _on_button_pressed() -> void:
 	inventory_ui.inventory.remove(inventory_ui.inventory.items.pick_random())
 
 func set_ground_items(items:Array[Item]) -> void:
+	if items.size() == 0:
+		ground_log.text = ""
+		return
 	ground_log.text = "[center]On This Tile:[/center]"
 	for i in max_lines_on_ground_log:
 		if i >= items.size():

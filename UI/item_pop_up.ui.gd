@@ -43,7 +43,9 @@ static func create(_item:Item, _blinder:ColorRect) -> PopUpItemUI:
 
 func _ready() -> void:
 	var dis_color:String = "[color="+disabled_color.to_html(true)+"]"
-	title.text = item.name
+	title.text = item.name_decoration_start
+	title.text += item.name
+	title.text += item.name_decoration_end
 	description.text = item.description
 	if item.consumable:
 		verb.text = item.consume_verb 
@@ -121,6 +123,7 @@ func _open():
 			size = starting_size
 			state = State.AWAITING_INPUT
 	,0.0, 1.0, 0.25)
+	tween.tween_interval(0.02)
 	tween.tween_callback(func():
 		selector.global_position = selectable_options[selector_index].global_position - Vector2(Global.tile_size.x,0)
 	)

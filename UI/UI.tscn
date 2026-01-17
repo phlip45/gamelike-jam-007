@@ -11,6 +11,7 @@ script = ExtResource("1_dhe1o")
 combat_log = NodePath("UI/TopPanel/LeftPanel/CombatLog")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,14 +44,32 @@ size_flags_vertical = 3
 [node name="CombatLog" type="VBoxContainer" parent="UI/TopPanel/LeftPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 script = ExtResource("2_q0uhn")
 
-[node name="InventoryBackground" type="ColorRect" parent="UI/TopPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 10
+
+[node name="GroundLog" type="RichTextLabel" parent="UI/TopPanel/LeftPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]On This Tile:[/center]
+ONE
+1234567890123456
+THREE
+FOUR"
+fit_content = true
+
+[node name="InventoryHolder" type="ColorRect" parent="UI/TopPanel"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/InventoryBackground"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/InventoryHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,39 +81,39 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 37
 theme_override_constants/margin_bottom = 20
 
-[node name="Main View" type="HBoxContainer" parent="UI/TopPanel/InventoryBackground/MarginContainer"]
+[node name="Main View" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Inventory" type="HBoxContainer" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View"]
+[node name="Inventory" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_hat8c")
 
-[node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory"]
+[node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ItemRichText" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory/Left Panel" instance=ExtResource("4_nm1m0")]
+[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Left Panel" instance=ExtResource("4_nm1m0")]
 layout_mode = 2
 
-[node name="Right Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory"]
+[node name="Right Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ItemRichText" parent="UI/TopPanel/InventoryBackground/MarginContainer/Main View/Inventory/Right Panel" instance=ExtResource("4_nm1m0")]
+[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Right Panel" instance=ExtResource("4_nm1m0")]
 layout_mode = 2
 
-[node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryBackground/MarginContainer"]
+[node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryHolder/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Selector" type="RichTextLabel" parent="UI/TopPanel/InventoryBackground"]
+[node name="Selector" type="RichTextLabel" parent="UI/TopPanel/InventoryHolder"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 20.0
@@ -105,7 +124,7 @@ bbcode_enabled = true
 text = ">"
 metadata/_edit_use_anchors_ = true
 
-[node name="PopUpHolder" type="MarginContainer" parent="UI/TopPanel/InventoryBackground"]
+[node name="PopUpHolder" type="MarginContainer" parent="UI/TopPanel/InventoryHolder"]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 115.0
@@ -209,10 +228,10 @@ text = "Whoosh:"
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-offset_left = 43.0
-offset_top = 532.0
-offset_right = 173.0
-offset_bottom = 561.0
+offset_left = 1140.0
+offset_top = 682.0
+offset_right = 1270.0
+offset_bottom = 711.0
 text = "Debug Button"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

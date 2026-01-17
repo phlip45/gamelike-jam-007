@@ -27,6 +27,11 @@ shape = ExtResource("3_qjkh3")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Feeler"]
 shape = ExtResource("3_qjkh3")
 
+[node name="FeetFeeler" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FeetFeeler"]
+shape = ExtResource("3_qjkh3")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_yw30f")
 

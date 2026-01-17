@@ -8,6 +8,8 @@ enum Type{
 static var max_quantity:int = 99
 var coord:Vector2i
 @export var name:String
+@export var name_decoration_start:String
+@export var name_decoration_end:String
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT,"Desc") var description:String
 @export var symbol:String
 @export var type:Type

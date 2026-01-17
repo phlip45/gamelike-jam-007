@@ -1,4 +1,4 @@
-extends Object
+extends RefCounted
 class_name Inventory
 
 var items:Array[Item]

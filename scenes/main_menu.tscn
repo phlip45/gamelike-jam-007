@@ -1,14 +1,17 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbgbsh61547bf"]
+[gd_scene load_steps=17 format=4 uid="uid://bbgbsh61547bf"]
 
 [ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_8ln24"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_rtw2f"]
 [ext_resource type="Script" uid="uid://c0h5al4wqct4j" path="res://enemies/goblin.ai.gd" id="3_oa1go"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_flqon"]
 [ext_resource type="PackedScene" uid="uid://lcvhdr41todm" path="res://player/player.tscn" id="6_oa1go"]
 [ext_resource type="Script" uid="uid://byhqejgx61old" path="res://turn_manager.gd" id="6_rtw2f"]
 [ext_resource type="PackedScene" uid="uid://ogjq01f3q1pj" path="res://example_tilemap.tscn" id="8_jk1qb"]
 [ext_resource type="PackedScene" uid="uid://bvkes44jj2fea" path="res://UI/ui.tscn" id="8_tbmy8"]
 [ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="9_jk1qb"]
+[ext_resource type="Script" uid="uid://bnvsjuyr3di1d" path="res://scenes/item_husk.gd" id="10_lgwnu"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="11_flqon"]
 
 [sub_resource type="Gradient" id="Gradient_vue75"]
 interpolation_mode = 1
@@ -23,16 +26,18 @@ fill = 1
 fill_from = Vector2(0.48387095, 0.50537634)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="Resource" id="Resource_oa1go"]
-resource_local_to_scene = true
-script = ExtResource("2_rtw2f")
-hp = 14
-stremf = 10
-woowoo = 10
-whoosh = 10
-metadata/_custom_type_script = "uid://s27656rvpvo7"
+[sub_resource type="Resource" id="Resource_rcqid"]
+script = ExtResource("6_flqon")
+name = "Sword"
+name_decoration_start = "[rainbow]"
+name_decoration_end = "[/rainbow]"
+description = "This sword smells of darkness and the night. You suspect it comes from Maryland"
+symbol = "⚔"
+type = 9
+stackable = true
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
 
-[sub_resource type="Resource" id="Resource_tbmy8"]
+[sub_resource type="Resource" id="Resource_oa1go"]
 resource_local_to_scene = true
 script = ExtResource("2_rtw2f")
 hp = 14
@@ -45,7 +50,7 @@ metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("actors")]
 script = ExtResource("6_rtw2f")
-actors = [NodePath("../Player"), NodePath("../Goblin"), NodePath("../Goblin2")]
+actors = [NodePath("../Player"), NodePath("../Goblin")]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-23, 0)
@@ -57,19 +62,12 @@ texture = SubResource("GradientTexture2D_l6cm7")
 position = Vector2(11, -58)
 tile_map_data = PackedByteArray("AAD6//7/AQAAAAAAAAD7//7/AQABAAAAAAD8//7/AQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD///7/AQABAAAAAAAAAP7/AQABAAAAAAABAP7/AQABAAAAAAACAP7/AQABAAAAAAAGAP7/AQAEAAAAAAADAP7/AQABAAAAAAAEAP7/AQABAAAAAAAFAP7/AQABAAAAAAD6////AQAAAAEAAAD6/wAAAQAAAAEAAAD6/wEAAQAAAAEAAAD6/wIAAQAAAAEAAAD6/wMAAQAAAAEAAAD6/wQAAQAAAAEAAAD6/wUAAQAAAAEAAAD6/wYAAQAAAAEAAAD6/wcAAQAAAAEAAAAGAP//AQAAAAEAAAAGAAAAAQAAAAEAAAAGAAEAAQAAAAEAAAAGAAIAAQAAAAEAAAAGAAMAAQAAAAEAAAAGAAQAAQAAAAEAAAAGAAUAAQAAAAEAAAAGAAYAAQAAAAEAAAAGAAcAAQAAAAEAAAD7/wgAAQABAAAAAAD8/wgAAQABAAAAAAD9/wgAAQABAAAAAAD+/wgAAQABAAAAAAD//wgAAQABAAAAAAAAAAgAAQABAAAAAAABAAgAAQABAAAAAAACAAgAAQABAAAAAAADAAgAAQABAAAAAAAEAAgAAQABAAAAAAAFAAgAAQABAAAAAAD6/wgAAQAEAAAAAAAGAAgAAQAAAAAAAAD8/wYAAQACAAIAAAD8/wUAAQACAAIAAAD9/wUAAQACAAIAAAD+/wUAAQACAAIAAAD+/wYAAQACAAIAAAD9/wYAAQACAAIAAAD//wYAAQACAAIAAAAAAAYAAQACAAIAAAABAAYAAQACAAIAAAACAAYAAQACAAIAAAACAAUAAQACAAIAAAACAAQAAQACAAIAAAABAAQAAQACAAIAAAAAAAQAAQACAAIAAAAAAAMAAQACAAIAAAD//wMAAQACAAIAAAD+/wMAAQACAAIAAAD+/wQAAQACAAIAAAA=")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Item" type="Area2D" parent="."]
+position = Vector2(-46, 0)
+script = ExtResource("10_lgwnu")
+item = ExtResource("11_flqon")
 
-[node name="Goblin" type="Area2D" parent="."]
-position = Vector2(69, -23)
-script = ExtResource("1_8ln24")
-stats = SubResource("Resource_oa1go")
-_ai_script = ExtResource("3_oa1go")
-actor_name = "Goblin1"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin"]
-shape = ExtResource("1_ekxnf")
-
-[node name="Symbol" type="RichTextLabel" parent="Goblin"]
+[node name="Symbol" type="RichTextLabel" parent="Item"]
 texture_filter = 1
 offset_left = -23.0
 offset_top = -23.0
@@ -89,17 +87,50 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Goblin2" type="Area2D" parent="."]
-position = Vector2(-69, -69)
-script = ExtResource("1_8ln24")
-stats = SubResource("Resource_tbmy8")
-_ai_script = ExtResource("3_oa1go")
-actor_name = "Gobline2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
 shape = ExtResource("1_ekxnf")
 
-[node name="Symbol" type="RichTextLabel" parent="Goblin2"]
+[node name="Item2" type="Area2D" parent="."]
+position = Vector2(-46, 0)
+script = ExtResource("10_lgwnu")
+item = SubResource("Resource_rcqid")
+
+[node name="Symbol" type="RichTextLabel" parent="Item2"]
+texture_filter = 1
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+pivot_offset = Vector2(23, 23)
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_constants/text_highlight_v_padding = 0
+theme_override_font_sizes/normal_font_size = 33
+text = "g"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item2"]
+shape = ExtResource("1_ekxnf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Goblin" type="Area2D" parent="."]
+position = Vector2(69, -23)
+script = ExtResource("1_8ln24")
+stats = SubResource("Resource_oa1go")
+_ai_script = ExtResource("3_oa1go")
+actor_name = "Goblin1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin"]
+shape = ExtResource("1_ekxnf")
+
+[node name="Symbol" type="RichTextLabel" parent="Goblin"]
 texture_filter = 1
 offset_left = -23.0
 offset_top = -23.0

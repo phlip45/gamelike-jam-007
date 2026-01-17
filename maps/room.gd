@@ -1,4 +1,4 @@
-extends Object
+extends RefCounted
 class_name Room
 
 var rect:Rect2i

@@ -10,6 +10,7 @@ var inventory:Inventory
 @onready var right_panel: VBoxContainer = $"Right Panel"
 @onready var pop_up_holder: MarginContainer = $"../../../PopUpHolder"
 @onready var selector: RichTextLabel = $"../../../Selector"
+@onready var inventory_holder: ColorRect = $"../../.."
 @onready var blinder: ColorRect = $"../../Blinder"
 var selector_index:int = 0
 
@@ -18,26 +19,14 @@ var holding:bool = false
 
 var item_labels:Dictionary[Item, RichTextLabel]
 
-var state:State = State.SELECTING
+var state:State = State.NULL
 
-## Selecting an item will bring up a sub menu and we
-## need to switch to the SUBMENU state when that happens
 enum State{
 	NULL,SELECTING,SUBMENU
 }
 
-func _ready() -> void:
-	inventory = Inventory.new()
-	inventory.order_changed.connect(_populate)
-	for i in 20:
-		var item = Item.new()
-		item.name = Global.random_name(20)
-		item.description = Global.random_name(180)
-		if randi_range(0,5) == 1:
-			item.equipped = true
-		inventory.add(item)
-	if !inventory: return
-	_populate()
+signal opened
+signal closed
 
 func _process(delta: float) -> void:
 	if state == State.SELECTING:
@@ -63,14 +52,27 @@ func select_process(_delta:float) -> void:
 		hold_cooldown.x = 0
 		holding = false
 	if Input.is_action_just_pressed("action"):
+		if(inventory.items.size() == 0): return
 		select(inventory.items[selector_index])
+	if Input.is_action_just_pressed("cancel"):
+		_close()
 
 func select(item:Item):
 	var popup:PopUpItemUI = PopUpItemUI.create(item,blinder)
 	pop_up_holder.add_child(popup)
 	state = State.SUBMENU
 	var option:PopUpItemUI.Option = await popup.option_chosen
-	state = State.SELECTING
+	match(option):
+		PopUpItemUI.Option.VERB:
+			pass
+		PopUpItemUI.Option.EQUIP:
+			pass
+		PopUpItemUI.Option.DROP:
+			pass
+		PopUpItemUI.Option.THROW:
+			pass
+		PopUpItemUI.Option.CANCEL:
+			state = State.SELECTING
 
 func move_selector(move:Vector2):
 	var item_count:int = inventory.items.size()
@@ -115,8 +117,10 @@ func _populate():
 	clear()
 	for item:Item in inventory.items:
 		var rich_text:RichTextLabel = ITEM_RICH_TEXT.instantiate()
-		rich_text.text = "[E]" if item.equipped else ""
+		rich_text.text = item.name_decoration_start
+		rich_text.text += "[E]" if item.equipped else ""
 		rich_text.text += item.name
+		rich_text.text += item.name_decoration_end
 		item_labels.set(item, rich_text)
 	
 	for i in items_per_panel:
@@ -126,3 +130,23 @@ func _populate():
 		var j:int = i + items_per_panel
 		if j < inventory.items.size():
 			right_panel.add_child(item_labels[inventory.items[j]])
+
+func open(_inventory:Inventory):
+	if !_inventory:
+		printerr("Failed to open inventory")
+		_close()
+		return
+	inventory = _inventory
+	_populate()
+	inventory.order_changed.connect(_populate)
+	inventory_holder.visible = true
+	get_tree().create_timer(.3).timeout.connect(func():
+		state = State.SELECTING	
+	)
+	opened.emit()
+
+func _close():
+	state = State.NULL
+	inventory.order_changed.disconnect(_populate)
+	inventory_holder.visible = false
+	closed.emit()

@@ -2,12 +2,15 @@ extends Actor
 class_name Player
 
 @onready var feeler: Area2D = $Feeler
+@onready var feet_feeler: Area2D = $FeetFeeler
 
 @export var stats:Stats
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
+var inventory:Inventory
 var running:bool = false
 var coords:Vector2i
 var state:State
+var ground_item_husks:Array[ItemHusk]
 
 var hunger_words:Dictionary[float,String] = {
 	.9: "[color=green]Sated",
@@ -18,13 +21,14 @@ var hunger_words:Dictionary[float,String] = {
 }
 
 enum State{
-	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING
+	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
 }
 
 signal finished_turn(time_taken:int)
 
 func _ready() -> void:
 	coords = position_to_coord(position)
+	inventory = Inventory.new()
 	if Global.ui:
 		Global.ui.connect_to_player(self)
 	else:
@@ -80,6 +84,12 @@ func premove(delta:float):
 		desired_move.y = coords.y + 1
 	elif Input.is_action_pressed("wait"):
 		pass
+	elif Input.is_action_just_pressed("cancel"):
+		open_inventory()
+		return
+	elif Input.is_action_just_pressed("pickup"):
+		pickup_items()
+		return
 	else:  # for example if a mouse is clicked or something.
 		walk_cooldown.x = 0
 		running = false
@@ -103,6 +113,7 @@ func move(desired_pos:Vector2, desired_coords:Vector2i, _delta:float):
 	## of instantly
 	state = State.AWAITING_TURN
 	Global.actor_moved(self,coords)
+	Global.set_ground_items(await get_ground_items())
 	finished_turn.emit( max(100 - stats.whoosh,0) )
 
 func get_bumpables_at_location(target:Vector2) -> Array:
@@ -113,17 +124,30 @@ func get_bumpables_at_location(target:Vector2) -> Array:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var areas:Array[Area2D] = feeler.get_overlapping_areas()
-	var physics_stuffs:Array = feeler.get_overlapping_bodies()
+	areas = areas.filter(is_bumpable)
+	var physics_stuffs:Array[Node2D] = feeler.get_overlapping_bodies()
 	if physics_stuffs.size() > 0:
 		areas.append(Wall.new())
 	return areas
 
+func get_items_at_location(target:Vector2) -> Array[Item]:
+	feeler.position = target - position
+	await get_tree().process_frame
+	await get_tree().process_frame
+	ground_item_husks.clear()
+	var areas:Array = feeler.get_overlapping_areas()
+	var items:Array[Item]
+	for a:Area2D in areas:
+		if a is ItemHusk:
+			ground_item_husks.append(a)
+			items.append(a.item as Item)
+	return items
+	
 func bump_into(bumpables:Array):
 	var enemy:Enemy = null
 	var interactable:Interactable = null
 	var wall:Wall = null
 	var player:Player = null
-	var eldritch_being:Area2D = null
 	for bumpable:Area2D in bumpables:
 		if bumpable is Enemy:
 			enemy = bumpable as Enemy
@@ -133,22 +157,32 @@ func bump_into(bumpables:Array):
 			wall = bumpable as Wall
 		elif bumpable is Player:
 			player = bumpable as Player
-		else:
-			eldritch_being = bumpable
 	state = State.AWAITING_TURN
 	if enemy:
+		#whack!
 		attack(enemy)
 	elif interactable:
-		#interact with this thing
+		#interact with this thing/Prompt to interact
+		#Maybe interact prompt is part of the interact portion?
 		finished_turn.emit( max(100 - stats.whoosh,0) )
 	elif wall:
-		#stop moving
+		#bonk sound effect
+		wall.queue_free()
 		finished_turn.emit(0)
 	elif player:
-		#skip turn
-		finished_turn.emit(0)
+		#Skip Turn
+		finished_turn.emit(50)
 	else:
-		printerr("I've bumped into a terrible eldritch thing I don't know what it is.", eldritch_being)
+		finished_turn.emit(0)
+
+func is_bumpable(area:Area2D) -> bool:
+	return area is Enemy or\
+		 area is Player or\
+		 area is Wall or\
+		 area is Interactable
+
+func get_ground_items() -> Array[Item]:
+	return await get_items_at_location(global_position)
 
 func position_to_coord(pos:Vector2) -> Vector2i:
 	var coord:Vector2i
@@ -167,7 +201,20 @@ func coord_to_position(coord:Vector2i) -> Vector2:
 func attack(enemy:Enemy):
 	enemy.take_damage(5)
 	Global.push_message("[color=red]%s[color=white] took 5 damage" % enemy.actor_name)
-	finished_turn.emit()
+	finished_turn.emit(50)
+
+func open_inventory():
+	state = State.INVENTORY
+	Global.ui.open_inventory(inventory)
+	await Global.ui.inventory_closed
+	state = State.AWAITING_INPUT
+
+func pickup_items():
+	for item_husk:ItemHusk in ground_item_husks:
+		inventory.add(item_husk.item)
+		item_husk.queue_free()
+	Global.set_ground_items(await get_ground_items())
+	
 
 func get_hunger_text() -> String:
 	var hungriness:float = float(stats.hunger) / float(stats.hunger_max)

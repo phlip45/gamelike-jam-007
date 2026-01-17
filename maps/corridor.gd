@@ -1,4 +1,4 @@
-extends Object
+extends RefCounted
 class_name Corridor
 
 var coords:Dictionary[Vector2i, Vector2i]

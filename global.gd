@@ -2,8 +2,8 @@ extends Node
 class_name Global
 
 static var ui:UI = null
-static var grid_offset:Vector2i = Vector2i(-17,-12)
-static var grid_size:Vector2i = Vector2i(44,25)
+static var grid_offset:Vector2i = Vector2i(-16,-12)
+static var grid_size:Vector2i = Vector2i(43,25)
 static var tile_size:Vector2i = Vector2i(23,23)
 static var signals:BusEvents = BusEvents.new()
 
@@ -16,6 +16,11 @@ static func ui_loaded():
 static func push_message(rich_text:String, duration:float = 8):
 	if !ui: return
 	ui.combat_log.add_log(rich_text,duration)
+
+static func set_ground_items(items:Array[Item] = []):
+	if !ui: return
+	ui.set_ground_items(items)
+	
 
 static func random_name(length:int = 20) -> String:
 	var consonants:Array[String] = ["b","c","d","f","g","h","j","k","l","m","n","p","qu","r","s","t","v","w","x","y","z"]

@@ -1,5 +1,5 @@
 @abstract
-extends Object
+extends RefCounted
 class_name LevelLayout
 
 var rect:Rect2i

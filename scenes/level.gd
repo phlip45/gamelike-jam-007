@@ -10,21 +10,23 @@ var size:Vector2i
 func _ready() -> void:
 	generate_level(true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_top"):
 		generate_level()
 
 func generate_level(seeded:bool = false):
-	for x in Global.grid_size.x+2:
-		for y in Global.grid_size.y+2:
-			tilemap.set_cell(
-					Vector2i(
-						Global.grid_offset.x + x-1,
-						Global.grid_offset.y + y-1
-					),
-				 	1, 
-					Vector2i(2,3)
-				)
+	tilemap.clear()
+	
+	#for x in Global.grid_size.x+2:
+		#for y in Global.grid_size.y+2:
+			#tilemap.set_cell(
+					#Vector2i(
+						#Global.grid_offset.x + x-1,
+						#Global.grid_offset.y + y-1
+					#),
+				 	#1, 
+					#Vector2i(2,3)
+				#)
 	var opts:SimpleRoomCorridorLayout.Options = SimpleRoomCorridorLayout.Options.new()
 	if seeded:
 		opts.rng_seed = 2622252014

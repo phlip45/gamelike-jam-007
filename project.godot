@@ -22,7 +22,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/fancy_editor_sounds/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [gui]
 

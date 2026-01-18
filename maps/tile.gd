@@ -7,9 +7,13 @@ enum Type{
 
 var coord:Vector2i
 var type:Type
+var tile_map_atlas_coord:Vector2i
 var _base_map_coord:Vector2i
 var discovered:bool = false
-var visible:bool = false
+var visible:bool = false:
+	set(value):
+		visible = value
+		if value: discovered = value
 var blocks_vision:bool = false
 var tile_map_coord:Vector2i:
 	get: return get_tile_map_coord_from_base()

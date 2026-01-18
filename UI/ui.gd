@@ -16,6 +16,14 @@ class_name UI
 
 var player:Player
 
+var hunger_words:Dictionary[float,String] = {
+	.9: "[color=green]Sated",
+	.5: "[color=white]Content",
+	.25: "[color=orange]Peckish",
+	0.0001: "[color=red]Starving",
+	0: "[color=#222]Dead",
+}
+
 signal inventory_closed
 
 func _ready() -> void:
@@ -27,7 +35,7 @@ func connect_to_player(_player:Player):
 	player.stats.stat_changed.connect(stat_changed)
 	hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
 	mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
-	hunger_text.text = "Hunger: "+ player.get_hunger_text()
+	hunger_text.text = "Hunger: "+ get_hunger_text()
 	stremf_text.text = "Stremf:" + str(player.stats.stremf)
 	woowoo_text.text = "Woowoo:" + str(player.stats.woowoo)
 	whoosh_text.text = "Whoosh:" + str(player.stats.whoosh)
@@ -45,7 +53,12 @@ func _get_bar_string(amt:int, _max:int, type:BarType) -> String:
 	text = text.rpad(43,"#")
 	text = "[" + text + "]"
 	text = text.insert(characters_to_illuminate, "[color=#333]")
-	text = "[color=%s]" % ("lightgreen" if type == BarType.HP else "lightblue")  + text
+	if type == BarType.HP and percent < .2:
+		text = "[color=%s]" % "red"  + text
+	elif type == BarType.HP and percent < .5:
+		text = "[color=%s]" % "yellow"  + text
+	else:
+		text = "[color=%s]" % ("lightgreen" if type == BarType.HP else "lightblue")  + text
 	return text
 	
 func stat_changed(stat_name:String, _new_amount:int):
@@ -59,9 +72,9 @@ func stat_changed(stat_name:String, _new_amount:int):
 		"mp_max":
 			mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
 		"hunger":
-			hunger_text.text = "Hunger: "+ player.get_hunger_text()
+			hunger_text.text = "Hunger: "+ get_hunger_text()
 		"hunger_max":
-			hunger_text.text = "Hunger: "+ player.get_hunger_text()
+			hunger_text.text = "Hunger: "+ get_hunger_text()
 		"stremf":
 			stremf_text.text = "Stremf:" + str(player.stats.stremf)
 		"woowoo":
@@ -92,4 +105,11 @@ func set_ground_items(items:Array[Item]) -> void:
 		ground_log.text += item.name_decoration_start
 		ground_log.text += item.name.left(max_char_on_ground_log)
 		ground_log.text += item.name_decoration_end
+
+func get_hunger_text() -> String:
+	var hungriness:float = float(player.stats.hunger) / float(player.stats.hunger_max)
 	
+	for key in hunger_words.keys():
+		if hungriness >= key:
+			return hunger_words[key]
+	return "[color=#222]Dead"

@@ -1,12 +1,14 @@
 extends Node
 class_name TurnManager
 
+var player:Player
 @export var actors:Array[Actor]
 
 func _ready() -> void:
 	#begin running the manager which is like the main game loop essentially.
 	#it kinda acts as the engine which lets things happen
 	for actor in actors:
+		if actor is Player: player = actor
 		actor.died.connect(remove_actor.bind(actor))
 	take_next_turn()
 	

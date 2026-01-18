@@ -106,8 +106,10 @@ func move_selector_index_horizontal(negative:bool):
 
 func clear():
 	for child:Node in left_panel.get_children():
+		child.queue_free()
 		left_panel.remove_child(child)
 	for child:Node in right_panel.get_children():
+		child.queue_free()
 		right_panel.remove_child(child)
 	for item:Item in item_labels.keys():
 		item_labels[item].queue_free()

@@ -9,4 +9,5 @@ description = "Batman once ate a crab and now all he cares about is going to Mar
 symbol = "🦀"
 type = 9
 stackable = true
+equippable = true
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"

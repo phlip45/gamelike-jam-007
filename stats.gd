@@ -40,3 +40,7 @@ signal stat_changed(stat_name, new_val)
 	set(val):
 		whoosh = max(val,0)
 		stat_changed.emit("whoosh", val)
+@export var vision_radius:int:
+	set(val):
+		vision_radius = max(val,0)
+		stat_changed.emit("vision_radius", val)

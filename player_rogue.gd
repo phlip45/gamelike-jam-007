@@ -8,17 +8,8 @@ class_name Player
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
 var inventory:Inventory
 var running:bool = false
-var coords:Vector2i
 var state:State
 var ground_item_husks:Array[ItemHusk]
-
-var hunger_words:Dictionary[float,String] = {
-	.9: "[color=green]Sated",
-	.5: "[color=white]Content",
-	.25: "[color=orange]Peckish",
-	0.0001: "[color=red]Starving",
-	0: "[color=#222]Dead",
-}
 
 enum State{
 	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
@@ -27,7 +18,7 @@ enum State{
 signal finished_turn(time_taken:int)
 
 func _ready() -> void:
-	coords = position_to_coord(position)
+	coord = Global.position_to_coord(position)
 	inventory = Inventory.new()
 	if Global.ui:
 		Global.ui.connect_to_player(self)
@@ -45,7 +36,6 @@ func _process(delta: float) -> void:
 		stats.whoosh += 1
 	if state != State.AWAITING_INPUT:
 		return
-	
 	premove(delta)
 
 func take_turn() -> int:
@@ -61,27 +51,27 @@ func premove(delta:float):
 	if walk_cooldown.x > 0:
 		walk_cooldown.x -= delta
 		return
-	var desired_move:Vector2i = coords
+	var desired_move:Vector2i = coord
 	if Input.is_action_pressed("left"):
-		desired_move.x = coords.x - 1
+		desired_move.x = coord.x - 1
 	elif Input.is_action_pressed("right"):
-		desired_move.x = coords.x + 1
+		desired_move.x = coord.x + 1
 	elif Input.is_action_pressed("up"):
-		desired_move.y = coords.y - 1
+		desired_move.y = coord.y - 1
 	elif Input.is_action_pressed("down"):
-		desired_move.y = coords.y + 1
+		desired_move.y = coord.y + 1
 	elif Input.is_action_pressed("ul"):
-		desired_move.x = coords.x - 1
-		desired_move.y = coords.y - 1
+		desired_move.x = coord.x - 1
+		desired_move.y = coord.y - 1
 	elif Input.is_action_pressed("ur"):
-		desired_move.x = coords.x + 1
-		desired_move.y = coords.y - 1
+		desired_move.x = coord.x + 1
+		desired_move.y = coord.y - 1
 	elif Input.is_action_pressed("dl"):
-		desired_move.x = coords.x - 1
-		desired_move.y = coords.y + 1
+		desired_move.x = coord.x - 1
+		desired_move.y = coord.y + 1
 	elif Input.is_action_pressed("dr"):
-		desired_move.x = coords.x + 1
-		desired_move.y = coords.y + 1
+		desired_move.x = coord.x + 1
+		desired_move.y = coord.y + 1
 	elif Input.is_action_pressed("wait"):
 		pass
 	elif Input.is_action_just_pressed("cancel"):
@@ -94,7 +84,7 @@ func premove(delta:float):
 		walk_cooldown.x = 0
 		running = false
 		return
-	var desired_pos:Vector2 = coord_to_position(desired_move)
+	var desired_pos:Vector2 = Global.coord_to_position(desired_move)
 	if walk_cooldown.x <= 0:
 		var bumpables:Array = await get_bumpables_at_location(desired_pos)
 		if bumpables.size() > 0:
@@ -106,13 +96,13 @@ func premove(delta:float):
 			running = true
 			move(desired_pos, desired_move,delta)
 
-func move(desired_pos:Vector2, desired_coords:Vector2i, _delta:float):
+func move(desired_pos:Vector2, desired_coord:Vector2i, _delta:float):
 	position = desired_pos
-	coords = desired_coords
+	coord = desired_coord
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
 	state = State.AWAITING_TURN
-	Global.actor_moved(self,coords)
+	Global.actor_moved(self,coord)
 	Global.set_ground_items(await get_ground_items())
 	finished_turn.emit( max(100 - stats.whoosh,0) )
 
@@ -184,20 +174,6 @@ func is_bumpable(area:Area2D) -> bool:
 func get_ground_items() -> Array[Item]:
 	return await get_items_at_location(global_position)
 
-func position_to_coord(pos:Vector2) -> Vector2i:
-	var coord:Vector2i
-	@warning_ignore("narrowing_conversion")
-	coord.x = pos.x / Global.tile_size.x
-	@warning_ignore("narrowing_conversion")
-	coord.y = pos.y / Global.tile_size.y
-	return Vector2i(coord)
-
-func coord_to_position(coord:Vector2i) -> Vector2:
-	var pos:Vector2
-	pos.x = coord.x * Global.tile_size.x
-	pos.y = coord.y * Global.tile_size.y
-	return pos
-
 func attack(enemy:Enemy):
 	enemy.take_damage(5)
 	Global.push_message("[color=red]%s[color=white] took 5 damage" % enemy.actor_name)
@@ -215,11 +191,3 @@ func pickup_items():
 		item_husk.queue_free()
 	Global.set_ground_items(await get_ground_items())
 	
-
-func get_hunger_text() -> String:
-	var hungriness:float = float(stats.hunger) / float(stats.hunger_max)
-	
-	for key in hunger_words.keys():
-		if hungriness >= key:
-			return hunger_words[key]
-	return "[color=#222]Dead"

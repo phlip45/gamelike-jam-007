@@ -3,6 +3,8 @@ class_name Enemy
 
 @export var stats:Stats
 @export var _ai_script:GDScript
+@onready var symbol: RichTextLabel = $Symbol
+
 var ai:AI
 
 @warning_ignore("unused_signal")
@@ -13,6 +15,11 @@ func _ready() -> void:
 
 ## Returns how long the turn took to feed into the queue
 func take_turn() -> int:
+	var tiles= Global.current_level.layout.tiles
+	coord = Global.position_to_coord(global_position)
+	if tiles.has(coord):
+		var cur_tile:Tile = tiles[coord]
+		symbol.visible = cur_tile.visible
 	return ai.take_turn(self)
 
 func move():

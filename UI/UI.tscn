@@ -34,27 +34,32 @@ theme_override_constants/separation = 0
 [node name="TopPanel" type="HBoxContainer" parent="UI"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="LeftPanel" type="VBoxContainer" parent="UI/TopPanel"]
 custom_minimum_size = Vector2(245, 0)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="CombatLog" type="VBoxContainer" parent="UI/TopPanel/LeftPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
+mouse_filter = 2
 script = ExtResource("2_q0uhn")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/LeftPanel"]
 layout_mode = 2
 size_flags_vertical = 10
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 
 [node name="GroundLog" type="RichTextLabel" parent="UI/TopPanel/LeftPanel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center]On This Tile:[/center]
 ONE
@@ -67,6 +72,7 @@ fit_content = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/InventoryHolder"]
@@ -76,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 37
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 37
@@ -85,26 +92,32 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Inventory" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 script = ExtResource("3_hat8c")
 
 [node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Left Panel" instance=ExtResource("4_nm1m0")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Right Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Right Panel" instance=ExtResource("4_nm1m0")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryHolder/MarginContainer"]
 layout_mode = 2
@@ -120,6 +133,7 @@ offset_left = 20.0
 offset_top = 19.0
 offset_right = 40.0
 offset_bottom = 52.0
+mouse_filter = 2
 bbcode_enabled = true
 text = ">"
 metadata/_edit_use_anchors_ = true
@@ -130,6 +144,7 @@ offset_left = 77.0
 offset_top = 115.0
 offset_right = 784.0
 offset_bottom = 437.0
+mouse_filter = 2
 
 [node name="Stats" type="VBoxContainer" parent="UI"]
 custom_minimum_size = Vector2(0, 122)
@@ -140,6 +155,7 @@ theme_override_constants/separation = 0
 [node name="Line 1" type="HBoxContainer" parent="UI/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="HPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 1"]
 layout_mode = 2
@@ -170,6 +186,7 @@ vertical_alignment = 1
 [node name="Line 2" type="HBoxContainer" parent="UI/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="MPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 2"]
 layout_mode = 2
@@ -200,6 +217,7 @@ vertical_alignment = 1
 [node name="Line 3" type="HBoxContainer" parent="UI/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Hunger" type="HBoxContainer" parent="UI/Stats/Line 3"]
 layout_mode = 2

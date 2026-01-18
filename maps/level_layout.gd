@@ -19,7 +19,15 @@ func print():
 ## Shadow Casting Stuffs
 func collect_visibility_changes(tile:Tile):
 	previous_visible_tiles.set(tile.coord,tile)
-	
+
+func get_random_non_wall_tile() -> Tile:
+	var found:Tile
+	var the_tiles = tiles.values()
+	while(!found):
+		var tile = the_tiles[rng.randi_range(0, the_tiles.size())]
+		found = tile if tile.type!= Tile.Type.WALL else null
+	return found
+
 func mark_visible(abs_vec:Vector2i):
 	if !tiles.has(abs_vec): return
 	var tile:Tile = tiles[abs_vec]
@@ -96,6 +104,7 @@ class Quadrant extends RefCounted:
 		origin = _origin
 
 	func transform(rel_vec:Vector2i):
+		@warning_ignore_start("narrowing_conversion")
 		if cardinal == Dir.NORTH:
 			return Vector2i(origin.x + rel_vec.x, origin.y - rel_vec.y)
 		if cardinal == Dir.SOUTH:
@@ -104,6 +113,7 @@ class Quadrant extends RefCounted:
 			return Vector2i(origin.x + rel_vec.y, origin.y + rel_vec.x)
 		if cardinal == Dir.WEST:
 			return Vector2i(origin.x - rel_vec.y, origin.y + rel_vec.x)
+		@warning_ignore_restore("narrowing_conversion")
 
 class Row extends RefCounted:
 	var depth:int

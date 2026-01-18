@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bbgbsh61547bf"]
+[gd_scene load_steps=18 format=4 uid="uid://bbgbsh61547bf"]
 
 [ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_8ln24"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_ekxnf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="9_jk1qb"]
 [ext_resource type="Script" uid="uid://bnvsjuyr3di1d" path="res://scenes/item_husk.gd" id="10_lgwnu"]
 [ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="11_flqon"]
+[ext_resource type="Texture2D" uid="uid://s5ens2juqems" path="res://icon.svg" id="13_rcqid"]
 
 [sub_resource type="Gradient" id="Gradient_vue75"]
 interpolation_mode = 1
@@ -158,3 +159,28 @@ vertical_alignment = 1
 [node name="Level" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("9_jk1qb")
 tilemap = NodePath("../Tile")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+z_index = 6
+z_as_relative = false
+offset_left = 966.0
+offset_top = 621.0
+offset_right = 1116.0
+offset_bottom = 650.0
+text = "Debug Button 2"
+
+[node name="Marker2D" type="Sprite2D" parent="."]
+modulate = Color(0.78, 0.78, 0, 1)
+position = Vector2(-299, 138)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_rcqid")
+
+[node name="Marker2D2" type="Sprite2D" parent="."]
+modulate = Color(0.9754563, 0.027993808, 0.38724846, 1)
+position = Vector2(460, 115)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_rcqid")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="Level" method="_on_button_pressed"]

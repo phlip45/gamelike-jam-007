@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c6hje3xlvfkww"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://mvjeodvukvrj"]
 
-[ext_resource type="Texture2D" uid="uid://cxs34shna7h1s" path="res://assets/sprite_sheet.png" id="1_im25o"]
+[ext_resource type="Texture2D" uid="uid://cxs34shna7h1s" path="res://assets/sprite_sheet.png" id="1_7mpae"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_im25o"]
-texture = ExtResource("1_im25o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xjqho"]
+texture = ExtResource("1_7mpae")
 texture_region_size = Vector2i(23, 23)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.5, -11.5, 11.5, -11.5, 11.5, 11.5, -11.5, 11.5)
@@ -38,8 +38,8 @@ texture_region_size = Vector2i(23, 23)
 2:3/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pyya8"]
-texture = ExtResource("1_im25o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nplja"]
+texture = ExtResource("1_7mpae")
 texture_region_size = Vector2i(23, 23)
 0:0/0 = 0
 0:0/0/modulate = Color(0.33660764, 0.3366076, 0.3366076, 1)
@@ -114,8 +114,8 @@ texture_region_size = Vector2i(23, 23)
 2:2/0/modulate = Color(0.33660764, 0.3366076, 0.3366076, 1)
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.5, -11.5, 11.5, -11.5, 11.5, 11.5, -11.5, 11.5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwm67"]
-texture = ExtResource("1_im25o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exp7w"]
+texture = ExtResource("1_7mpae")
 texture_region_size = Vector2i(23, 23)
 1:0/0 = 0
 1:0/0/modulate = Color(1, 1, 1, 0.003921569)
@@ -174,82 +174,9 @@ texture_region_size = Vector2i(23, 23)
 0:0/0/modulate = Color(1, 1, 1, 0.003921569)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.5, -11.5, 11.5, -11.5, 11.5, 11.5, -11.5, 11.5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpeep"]
-texture = ExtResource("1_im25o")
-texture_region_size = Vector2i(23, 23)
-0:0/0 = 0
-0:0/0/modulate = Color(1, 0, 0, 1)
-1:0/0 = 0
-1:0/0/modulate = Color(1, 0, 0, 1)
-2:0/0 = 0
-2:0/0/modulate = Color(1, 0, 0, 1)
-3:0/0 = 0
-3:0/0/modulate = Color(1, 0, 0, 1)
-4:0/0 = 0
-4:0/0/modulate = Color(1, 0, 0, 1)
-5:0/0 = 0
-5:0/0/modulate = Color(1, 0, 0, 1)
-6:0/0 = 0
-6:0/0/modulate = Color(1, 0, 0, 1)
-7:0/0 = 0
-7:0/0/modulate = Color(1, 0, 0, 1)
-0:1/0 = 0
-0:1/0/modulate = Color(1, 0, 0, 1)
-1:1/0 = 0
-1:1/0/modulate = Color(1, 0, 0, 1)
-2:1/0 = 0
-2:1/0/modulate = Color(1, 0, 0, 1)
-3:1/0 = 0
-3:1/0/modulate = Color(1, 0, 0, 1)
-4:1/0 = 0
-4:1/0/modulate = Color(1, 0, 0, 1)
-5:1/0 = 0
-5:1/0/modulate = Color(1, 0, 0, 1)
-6:1/0 = 0
-6:1/0/modulate = Color(1, 0, 0, 1)
-7:1/0 = 0
-7:1/0/modulate = Color(1, 0, 0, 1)
-0:2/0 = 0
-0:2/0/modulate = Color(1, 0, 0, 1)
-1:2/0 = 0
-1:2/0/modulate = Color(1, 0, 0, 1)
-2:2/0 = 0
-2:2/0/modulate = Color(1, 0, 0, 1)
-3:2/0 = 0
-3:2/0/modulate = Color(1, 0, 0, 1)
-4:2/0 = 0
-4:2/0/modulate = Color(1, 0, 0, 1)
-5:2/0 = 0
-5:2/0/modulate = Color(1, 0, 0, 1)
-6:2/0 = 0
-6:2/0/modulate = Color(1, 0, 0, 1)
-7:2/0 = 0
-7:2/0/modulate = Color(1, 0, 0, 1)
-0:3/0 = 0
-0:3/0/modulate = Color(1, 0, 0, 1)
-1:3/0 = 0
-1:3/0/modulate = Color(1, 0, 0, 1)
-5:5/0 = 0
-5:5/0/modulate = Color(1, 0, 0, 1)
-6:5/0 = 0
-6:5/0/modulate = Color(1, 0, 0, 1)
-7:5/0 = 0
-7:5/0/modulate = Color(1, 0, 0, 1)
-5:6/0 = 0
-5:6/0/modulate = Color(1, 0, 0, 1)
-7:6/0 = 0
-7:6/0/modulate = Color(1, 0, 0, 1)
-5:7/0 = 0
-5:7/0/modulate = Color(1, 0, 0, 1)
-6:7/0 = 0
-6:7/0/modulate = Color(1, 0, 0, 1)
-7:7/0 = 0
-7:7/0/modulate = Color(1, 0, 0, 1)
-
 [resource]
 tile_size = Vector2i(23, 23)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_pyya8")
-sources/0 = SubResource("TileSetAtlasSource_im25o")
-sources/2 = SubResource("TileSetAtlasSource_rwm67")
-sources/3 = SubResource("TileSetAtlasSource_tpeep")
+sources/1 = SubResource("TileSetAtlasSource_nplja")
+sources/0 = SubResource("TileSetAtlasSource_xjqho")
+sources/2 = SubResource("TileSetAtlasSource_exp7w")

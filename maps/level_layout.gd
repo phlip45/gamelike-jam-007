@@ -5,6 +5,8 @@ class_name LevelLayout
 var rect:Rect2i
 var rng:RandomNumberGenerator
 var tiles:Dictionary[Vector2i,Tile]
+var floors:Dictionary[Vector2i,Tile]
+var walls:Dictionary[Vector2i,Tile]
 var previous_visible_tiles:Dictionary[Vector2i,Tile]
 var current_visible_tiles:Dictionary[Vector2i,Tile]
 
@@ -20,13 +22,10 @@ func print():
 func collect_visibility_changes(tile:Tile):
 	previous_visible_tiles.set(tile.coord,tile)
 
-func get_random_non_wall_tile() -> Tile:
-	var found:Tile
-	var the_tiles = tiles.values()
-	while(!found):
-		var tile = the_tiles[rng.randi_range(0, the_tiles.size())]
-		found = tile if tile.type!= Tile.Type.WALL else null
-	return found
+func get_random_floor() -> Tile:
+	var keys:Array[Vector2i] = floors.keys()
+	var floor_key:Vector2i = keys[rng.randi_range(0,keys.size())]
+	return floors[floor_key]
 
 func mark_visible(abs_vec:Vector2i):
 	if !tiles.has(abs_vec): return

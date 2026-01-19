@@ -96,18 +96,21 @@ func populate_tiles() -> void:
 			for y:int in room.rect.size.y:
 				var tile:Tile = Tile.create(Vector2i(room.rect.position.x + x,room.rect.position.y + y), Tile.Type.FLOOR)
 				tiles.set(tile.coord,tile)
+				floors.set(tile.coord,tile)
 	for corridor:Corridor in corridors.values():
 		for coord in corridor.coords.keys():
 			var tile:Tile = Tile.create(coord, Tile.Type.FLOOR)
 			tiles.set(tile.coord,tile)
+			floors.set(tile.coord,tile)
 	# Create walls now from the tiles adjacent to floors
-	var walls:Dictionary[Vector2i,Vector2i]
 	for tile:Tile in tiles.values():
-		for empty in get_adjacent_voids(tile.coord):
-			walls.set(empty,empty)
-	for wall_location:Vector2i in walls:
-		var tile:Tile = Tile.create(wall_location, Tile.Type.WALL)
-		tiles.set(tile.coord, tile)
+		for _coord in get_adjacent_voids(tile.coord):
+			if !walls.has(_coord):
+				var t:Tile = Tile.create(_coord, Tile.Type.WALL)
+				walls.set(_coord,t)
+				tiles.set(_coord, t)
+	#for wall_location:Vector2i in walls:
+		#var tile:Tile = Tile.create(wall_location, Tile.Type.WALL)
 
 func get_adjacent_voids(coord:Vector2i) -> Array[Vector2i]:
 	var voids:Array[Vector2i]

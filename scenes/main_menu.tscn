@@ -1,12 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://bbgbsh61547bf"]
+[gd_scene load_steps=16 format=4 uid="uid://bbgbsh61547bf"]
 
 [ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_8ln24"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_rtw2f"]
 [ext_resource type="Script" uid="uid://c0h5al4wqct4j" path="res://enemies/goblin.ai.gd" id="3_oa1go"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_flqon"]
-[ext_resource type="PackedScene" uid="uid://lcvhdr41todm" path="res://player/player.tscn" id="6_oa1go"]
-[ext_resource type="Script" uid="uid://byhqejgx61old" path="res://turn_manager.gd" id="6_rtw2f"]
 [ext_resource type="PackedScene" uid="uid://ogjq01f3q1pj" path="res://example_tilemap.tscn" id="8_jk1qb"]
 [ext_resource type="PackedScene" uid="uid://bvkes44jj2fea" path="res://UI/ui.tscn" id="8_tbmy8"]
 [ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="9_jk1qb"]
@@ -49,10 +47,6 @@ whoosh = 10
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [node name="MainMenu" type="Node2D"]
-
-[node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("actors")]
-script = ExtResource("6_rtw2f")
-actors = [NodePath("../Player"), NodePath("../Goblin")]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-23, 0)
@@ -151,8 +145,6 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Player" parent="." instance=ExtResource("6_oa1go")]
 
 [node name="UI" parent="." instance=ExtResource("8_tbmy8")]
 

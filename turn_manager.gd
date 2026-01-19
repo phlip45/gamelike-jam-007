@@ -2,7 +2,7 @@ extends Node
 class_name TurnManager
 
 var player:Player
-@export var actors:Array[Actor]
+var actors:Array[Actor]
 
 func _ready() -> void:
 	#begin running the manager which is like the main game loop essentially.
@@ -37,6 +37,10 @@ func take_next_turn():
 	for actr:Actor in actors:
 		actr.cooldown -= next_turn_cooldown
 	take_next_turn()
-	
+
+func add_actor(actor:Actor):
+	actors.append(actor)
+	add_child(actor)
+
 func remove_actor(actor:Actor):
 	actors.erase(actor)

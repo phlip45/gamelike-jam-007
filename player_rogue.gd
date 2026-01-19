@@ -84,9 +84,8 @@ func premove(delta:float):
 		walk_cooldown.x = 0
 		running = false
 		return
-	var desired_pos:Vector2 = Global.coord_to_position(desired_move)
 	if walk_cooldown.x <= 0:
-		var bumpables:Array = await get_bumpables_at_location(desired_pos)
+		var bumpables:Array = await get_bumpables_at_location(desired_move)
 		if bumpables.size() > 0:
 			walk_cooldown.x = walk_cooldown.y/10 if running else walk_cooldown.y
 			running = true
@@ -94,10 +93,10 @@ func premove(delta:float):
 		else:
 			walk_cooldown.x = walk_cooldown.y/10 if running else walk_cooldown.y
 			running = true
-			move(desired_pos, desired_move,delta)
+			move(desired_move,delta)
 
-func move(desired_pos:Vector2, desired_coord:Vector2i, _delta:float):
-	position = desired_pos
+func move(desired_coord:Vector2i, _delta:float = 0):
+	position = Global.coord_to_position(desired_coord)
 	coord = desired_coord
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
@@ -106,8 +105,13 @@ func move(desired_pos:Vector2, desired_coord:Vector2i, _delta:float):
 	Global.set_ground_items(await get_ground_items())
 	finished_turn.emit( max(100 - stats.whoosh,0) )
 
-func get_bumpables_at_location(target:Vector2) -> Array:
-	feeler.position = target - position
+func teleport(_coord:Vector2i):
+	position = Global.coord_to_position(_coord)
+	coord = _coord
+	Global.actor_moved(self,coord)
+
+func get_bumpables_at_location(target_coord:Vector2i) -> Array:
+	feeler.position = Global.coord_to_position(target_coord) - position
 	state = State.AWAITING_BUMPABLES
 	## Takes two frames for feeler to move and for it to correctly
 	## register overlapping areas it seems.

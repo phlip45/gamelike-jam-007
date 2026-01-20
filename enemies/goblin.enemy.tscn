@@ -14,3 +14,8 @@ symbol_char = "g"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("4_mu1c2")
+
+[node name="Feeler" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Feeler"]
+shape = ExtResource("4_mu1c2")

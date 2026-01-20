@@ -1,11 +1,17 @@
 extends Actor
 class_name Enemy
 
+@onready var feeler: Area2D = $Feeler
 @export var stats:Stats
 @export var _ai_script:GDScript
 var ai:AI
-@warning_ignore("unused_signal")
-signal turn_over(time_spent)
+
+var state:State
+
+enum State{
+	NULL, SLEEPING, PATROLING, WAITING, AGGRO, DEAD, 
+	SPECIAL0, SPECIAL1, SPECIAL2
+}
 
 func _ready() -> void:
 	super()

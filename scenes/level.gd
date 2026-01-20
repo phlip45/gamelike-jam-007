@@ -1,10 +1,7 @@
 extends Node
 class_name Level
 
-### If Player isn't the last one preloaded then the players
-### stats go to zero
-const GOBLIN_ENEMY = preload("uid://f6lstewm8j73")
-const PLAYER = preload("uid://lcvhdr41todm")
+@export var actor_scenes:Dictionary[String,PackedScene]
 
 var turn_manager: TurnManager
 var size:Vector2i
@@ -14,12 +11,12 @@ var pathfinder:Pathfinder
 var player:Player
 
 func _ready() -> void:
-	player = PLAYER.instantiate()
+	player = actor_scenes["Player"].instantiate()
 	Global.current_level = self
 	generate_level(true)
 	turn_manager = TurnManager.new()
 	turn_manager.add_actor(player)
-	var goblin:Enemy = GOBLIN_ENEMY.instantiate()
+	var goblin:Enemy = actor_scenes["Goblin"].instantiate()
 	goblin.teleport(layout.get_random_floor().coord)
 	turn_manager.add_actor(goblin)
 	#turn_manager.player = player

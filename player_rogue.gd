@@ -3,7 +3,6 @@ class_name Player
 
 @onready var feeler: Area2D = $Feeler
 @onready var feet_feeler: Area2D = $FeetFeeler
-
 @export var stats:Stats
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
 var inventory:Inventory
@@ -15,13 +14,15 @@ enum State{
 	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
 }
 
+signal started_turn
 signal finished_turn(time_taken:int)
 
 func _ready() -> void:
+	super()
 	coord = Global.position_to_coord(position)
 	inventory = Inventory.new()
-	if Global.ui:
-		Global.ui.connect_to_player(self)
+	if Global.ui != null:
+		Global.ui.connect_to_player.call_deferred(self)
 	else:
 		Global.signals.ui_loaded.connect(func():
 			Global.ui.connect_to_player(self)
@@ -39,6 +40,7 @@ func _process(delta: float) -> void:
 	premove(delta)
 
 func take_turn() -> int:
+	started_turn.emit()
 	state = State.AWAITING_INPUT
 	var time_taken:int = await finished_turn
 	return time_taken
@@ -76,9 +78,11 @@ func premove(delta:float):
 		pass
 	elif Input.is_action_just_pressed("cancel"):
 		open_inventory()
+		walk_cooldown.x = walk_cooldown.y
 		return
 	elif Input.is_action_just_pressed("pickup"):
 		pickup_items()
+		walk_cooldown.x = walk_cooldown.y
 		return
 	else:  # for example if a mouse is clicked or something.
 		walk_cooldown.x = 0
@@ -103,12 +107,7 @@ func move(desired_coord:Vector2i, _delta:float = 0):
 	state = State.AWAITING_TURN
 	Global.actor_moved(self,coord)
 	Global.set_ground_items(await get_ground_items())
-	finished_turn.emit( max(100 - stats.whoosh,0) )
-
-func teleport(_coord:Vector2i):
-	position = Global.coord_to_position(_coord)
-	coord = _coord
-	Global.actor_moved(self,coord)
+	finished_turn.emit( max(100 - stats.whoosh,1) )
 
 func get_bumpables_at_location(target_coord:Vector2i) -> Array:
 	feeler.position = Global.coord_to_position(target_coord) - position

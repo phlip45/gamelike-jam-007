@@ -10,6 +10,7 @@ func _ready() -> void:
 	for actor in actors:
 		if actor is Player: player = actor
 		actor.died.connect(remove_actor.bind(actor))
+
 	take_next_turn()
 	
 func take_next_turn():
@@ -19,10 +20,13 @@ func take_next_turn():
 		return
 	var actor = actors.pop_front()
 	var time_taken:int = await actor.take_turn()
+	if actor is Player:
+		check_visibility()
 	if time_taken == 0:
 		actors.push_front(actor) # put current actor back in front
 		take_next_turn()
 		return
+	prints(actor.name, "Took turn lasting:",time_taken)
 	actor.cooldown = time_taken
 	var new_index = actors.find_custom(func(a:Actor):
 		return time_taken <= a.cooldown
@@ -44,3 +48,8 @@ func add_actor(actor:Actor):
 
 func remove_actor(actor:Actor):
 	actors.erase(actor)
+
+func check_visibility():
+	for actor:Actor in actors:
+		if actor is not Player:
+			actor.check_visibility()

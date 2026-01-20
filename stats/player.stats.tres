@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="1_bjd7b"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_bjd7b")
-hp = 97
-hp_max = 150
-hunger = 750
+hp = 22
+hp_max = 22
+hunger = 500
 hunger_max = 1000
-mp = 75
-mp_max = 150
+mp = 10
+mp_max = 10
 stremf = 5
 woowoo = 5
-whoosh = 5
+whoosh = 50
+vision_radius = 5
 metadata/_custom_type_script = "uid://s27656rvpvo7"

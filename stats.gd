@@ -8,6 +8,7 @@ signal stat_changed(stat_name, new_val)
 	set(val):
 		hp = max(val,0)
 		stat_changed.emit("hp", val)
+		print("HP CHANGED:", val)
 @export var hp_max:int:
 	set(val):
 		hp_max = max(val,0)

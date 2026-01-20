@@ -1,9 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://bbgbsh61547bf"]
+[gd_scene load_steps=12 format=4 uid="uid://bbgbsh61547bf"]
 
-[ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_8ln24"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_ekxnf"]
-[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_rtw2f"]
-[ext_resource type="Script" uid="uid://c0h5al4wqct4j" path="res://enemies/goblin.ai.gd" id="3_oa1go"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_flqon"]
 [ext_resource type="PackedScene" uid="uid://ogjq01f3q1pj" path="res://example_tilemap.tscn" id="8_jk1qb"]
 [ext_resource type="PackedScene" uid="uid://bvkes44jj2fea" path="res://UI/ui.tscn" id="8_tbmy8"]
@@ -31,20 +28,11 @@ name = "Sword"
 name_decoration_start = "[rainbow]"
 name_decoration_end = "[/rainbow]"
 description = "This sword smells of darkness and the night. You suspect it comes from Maryland"
-symbol = "⚔"
+symbol = "/"
 type = 9
 stackable = true
 equippable = true
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"
-
-[sub_resource type="Resource" id="Resource_oa1go"]
-resource_local_to_scene = true
-script = ExtResource("2_rtw2f")
-hp = 14
-stremf = 10
-woowoo = 10
-whoosh = 10
-metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [node name="MainMenu" type="Node2D"]
 
@@ -116,36 +104,6 @@ shape = ExtResource("1_ekxnf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Goblin" type="Area2D" parent="."]
-position = Vector2(69, -23)
-script = ExtResource("1_8ln24")
-stats = SubResource("Resource_oa1go")
-_ai_script = ExtResource("3_oa1go")
-actor_name = "Goblin1"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin"]
-shape = ExtResource("1_ekxnf")
-
-[node name="Symbol" type="RichTextLabel" parent="Goblin"]
-texture_filter = 1
-offset_left = -23.0
-offset_top = -23.0
-offset_right = 23.0
-offset_bottom = 23.0
-pivot_offset = Vector2(23, 23)
-mouse_filter = 2
-theme_override_constants/shadow_outline_size = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/text_highlight_h_padding = 0
-theme_override_constants/text_highlight_v_padding = 0
-theme_override_font_sizes/normal_font_size = 33
-text = "g"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="UI" parent="." instance=ExtResource("8_tbmy8")]
 
 [node name="Level" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
@@ -174,5 +132,3 @@ modulate = Color(0.9754563, 0.027993808, 0.38724846, 1)
 position = Vector2(460, 115)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_rcqid")
-
-[connection signal="pressed" from="CanvasLayer/Button" to="Level" method="_on_button_pressed"]

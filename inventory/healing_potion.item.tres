@@ -6,7 +6,7 @@
 script = ExtResource("1_gju77")
 name = "Batman's Passion"
 description = "Batman once ate a crab and now all he cares about is going to Maryland."
-symbol = "🦀"
+symbol = "b"
 type = 9
 stackable = true
 equippable = true

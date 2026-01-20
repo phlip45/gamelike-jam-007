@@ -1,6 +1,9 @@
 extends Node
 class_name Level
 
+### If Player isn't the last one preloaded then the players
+### stats go to zero
+const GOBLIN_ENEMY = preload("uid://f6lstewm8j73")
 const PLAYER = preload("uid://lcvhdr41todm")
 
 var turn_manager: TurnManager
@@ -8,18 +11,22 @@ var size:Vector2i
 @export var tilemap:TileMapLayer
 var layout:LevelLayout
 var pathfinder:Pathfinder
+var player:Player
 
 func _ready() -> void:
+	player = PLAYER.instantiate()
 	Global.current_level = self
 	generate_level(true)
 	turn_manager = TurnManager.new()
-	var player:Player = PLAYER.instantiate()
 	turn_manager.add_actor(player)
-	turn_manager.player = player
+	var goblin:Enemy = GOBLIN_ENEMY.instantiate()
+	goblin.teleport(layout.get_random_floor().coord)
+	turn_manager.add_actor(goblin)
+	#turn_manager.player = player
 	player.teleport(layout.get_random_floor().coord)
-	turn_manager.player.finished_turn.connect(update_from_players_vision)
+	player.started_turn.connect(update_from_players_vision)
 	add_child(turn_manager)
-	update_from_players_vision()
+	update_from_players_vision.call_deferred()
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_top"):
@@ -29,7 +36,7 @@ func generate_level(seeded:bool = false):
 	tilemap.clear()
 	var opts:SimpleRoomCorridorLayout.Options = SimpleRoomCorridorLayout.Options.new()
 	if seeded:
-		opts.rng_seed = 2622252015
+		opts.rng_seed = 2622252045
 	opts.num_rooms = Vector2i(3,40)
 	opts.room_height = Vector2i(2,20)
 	opts.room_width = Vector2i(2,8)
@@ -63,26 +70,27 @@ func update_tilemap(tiles_changed:Dictionary[Vector2i,Tile]):
 		)
 
 func update_from_players_vision(_unused:int = -1):
-	layout.compute_fov(turn_manager.player.coord)
+	layout.compute_fov(player.coord)
+	turn_manager.check_visibility()
 
 func get_random_floor_tile_symbol():
 	var floor_sprite_coords:Array[Vector2i] = [Vector2i(6,0), Vector2i(7,0),Vector2i(0,2),Vector2i(1,2),Vector2i(5,2)]
 	return floor_sprite_coords[layout.rng.randi_range(0,floor_sprite_coords.size()-1)]
 
+func get_tile(coord:Vector2i) -> Tile:
+	if !layout.tiles.has(coord): return null
+	return layout.tiles[coord]
 
-###DEBUG STUFF###
-func _on_button_pressed() -> void:
-	var marker_2d: Sprite2D = $"../Marker2D"
-	var marker_2d_2: Sprite2D = $"../Marker2D2"
-	marker_2d.global_position = Global.coord_to_position(layout.get_random_non_wall_tile().coord)
-	marker_2d_2.global_position = Global.coord_to_position(layout.get_random_non_wall_tile().coord)
-	
-	var path := pathfinder.get_path(
-		Global.position_to_coord(marker_2d.global_position),
-		Global.position_to_coord(marker_2d_2.global_position)
-	)
-	var tiles_to_change:Dictionary[Vector2i,Tile]
-	for v:Vector2i in path:
-		var tile:Tile = Tile.create(v,Tile.Type.DEBUG)
-		tiles_to_change.set(tile.coord, tile)
-	update_tilemap(tiles_to_change)
+func is_adjacent_to_player(coord:Vector2i) -> bool:
+	if player.coord.distance_squared_to(coord) < 4.0:
+		return true
+	return false
+
+func can_see_player(from:Vector2i, vision_radius:int) -> bool:
+	if player.coord.distance_squared_to(from) >= pow(vision_radius,2) + 0.2:
+		return false
+	var vecs_to_check:Array[Vector2i] =Bresenham.get_line(player.coord, from)
+	for vec:Vector2i in vecs_to_check:
+		if layout.tiles.has(vec):
+			if layout.tiles[vec].blocks_vision: return false
+	return true

@@ -26,7 +26,6 @@ func take_next_turn():
 		actors.push_front(actor) # put current actor back in front
 		take_next_turn()
 		return
-	prints(actor.name, "Took turn lasting:",time_taken)
 	actor.cooldown = time_taken
 	var new_index = actors.find_custom(func(a:Actor):
 		return time_taken <= a.cooldown

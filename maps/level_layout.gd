@@ -24,7 +24,7 @@ func collect_visibility_changes(tile:Tile):
 
 func get_random_floor() -> Tile:
 	var keys:Array[Vector2i] = floors.keys()
-	var floor_key:Vector2i = keys[rng.randi_range(0,keys.size())]
+	var floor_key:Vector2i = keys[rng.randi_range(0,keys.size()-1)]
 	return floors[floor_key]
 
 func mark_visible(abs_vec:Vector2i):

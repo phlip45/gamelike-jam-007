@@ -47,8 +47,8 @@ func _ready() -> void:
 	title.text += item.name
 	title.text += item.name_decoration_end
 	description.text = item.description
-	if item.consumable:
-		verb.text = item.consume_verb 
+	if item.usable:
+		verb.text = item.use_verb 
 		selectable_options.append(verb)
 	else:
 		verb.text = dis_color + "Use"

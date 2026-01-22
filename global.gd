@@ -22,7 +22,6 @@ static func set_ground_items(items:Array[Item] = []):
 	if !ui: return
 	ui.set_ground_items(items)
 
-
 static func random_name(length:int = 20) -> String:
 	var consonants:Array[String] = ["b","c","d","f","g","h","j","k","l","m","n","p","qu","r","s","t","v","w","x","y","z"]
 	var vowels:Array[String] = ["a","e","i","o","u","y"]
@@ -60,3 +59,6 @@ static func coord_to_position(coord:Vector2i) -> Vector2:
 	pos.x = coord.x * Global.tile_size.x
 	pos.y = coord.y * Global.tile_size.y
 	return pos
+
+static func rand_color() -> Color:
+	return Color(randf(),randf(),randf())

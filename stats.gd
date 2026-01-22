@@ -2,13 +2,12 @@ extends Resource
 class_name Stats
 
 ## stat_changed(stat_name:String, new_amount:int) -> emits when stats are changed for any reason
-signal stat_changed(stat_name, new_val)
+signal stat_changed(stat_name:String, new_val:int)
 
 @export var hp:int:
 	set(val):
 		hp = max(val,0)
 		stat_changed.emit("hp", val)
-		print("HP CHANGED:", val)
 @export var hp_max:int:
 	set(val):
 		hp_max = max(val,0)

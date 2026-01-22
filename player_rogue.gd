@@ -191,6 +191,6 @@ func open_inventory():
 func pickup_items():
 	for item_husk:ItemHusk in ground_item_husks:
 		inventory.add(item_husk.item)
-		item_husk.queue_free()
+		item_husk.die()
 	Global.set_ground_items(await get_ground_items())
 	

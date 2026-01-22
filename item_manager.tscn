@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvgdddwbo7wia"]
+
+[ext_resource type="Script" uid="uid://ckosn8c7grmir" path="res://item_manager.gd" id="1_0atio"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="2_c2aka"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="3_we678"]
+[ext_resource type="Resource" uid="uid://bpt02cthi6lvs" path="res://inventory/sword.item.tres" id="4_aw0m1"]
+
+[node name="ItemManager" type="Node"]
+script = ExtResource("1_0atio")
+item_resources = Dictionary[int, ExtResource("2_c2aka")]({
+1: ExtResource("3_we678"),
+2: ExtResource("4_aw0m1")
+})

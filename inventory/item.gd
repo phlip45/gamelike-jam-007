@@ -12,22 +12,20 @@ var coord:Vector2i
 @export var name_decoration_end:String
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT,"Desc") var description:String
 @export var symbol:String
+@export var color:Color
 @export var type:Type
 @export var stackable:bool
 @export var quantity:int = 1
 @export var equippable:bool
-@export var consumable:bool
-@export var consume_verb:String
-@export var consumable_script:GDScript
+@export var usable:bool
+@export var use_verb:String
+@export var use_script:GDScript
 var equipped:bool = false
-
-## PONDER: For all this stackable/consumable stuff I'm wondering if it should
-## be a subcategory of item.
 
 func add(amount:int = 1) -> void:
 	if !stackable: return
 	quantity = min(quantity + amount, max_quantity)
 
-func consume(amount:int = 1):
-	if !stackable and !consumable: return
+func subtract(amount:int = 1):
+	if !stackable and !usable: return
 	quantity = max(quantity - amount, 0)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bpt02cthi6lvs"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_w0s5h"]
+
+[resource]
+script = ExtResource("1_w0s5h")
+name = "Sword"
+description = "This is a placeholder"
+symbol = ")"
+color = Color(0.72, 0.42480004, 0.42480004, 1)
+type = 1
+equippable = true
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

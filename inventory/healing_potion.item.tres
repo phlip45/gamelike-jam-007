@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_gju77"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_gju77")
 name = "Batman's Passion"
 description = "Batman once ate a crab and now all he cares about is going to Maryland."
 symbol = "b"
+color = Color(0.14999998, 1, 0, 1)
 type = 9
 stackable = true
 equippable = true

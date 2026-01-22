@@ -21,7 +21,6 @@ func add(item:Item) -> bool:
 		return false
 	items.append(item)
 	sort()
-	
 	return true
 
 func drop(item:Item) -> void:
@@ -36,10 +35,9 @@ func remove(item:Item) -> bool:
 	sort()
 	return true
 
-func consume(item:Item, amount:int = 1) -> bool:
-	if !item.consumable: return false
+func subtract(item:Item, amount:int = 1) -> bool:
 	if item.stackable:
-		item.consume(amount)
+		item.subtract(amount)
 	else:
 		remove(item)
 	return true

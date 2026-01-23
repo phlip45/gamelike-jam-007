@@ -4,8 +4,13 @@ class_name Level
 @export var actor_scenes:Dictionary[String,PackedScene]
 @export var items_resources:Dictionary[String,Resource]
 
-var turn_manager:TurnManager
+var level_rng:RandomNumberGenerator
+var item_rng:RandomNumberGenerator
+var combat_rng:RandomNumberGenerator
+
 var item_manager:ItemManager
+var turn_manager:TurnManager
+
 var size:Vector2i
 @export var tilemap:TileMapLayer
 var layout:LevelLayout
@@ -13,6 +18,9 @@ var pathfinder:Pathfinder
 var player:Player
 
 func _ready() -> void:
+	level_rng = RandomNumberGenerator.new()
+	item_rng = RandomNumberGenerator.new()
+	combat_rng = RandomNumberGenerator.new()
 	item_manager = ItemManager.create(self)
 	
 	player = actor_scenes["Player"].instantiate()
@@ -20,15 +28,16 @@ func _ready() -> void:
 	generate_level(true)
 	turn_manager = TurnManager.new()
 	turn_manager.add_actor(player)
-	player.teleport(layout.get_random_floor().coord)
+	player.teleport(layout.get_random_floor().coord , false)
 	player.started_turn.connect(update_from_players_vision)
-	for i in 200:
+	for i in 7:
 		var goblin:Enemy = actor_scenes["Goblin"].instantiate()
-		goblin.teleport(layout.get_random_floor().coord)
+		goblin.teleport(layout.get_random_floor().coord, false)
 		turn_manager.add_actor(goblin)
 
-	for i in 200:
-		item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
+	for i in 10:
+		item_manager.add_random_item_husk()
+		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	
 	#turn_manager.player = player
 	add_child(item_manager)
@@ -42,6 +51,7 @@ func _process(_delta: float) -> void:
 func generate_level(seeded:bool = false):
 	tilemap.clear()
 	var opts:SimpleRoomCorridorLayout.Options = SimpleRoomCorridorLayout.Options.new()
+	opts.rng = level_rng
 	if seeded:
 		opts.rng_seed = 2622252045
 	opts.num_rooms = Vector2i(3,40)
@@ -118,3 +128,7 @@ func is_cell_occupied(coord:Vector2i) -> bool:
 		if coord == actor.coord:
 			return true
 	return false
+
+func is_cell_walkable(coord:Vector2i) -> bool:
+	if !layout.tiles.has(coord): return false
+	return layout.tiles[coord].type == Tile.Type.FLOOR

@@ -3,9 +3,7 @@ class_name Player
 
 @onready var feeler: Area2D = $Feeler
 @onready var feet_feeler: Area2D = $FeetFeeler
-@export var stats:Stats
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
-var inventory:Inventory
 var running:bool = false
 var state:State
 var ground_item_husks:Array[ItemHusk]
@@ -20,7 +18,8 @@ signal finished_turn(time_taken:int)
 func _ready() -> void:
 	super()
 	coord = Global.position_to_coord(position)
-	inventory = Inventory.new()
+	if !inventory:
+		inventory = Inventory.new()
 	if Global.ui != null:
 		Global.ui.connect_to_player.call_deferred(self)
 	else:
@@ -100,12 +99,12 @@ func premove(delta:float):
 			move(desired_move,delta)
 
 func move(desired_coord:Vector2i, _delta:float = 0):
-	position = Global.coord_to_position(desired_coord)
-	coord = desired_coord
+	#position = Global.coord_to_position(desired_coord)
+	#coord = desired_coord
+	teleport(desired_coord)
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
 	state = State.AWAITING_TURN
-	Global.actor_moved(self,coord)
 	Global.set_ground_items(await get_ground_items())
 	finished_turn.emit( max(100 - stats.whoosh,1) )
 
@@ -178,6 +177,7 @@ func get_ground_items() -> Array[Item]:
 	return await get_items_at_location(global_position)
 
 func attack(enemy:Enemy):
+	
 	enemy.take_damage(5)
 	Global.push_message("[color=red]%s[color=white] took 5 damage" % enemy.actor_name)
 	finished_turn.emit(50)
@@ -193,4 +193,6 @@ func pickup_items():
 		inventory.add(item_husk.item)
 		item_husk.die()
 	Global.set_ground_items(await get_ground_items())
-	
+
+func die():
+	pass

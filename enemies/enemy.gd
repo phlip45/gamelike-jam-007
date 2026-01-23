@@ -1,10 +1,9 @@
 extends Actor
 class_name Enemy
 
-@export var stats:Stats
 @export var _brain_script:GDScript
-var brain:Brain
 @export var _debug_draw_path:bool
+var brain:Brain
 var debug_color:Color
 var debug_offset:Vector2
 
@@ -42,7 +41,6 @@ func _draw() -> void:
 func take_turn() -> int:
 	if !level: level = Global.current_level
 	if !brain:
-		push_warning("inserting brain")
 		brain = _brain_script.create(self,level)
 	return brain.take_turn()
 
@@ -53,8 +51,7 @@ func take_damage(amount:int) -> void:
 		die()
 
 func move(_coord:Vector2i) -> bool:
-	coord = _coord
-	position = Global.coord_to_position(coord)
+	teleport(_coord)
 	return true
 
 func die():

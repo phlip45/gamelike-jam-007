@@ -20,6 +20,7 @@ var coord:Vector2i
 @export var usable:bool
 @export var use_verb:String
 @export var use_script:GDScript
+@export var innate:bool
 var equipped:bool = false
 
 func add(amount:int = 1) -> void:

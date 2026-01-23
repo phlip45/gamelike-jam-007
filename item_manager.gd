@@ -26,6 +26,14 @@ func remove_item_husk(item_husk:ItemHusk):
 	item_husks.erase(item_husk)
 	remove_child(item_husk)
 
+func add_random_item_husk() -> void:
+	var keys:Array[ItemName] = item_resources.keys()
+	var random_index:int = level.item_rng.randi_range(0,keys.size()-1)
+	add_item(keys[random_index])
+
+func get_random_item() -> Item:
+	return null
+
 func check_visibility():
 	for husk:ItemHusk in item_husks:
 		husk.check_visibility()

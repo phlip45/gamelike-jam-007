@@ -25,5 +25,5 @@ func get_path(from:Vector2i,to:Vector2i)-> Array[Vector2i]:
 	if !astar.is_in_bounds(from.x,from.y) and !astar.is_in_bounds(to.x, to.y):
 		printerr("Tried to get path that wasn't in bounds")
 		return []
-	var path:Array[Vector2i] = astar.get_id_path(from,to)
+	var path:Array[Vector2i] = astar.get_id_path(from,to,true)
 	return path

@@ -1,12 +1,13 @@
-[gd_scene format=3 uid="uid://tmy3jabrxygd"]
+[gd_scene load_steps=2 format=3 uid="uid://tmy3jabrxygd"]
+
+[ext_resource type="Script" uid="uid://bwnrsj22xkd64" path="res://actors/symbol.gd" id="1_1jtmg"]
 
 [node name="Symbol" type="RichTextLabel"]
 texture_filter = 1
-offset_left = -46.0
-offset_top = -46.0
-offset_right = 46.0
-offset_bottom = 46.0
-pivot_offset = Vector2(27, 33)
+offset_left = -10.0
+offset_top = -22.0
+offset_right = 11.0
+offset_bottom = 20.0
 mouse_filter = 2
 theme_override_constants/shadow_outline_size = 0
 theme_override_constants/shadow_offset_x = 0
@@ -14,8 +15,11 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/text_highlight_h_padding = 0
 theme_override_constants/text_highlight_v_padding = 0
 theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
 text = "@"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("1_1jtmg")

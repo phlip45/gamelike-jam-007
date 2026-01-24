@@ -66,6 +66,7 @@ func select(item:Item):
 		PopUpItemUI.Option.VERB:
 			state = State.SELECTING
 		PopUpItemUI.Option.EQUIP:
+			inventory.equip(item)
 			state = State.SELECTING
 		PopUpItemUI.Option.DROP:
 			state = State.SELECTING
@@ -120,7 +121,8 @@ func _populate():
 	for item:Item in inventory.items:
 		var rich_text:RichTextLabel = ITEM_RICH_TEXT.instantiate()
 		rich_text.text = item.name_decoration_start
-		rich_text.text += "[E]" if item.equipped else ""
+		if item is Equipment:
+			rich_text.text += "[E]" if item.equipped else ""
 		rich_text.text += item.name
 		rich_text.text += item.name_decoration_end
 		item_labels.set(item, rich_text)
@@ -143,8 +145,9 @@ func open(_inventory:Inventory):
 	inventory.order_changed.connect(_populate)
 	inventory_holder.visible = true
 	get_tree().create_timer(.3).timeout.connect(func():
-		state = State.SELECTING	
+		state = State.SELECTING, CONNECT_ONE_SHOT
 	)
+	set_deferred("left_panel.size_flags_horizontal", 3)
 	opened.emit()
 
 func _close():

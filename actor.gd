@@ -5,7 +5,8 @@ class_name Actor
 const SYMBOL = preload("uid://tmy3jabrxygd")
 
 @export var actor_name:String
-@export var stats:Stats
+@export var base_stats:Stats
+var stats:Stats
 @export var symbol_char:String = "🐛"
 @export var innate_hand_slot:Item
 var inventory:Inventory
@@ -13,6 +14,7 @@ var cooldown:int = 100
 var coord:Vector2i
 var level:Level
 var symbol:RichTextLabel
+var target:Actor
 var tween:Tween
 
 @warning_ignore("unused_signal")
@@ -22,6 +24,8 @@ func _ready() -> void:
 	symbol = SYMBOL.instantiate()
 	symbol.text = symbol_char
 	add_child(symbol)
+	base_stats.stat_changed.connect(calc_stats)
+	stats = base_stats.duplicate()
 	level = Global.current_level
 	
 func teleport(_coord:Vector2i, animate:bool = true):
@@ -52,6 +56,12 @@ func take_damage(amount:int) -> void:
 func heal(amount:int) -> void:
 	stats.hp = min(amount + stats.hp, stats.hp_max)
 	print_rich("[color=green]I've been healed for %s" % amount)
+
+func calc_stats(_stat_name:String, _new_val:int):
+	stats.overwrite(base_stats)
+	for item in inventory.equipped_items:
+		if item.stats:
+			stats.add(item.stats) 
 
 @abstract func die()
 @abstract func take_turn() -> int

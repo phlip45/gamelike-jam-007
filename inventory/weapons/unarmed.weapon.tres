@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://dv0ghhhyu2duh"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_6rrrt"]
+[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="1_8nkya"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="3_uxfc6"]
+
+[sub_resource type="Resource" id="Resource_j8ob7"]
+script = ExtResource("3_uxfc6")
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("1_8nkya")
+attack_action = ExtResource("1_6rrrt")
+equippable = true
+equip_slot = 3
+stats = SubResource("Resource_j8ob7")
+name = "Fist"
+name_decoration_start = "[color=#a12]"
+name_decoration_end = "[/color]"
+description = "Hope you didn't find this on the ground."
+symbol = "3"
+color = Color(0.6666667, 0.06666667, 0.13333334, 1)
+type = 1
+metadata/_custom_type_script = "uid://br0pkukqsr0q"

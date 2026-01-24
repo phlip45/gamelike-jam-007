@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://b11vt7x2jerev"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_tqxf8"]
+[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_3v847"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="3_xradb"]
+
+[sub_resource type="Resource" id="Resource_tt6k1"]
+script = ExtResource("3_xradb")
+stremf = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_3v847")
+attack_action = ExtResource("1_tqxf8")
+equippable = true
+equip_slot = 3
+stats = SubResource("Resource_tt6k1")
+name = "Sword"
+name_decoration_start = "[color=#444]"
+name_decoration_end = "[/color]"
+description = "Your standard sword	"
+symbol = ")"
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 1
+metadata/_custom_type_script = "uid://br0pkukqsr0q"

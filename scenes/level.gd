@@ -2,7 +2,6 @@ extends Node
 class_name Level
 
 @export var actor_scenes:Dictionary[String,PackedScene]
-@export var items_resources:Dictionary[String,Resource]
 
 var level_rng:RandomNumberGenerator
 var item_rng:RandomNumberGenerator
@@ -35,10 +34,12 @@ func _ready() -> void:
 		goblin.teleport(layout.get_random_floor().coord, false)
 		turn_manager.add_actor(goblin)
 
-	for i in 10:
+	for i in 100:
 		item_manager.add_random_item_husk()
 		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	
+	for i in item_manager.item_husks:
+		print(i.item.name)
 	#turn_manager.player = player
 	add_child(item_manager)
 	add_child(turn_manager)

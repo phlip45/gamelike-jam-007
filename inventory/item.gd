@@ -14,14 +14,12 @@ var coord:Vector2i
 @export var symbol:String
 @export var color:Color
 @export var type:Type
+
 @export var stackable:bool
 @export var quantity:int = 1
-@export var equippable:bool
 @export var usable:bool
 @export var use_verb:String
 @export var use_script:GDScript
-@export var innate:bool
-var equipped:bool = false
 
 func add(amount:int = 1) -> void:
 	if !stackable: return

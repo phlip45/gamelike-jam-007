@@ -7,6 +7,7 @@ class_name Player
 var running:bool = false
 var state:State
 var ground_item_husks:Array[ItemHusk]
+var equipped_weapon:Weapon
 
 enum State{
 	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
@@ -122,8 +123,8 @@ func get_bumpables_at_location(target_coord:Vector2i) -> Array:
 		areas.append(Wall.new())
 	return areas
 
-func get_items_at_location(target:Vector2) -> Array[Item]:
-	feeler.position = target - position
+func get_items_at_location(_target:Vector2) -> Array[Item]:
+	feeler.position = _target - position
 	await get_tree().process_frame
 	await get_tree().process_frame
 	ground_item_husks.clear()
@@ -177,9 +178,9 @@ func get_ground_items() -> Array[Item]:
 	return await get_items_at_location(global_position)
 
 func attack(enemy:Enemy):
-	
-	enemy.take_damage(5)
-	Global.push_message("[color=red]%s[color=white] took 5 damage" % enemy.actor_name)
+	target = enemy
+	if inventory.weapon_slot:
+		inventory.weapon_slot.attack(self)
 	finished_turn.emit(50)
 
 func open_inventory():

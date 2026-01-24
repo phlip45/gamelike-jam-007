@@ -18,7 +18,7 @@ shader_parameter/bloom_intensity = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l5n7b"]
 shader = ExtResource("3_l8sac")
-shader_parameter/color_offset_multiplier = 0.054000002564999997
+shader_parameter/color_offset_multiplier = 0.05400000256499999
 shader_parameter/black_offset_multiplier = 0.1
 shader_parameter/color_offset = 0.06700000644238
 shader_parameter/blur_amount = 3.0

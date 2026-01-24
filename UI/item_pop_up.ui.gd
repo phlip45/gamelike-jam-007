@@ -18,7 +18,8 @@ var holding:bool = false
 var selector_index:int = 0
 
 @onready var title: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer/Title
-@onready var description: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer/MarginContainer/Description
+@onready var description: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Description
+@onready var qty: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Qty
 @onready var verb: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Verb
 @onready var equip: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Equip
 @onready var drop: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Drop
@@ -47,12 +48,14 @@ func _ready() -> void:
 	title.text += item.name
 	title.text += item.name_decoration_end
 	description.text = item.description
+	if item.stackable:
+		qty.text = "Qty: %s" % item.quantity
 	if item.usable:
 		verb.text = item.use_verb 
 		selectable_options.append(verb)
 	else:
 		verb.text = dis_color + "Use"
-	if item.equippable:
+	if item is Equipment and item.equippable:
 		equip.text = "Equip" 
 		selectable_options.append(equip)
 	else:

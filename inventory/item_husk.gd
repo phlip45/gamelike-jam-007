@@ -10,7 +10,7 @@ signal destroyed
 
 static func create(_item:Item) -> ItemHusk:
 	var husk:ItemHusk = ITEM_HUSK.instantiate()
-	husk.item = _item
+	husk.item = _item.duplicate()
 	return husk
 
 func _ready() -> void:

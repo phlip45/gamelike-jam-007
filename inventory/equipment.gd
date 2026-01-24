@@ -1,5 +1,11 @@
 extends Item
 class_name Equipment
 
-var stats:Stats
-var skills:Array[Skill]
+@export var equippable:bool
+@export var equip_slot:EquipSlot
+@export var stats:Stats
+var equipped:bool = false
+
+enum EquipSlot{
+	NULL, RING, ARMOR, WEAPON
+}

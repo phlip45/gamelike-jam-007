@@ -2,15 +2,15 @@ extends Node
 class_name ItemManager
 
 enum ItemName{
-	NULL, HEALTH_POTION, SWORD
+	NULL, HEALTH_POTION, SWORD, UNARMED,
 }
-const ITEM_MANAGER = preload("uid://cvgdddwbo7wia")
 
 @export var item_resources:Dictionary[ItemName, Item]
 var item_husks:Array[ItemHusk]
 var level:Level
 
 static func create(_level:Level):
+	var ITEM_MANAGER = load("uid://cvgdddwbo7wia")
 	var manager:ItemManager = ITEM_MANAGER.instantiate()
 	manager.level = _level
 	return manager

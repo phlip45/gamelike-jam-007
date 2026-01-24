@@ -11,5 +11,4 @@ symbol = "b"
 color = Color(0.14999998, 1, 0, 1)
 type = 9
 stackable = true
-equippable = true
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"

@@ -4,3 +4,4 @@
 /addons
 kanban_tasks_data.kanban
 *.tmp
+/builds

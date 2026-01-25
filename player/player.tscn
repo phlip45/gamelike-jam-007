@@ -15,8 +15,9 @@ height = 24
 
 [node name="Player" type="Area2D" groups=["player"]]
 script = ExtResource("1_g1dw6")
+walk_cooldown = Vector2(0, 0.4)
 actor_name = "Player"
-stats = ExtResource("2_yw30f")
+base_stats = ExtResource("2_yw30f")
 symbol_char = "@"
 metadata/_edit_group_ = true
 

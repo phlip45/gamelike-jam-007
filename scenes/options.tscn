@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://bthnxt0cbcwoj"]
+
+[ext_resource type="Script" uid="uid://dti2l7fl1japx" path="res://scenes/options.gd" id="1_2iy26"]
+[ext_resource type="PackedScene" uid="uid://cef38hixnuuf7" path="res://UI/options_slider.tscn" id="1_c2u1v"]
+[ext_resource type="PackedScene" uid="uid://35e3y03gnkgy" path="res://UI/selector.tscn" id="2_yjkok"]
+[ext_resource type="PackedScene" uid="uid://cug214badn3j5" path="res://UI/text_button.tscn" id="3_kv8mn"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2iy26")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Audio"
+vertical_alignment = 2
+
+[node name="Music" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_c2u1v")]
+layout_mode = 2
+label_name = "Music"
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="SFX" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_c2u1v")]
+layout_mode = 2
+label_name = "SFX"
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="Voice" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_c2u1v")]
+layout_mode = 2
+label_name = "Voice"
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Deadzone" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2" instance=ExtResource("1_c2u1v")]
+layout_mode = 2
+label_name = "Deadzone"
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Exit" parent="MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer" instance=ExtResource("3_kv8mn")]
+layout_mode = 2
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="Selector" parent="." instance=ExtResource("2_yjkok")]
+layout_mode = 0
+hold_cooldown = Vector2(0, 0.5)
+
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice" to="." method="_on_voice_value_changed"]

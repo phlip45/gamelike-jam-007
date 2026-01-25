@@ -20,9 +20,9 @@ static func generate(opts:Options = null) -> LevelLayout:
 	layout.rect = Rect2i(opts.offset, opts.size)
 	
 	layout.make_rooms(opts)
-	
 	layout.make_corridors()
 	layout.populate_tiles()
+	
 	return layout
 
 func make_rooms(opts:Options):

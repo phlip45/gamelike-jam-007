@@ -11,7 +11,8 @@ var weapon_slot:Weapon
 #var ring_slot_4:Ring
 @export var max_size:int = 30
 
-signal order_changed
+signal order_changed()
+signal equipment_changed()
 signal item_dropped(item:Item)
 
 func get_from_inventory(item:Item) -> Item:
@@ -26,15 +27,21 @@ func get_weapons() -> Array[Item]:
 func equip(item:Item):
 	if item is Weapon:
 		if item == weapon_slot:
-			weapon_slot.equipped = false
+			item.equipped = false
+			equipped_items.erase(item)
 			weapon_slot = null
-			order_changed.emit()
-			return
-		if weapon_slot:
+		elif weapon_slot:
+			equipped_items.erase(weapon_slot)
 			weapon_slot.equipped = false
-		item.equipped = true
-		weapon_slot = item
-		order_changed.emit()
+			item.equipped = true
+			equipped_items.append(item)
+			weapon_slot = item
+		else:
+			item.equipped = true
+			equipped_items.append(item)
+			weapon_slot = item
+	order_changed.emit()
+	equipment_changed.emit()
 
 func add(item:Item) -> bool:
 	var has:Item = get_from_inventory(item)

@@ -1,15 +1,21 @@
 extends CanvasLayer
 
+@onready var color_rect_2: ColorRect = $ClickDetector/ColorRect2
+@onready var anti_click_shader: TextureRect = $AntiClickShader
+@onready var click_detector: Button = $ClickDetector
+
 @export var titles:Array[RichTextLabel]
 var title_index:int
 @export var cooldown:Vector2
 @export var options:Array[RichTextLabel]
-@onready var selector: RichTextLabel = $Selector
+@onready var selector: Selector = $Selector
+@onready var option_menu_hodler: Control = $OptionMenuHodler
 
 var bloom_spread:float
 var bloom_intensity:float
 var time_bucket:float
 
+# selector
 var state:State
 @export var hold_cooldown:Vector2
 var holding:bool
@@ -19,7 +25,6 @@ enum State{
 	NULL, AWAITING_INPUT, ANIMATING
 }
 
-@onready var color_rect_2: ColorRect = $ColorRect2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +32,7 @@ func _ready() -> void:
 	titles[title_index].visible = true
 
 	state = State.AWAITING_INPUT
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	time_bucket += delta
@@ -46,42 +52,32 @@ func _process(delta: float) -> void:
 		material.set_shader_parameter("black_offset_multiplier", intensity)
 	else:
 		material.set_shader_parameter("black_offset_multiplier", .02)
-	
-	handle_input(delta)
-	
-func handle_input(delta:float): 
-	if state == State.AWAITING_INPUT:
-		process_selector(delta)
-	pass
 
-func process_selector(_delta:float):
-	if !Input.is_anything_pressed():
-		hold_cooldown.x = 0
-		holding = false
-		return
-	if hold_cooldown.x > 0:
-		hold_cooldown.x -= _delta
-		return
-	var move:float = Input.get_axis("up", "down")
-	if move < -Global.Settings.deadzone:
-		selector_index = posmod(selector_index-1, options.size())
-	elif move > Global.Settings.deadzone:
-		selector_index = posmod(selector_index+1, options.size())
-	if Input.is_action_just_pressed("action"):
-		var chosen:RichTextLabel
-		match(options[selector_index].text):
-			"Start":
-				pass
-			"Options":
-				pass
-			"Exit":
-				pass
-		
-	if hold_cooldown.x <= 0:
-		hold_cooldown.x = hold_cooldown.y/10 if holding else hold_cooldown.y
-		holding = true
-	else:  # for example if a mouse is clicked or something.
-		hold_cooldown.x = 0
-		holding = false
-	selector.global_position = options[selector_index].global_position - Vector2(Global.tile_size.x,0)
-	pass
+func start():
+	get_tree().change_scene_to_file("res://scenes/level.tscn")
+func open_options():
+	selector.enabled = false
+	var option_menu_scene:PackedScene = load("res://scenes/options.tscn")
+	var option_menu:OptionsMenu = option_menu_scene.instantiate()
+	option_menu_hodler.add_child(option_menu)
+	await option_menu.menu_exited
+	selector.enabled = true
+func exit():
+	get_tree().quit()
+
+func _on_click_detector_pressed() -> void:
+	anti_click_shader.visible = true
+	get_tree().create_timer(1).timeout.connect(func():
+		anti_click_shader.visible = false
+		click_detector.release_focus()
+	)
+
+func _on_selector_option_highlighted(integer: int) -> void:
+	if selector.options[integer].has_method("highlight"):
+		var highlighted = selector.options[integer]
+		highlighted.highlight(true)
+		selector.option_highlighted.connect(func(_useless:int):highlighted.highlight(false), CONNECT_ONE_SHOT)
+
+func _on_selector_option_selected(integer: int) -> void:
+	if selector.options[integer].has_method("press"):
+		selector.options[integer].press()

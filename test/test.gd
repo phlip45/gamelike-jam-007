@@ -22,3 +22,7 @@ func _ready() -> void:
 
 var sum:Callable = func(a:int, b:int):
 	print(a , b)
+
+
+func _on_button_pressed() -> void:
+	print("Hello")

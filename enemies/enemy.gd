@@ -3,6 +3,7 @@ class_name Enemy
 
 @export var _brain_script:GDScript
 @export var _debug_draw_path:bool
+@export var attack_action:Action
 var brain:Brain
 var debug_color:Color
 var debug_offset:Vector2

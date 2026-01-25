@@ -24,7 +24,11 @@ func _ready() -> void:
 	symbol = SYMBOL.instantiate()
 	symbol.text = symbol_char
 	add_child(symbol)
+	if !inventory:
+		inventory = Inventory.new()
+	inventory.equipment_changed.connect(calc_stats)
 	base_stats.stat_changed.connect(calc_stats)
+	
 	stats = base_stats.duplicate()
 	level = Global.current_level
 	
@@ -50,6 +54,8 @@ func check_visibility():
 func take_damage(amount:int) -> void:
 	stats.hp -= amount
 	print_rich("[color=red]I've been hit for %s damage" % amount)
+	print("effective stats hp: ",stats.hp)
+	print("base stats hp: ",base_stats.hp)
 	if stats.hp <= 0:
 		die()
 
@@ -57,7 +63,7 @@ func heal(amount:int) -> void:
 	stats.hp = min(amount + stats.hp, stats.hp_max)
 	print_rich("[color=green]I've been healed for %s" % amount)
 
-func calc_stats(_stat_name:String, _new_val:int):
+func calc_stats(_stat_name:String = "", _new_val:int = 0):
 	stats.overwrite(base_stats)
 	for item in inventory.equipped_items:
 		if item.stats:

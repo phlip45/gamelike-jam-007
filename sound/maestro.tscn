@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi1fxrtnehe53"]
+
+[ext_resource type="Script" uid="uid://svgewmytmhht" path="res://sound/maestro.gd" id="1_txyqq"]
+[ext_resource type="AudioStream" uid="uid://c1pmfadq750ew" path="res://sound/friendsMetal.mp3" id="2_m5iji"]
+[ext_resource type="AudioStream" uid="uid://btudut002yky" path="res://sound/potatoes.mp3" id="3_m5iji"]
+[ext_resource type="AudioStream" uid="uid://erytennr5qx5" path="res://sound/startBlastin.mp3" id="4_ac6xn"]
+
+[node name="Maestro" type="Node"]
+script = ExtResource("1_txyqq")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_m5iji")
+volume_db = -33.415
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m5iji")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ac6xn")
+bus = &"Voice"

@@ -1,16 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://f6lstewm8j73"]
+[gd_scene load_steps=3 format=3 uid="uid://dw167vmulxm7l"]
 
-[ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_ttxdi"]
-[ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_ttxdi"]
-[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/zombie.brain.gd" id="3_ttxdi"]
-[ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="4_mu1c2"]
+[ext_resource type="PackedScene" uid="uid://f6lstewm8j73" path="res://enemies/enemy.tscn" id="1_gr7uu"]
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="2_byx88"]
 
-[node name="TestGoblin" type="Area2D"]
-script = ExtResource("1_ttxdi")
-_brain_script = ExtResource("3_ttxdi")
-actor_name = "Goblin1"
-stats = ExtResource("2_ttxdi")
-symbol_char = "g"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = ExtResource("4_mu1c2")
+[node name="Goblin" instance=ExtResource("1_gr7uu")]
+attack_action = ExtResource("2_byx88")
+actor_name = "Goblin"

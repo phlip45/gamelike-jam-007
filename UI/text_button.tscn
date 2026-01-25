@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cug214badn3j5"]
+
+[ext_resource type="Script" uid="uid://cs6g1jkautpk0" path="res://UI/text_button.gd" id="1_m6hri"]
+
+[node name="Exit" type="RichTextLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Exit"
+fit_content = true
+vertical_alignment = 1
+script = ExtResource("1_m6hri")
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5729883, 0.5729883, 0.5729883, 1)

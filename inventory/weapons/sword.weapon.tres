@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_tt6k1"]
 script = ExtResource("3_xradb")
-stremf = 2
+stremf = 80
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [resource]

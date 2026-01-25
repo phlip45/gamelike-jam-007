@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="RoguelikeJam"
-run/main_scene="uid://bbgbsh61547bf"
+run/main_scene="uid://dcx3454f8ygg4"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://caerqq1qnw3mo"
+
+[autoload]
+
+Maestro="*res://sound/maestro.tscn"
 
 [display]
 

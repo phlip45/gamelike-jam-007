@@ -8,6 +8,7 @@ var running:bool = false
 var state:State
 var ground_item_husks:Array[ItemHusk]
 var equipped_weapon:Weapon
+@export var time_til_heal:Vector2i = Vector2i(500,500)
 
 enum State{
 	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
@@ -19,8 +20,7 @@ signal finished_turn(time_taken:int)
 func _ready() -> void:
 	super()
 	coord = Global.position_to_coord(position)
-	if !inventory:
-		inventory = Inventory.new()
+	
 	if Global.ui != null:
 		Global.ui.connect_to_player.call_deferred(self)
 	else:
@@ -40,9 +40,13 @@ func _process(delta: float) -> void:
 	premove(delta)
 
 func take_turn() -> int:
+	if time_til_heal.x <= 0:
+		regenerate()
+		time_til_heal.x = time_til_heal.y
 	started_turn.emit()
 	state = State.AWAITING_INPUT
 	var time_taken:int = await finished_turn
+	time_til_heal.x -= time_taken
 	return time_taken
 
 func premove(delta:float):
@@ -194,6 +198,9 @@ func pickup_items():
 		inventory.add(item_husk.item)
 		item_husk.die()
 	Global.set_ground_items(await get_ground_items())
+
+func regenerate():
+	heal(1)
 
 func die():
 	pass

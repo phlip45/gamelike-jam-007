@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://35e3y03gnkgy"]
+
+[ext_resource type="Script" uid="uid://dl5qpn8qljnpc" path="res://UI/selector.gd" id="1_3mvhn"]
+
+[node name="Selector" type="RichTextLabel"]
+texture_filter = 1
+offset_right = 17.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = ">"
+vertical_alignment = 1
+script = ExtResource("1_3mvhn")

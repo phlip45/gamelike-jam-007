@@ -16,6 +16,8 @@ func take_turn() -> int:
 		path = _get_path(last_enemy.coord)
 	else:
 		bloodlust.x -= 1
+	#if can_attack():
+		#attack()
 	if path.size() > 1:
 		if level.is_cell_occupied(path[-1]):
 			body.move(get_alternate_step(body.coord,level.player.coord))
@@ -26,18 +28,12 @@ func take_turn() -> int:
 	else:
 		if !last_enemy:
 			return 25
-		elif last_enemy and level.is_adjacent_to_player(body.coord):
-			#attack
-			body.target = last_enemy
-			body.attack_action.activate(body)
-			return 100
 		if last_enemy and bloodlust.x > 0:
 			path = _get_path(last_enemy.coord)
 			return 25
 		else:
 			last_enemy = null
 			return 25
-			
 
 func get_alternate_step(current: Vector2i, desired: Vector2i) -> Vector2i:
 	var best_tile:Vector2i = current

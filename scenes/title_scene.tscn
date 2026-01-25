@@ -1,11 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcx3454f8ygg4"]
+[gd_scene load_steps=14 format=3 uid="uid://dcx3454f8ygg4"]
 
 [ext_resource type="Script" uid="uid://blrg2ygjtqkdx" path="res://scenes/title_scene.gd" id="1_4k7ef"]
 [ext_resource type="Shader" uid="uid://bcieiwhbxq7qo" path="res://shaders/title_scene.gdshader" id="1_6jsh8"]
 [ext_resource type="Texture2D" uid="uid://s5ens2juqems" path="res://icon.svg" id="2_faptf"]
-[ext_resource type="Shader" uid="uid://dg6ut3fnrflb2" path="res://scenes/vhs.gdshader" id="3_l8sac"]
+[ext_resource type="PackedScene" uid="uid://35e3y03gnkgy" path="res://UI/selector.tscn" id="2_s8xmt"]
+[ext_resource type="Shader" uid="uid://bdq1og1wryq2p" path="res://shaders/anti_click.gdshader" id="3_4k7ef"]
+[ext_resource type="PackedScene" uid="uid://cug214badn3j5" path="res://UI/text_button.tscn" id="3_7rdyk"]
+[ext_resource type="Texture2D" uid="uid://55ln1lhf7ydn" path="res://assets/no_clicking.png" id="5_bq8jb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bq8jb"]
+
+[sub_resource type="Gradient" id="Gradient_l5n7b"]
+offsets = PackedFloat32Array(0, 0.6495727)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s8xmt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7rdyk"]
+noise = SubResource("FastNoiseLite_s8xmt")
+color_ramp = SubResource("Gradient_l5n7b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5n7b"]
+shader = ExtResource("3_4k7ef")
+shader_parameter/pre_melting_gradient = ExtResource("2_faptf")
+shader_parameter/falling_gradient = SubResource("NoiseTexture2D_7rdyk")
+shader_parameter/animation_progress = 0.0
+shader_parameter/random_influence = 0.05
+shader_parameter/melting_point = Vector2(0.5, 0.5)
+shader_parameter/atlas_size = Vector2(0.5, 0.5)
+shader_parameter/melting_time = 0.1
+shader_parameter/falling_time = 0.2
+shader_parameter/fall_distance = 16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6jsh8"]
 shader = ExtResource("1_6jsh8")
@@ -16,19 +41,11 @@ shader_parameter/blur_amount = 3.0
 shader_parameter/bloom_spread = 1.0
 shader_parameter/bloom_intensity = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5n7b"]
-shader = ExtResource("3_l8sac")
-shader_parameter/color_offset_multiplier = 0.05400000256499999
-shader_parameter/black_offset_multiplier = 0.1
-shader_parameter/color_offset = 0.06700000644238
-shader_parameter/blur_amount = 3.0
-shader_parameter/colorLookup = ExtResource("2_faptf")
-
 [node name="TitleScene" type="CanvasLayer" node_paths=PackedStringArray("titles", "options")]
 script = ExtResource("1_4k7ef")
 titles = [NodePath("VBoxContainer/MarginContainer/RichTextLabel5")]
 cooldown = Vector2(0, 0.5)
-options = [NodePath("VBoxContainer/HBoxContainer/Options/RichTextLabel"), NodePath("VBoxContainer/HBoxContainer/Options/RichTextLabel2"), NodePath("VBoxContainer/HBoxContainer/Options/RichTextLabel3")]
+options = [null, null, null]
 hold_cooldown = Vector2(0, 0.5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -39,14 +56,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Selector" type="RichTextLabel" parent="."]
-offset_left = 620.0
-offset_top = 430.0
-offset_right = 639.0
-offset_bottom = 459.0
-bbcode_enabled = true
-text = ">"
-horizontal_alignment = 1
+[node name="Selector" parent="." node_paths=PackedStringArray("options") instance=ExtResource("2_s8xmt")]
+options = {
+0: NodePath("../VBoxContainer/HBoxContainer/Options/Start"),
+1: NodePath("../VBoxContainer/HBoxContainer/Options/Options"),
+2: NodePath("../VBoxContainer/HBoxContainer/Options/Exit")
+}
+hold_cooldown = Vector2(0, 0.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
@@ -97,23 +113,16 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Options"]
+[node name="Start" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
 layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
 text = "Start"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Options"]
+[node name="Options" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
 layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
 text = "Options"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Options"]
+[node name="Exit" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
 layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "Exit"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -136,7 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+[node name="Legal" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Made for Gamelike Jam 007
@@ -148,25 +157,59 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_6jsh8")
+[node name="OptionMenuHodler" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0, 0, 0)
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="AntiClickShader" type="TextureRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_l5n7b")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 536.0
+offset_top = 274.0
+offset_right = -536.0
+offset_bottom = -274.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_behavior_recursive = 1
+mouse_filter = 2
+texture = ExtResource("5_bq8jb")
+
+[node name="ClickDetector" type="Button" parent="."]
+z_index = 999
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_next = NodePath("../ColorRect")
+focus_mode = 1
+flat = true
+
+[node name="ColorRect2" type="ColorRect" parent="ClickDetector"]
+material = SubResource("ShaderMaterial_6jsh8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[connection signal="option_highlighted" from="Selector" to="." method="_on_selector_option_highlighted"]
+[connection signal="option_selected" from="Selector" to="." method="_on_selector_option_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Options/Start" to="." method="start"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Options/Options" to="." method="open_options"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Options/Exit" to="." method="exit"]
+[connection signal="pressed" from="ClickDetector" to="." method="_on_click_detector_pressed"]

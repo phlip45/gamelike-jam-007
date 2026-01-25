@@ -45,7 +45,7 @@ signal stat_changed(stat_name:String, new_val:int)
 		vision_radius = max(val,0)
 		stat_changed.emit("vision_radius", val)
 
-func add(other_stats:Stats) -> Stats:
+func add(other_stats:Stats):
 	hp = hp + other_stats.hp
 	hp_max = hp_max + other_stats.hp_max
 	hunger = hunger + other_stats.hunger
@@ -56,9 +56,8 @@ func add(other_stats:Stats) -> Stats:
 	woowoo = woowoo + other_stats.woowoo
 	whoosh = whoosh + other_stats.whoosh
 	vision_radius = vision_radius + other_stats.vision_radius
-	return self
-
-func overwrite(other_stats:Stats) -> Stats:
+	
+func overwrite(other_stats:Stats):
 	hp = other_stats.hp
 	hp_max = other_stats.hp_max
 	hunger = other_stats.hunger
@@ -69,4 +68,3 @@ func overwrite(other_stats:Stats) -> Stats:
 	woowoo = other_stats.woowoo
 	whoosh = other_stats.whoosh
 	vision_radius = other_stats.vision_radius
-	return self

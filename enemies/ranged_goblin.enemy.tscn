@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbhye1cu1m2jk"]
+
+[ext_resource type="PackedScene" uid="uid://dw167vmulxm7l" path="res://enemies/goblin.enemy.tscn" id="1_i4lq0"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_3isn2"]
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/ranged_attack.action.tres" id="2_rwoee"]
+[ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://ranged.brain.gd" id="2_wysaw"]
+
+[sub_resource type="Resource" id="Resource_rwoee"]
+resource_local_to_scene = true
+script = ExtResource("2_3isn2")
+hp = 14
+hp_max = 14
+hunger_max = 15
+stremf = 10
+woowoo = 1
+whoosh = 1
+vision_radius = 8
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[node name="RangedGoblin" instance=ExtResource("1_i4lq0")]
+_brain_script = ExtResource("2_wysaw")
+attack_action = ExtResource("2_rwoee")
+base_stats = SubResource("Resource_rwoee")

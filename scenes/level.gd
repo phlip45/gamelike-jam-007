@@ -38,8 +38,7 @@ func _ready() -> void:
 		item_manager.add_random_item_husk()
 		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	
-	for i in item_manager.item_husks:
-		print(i.item.name)
+	#for i in item_manager.item_husks:
 	#turn_manager.player = player
 	add_child(item_manager)
 	add_child(turn_manager)

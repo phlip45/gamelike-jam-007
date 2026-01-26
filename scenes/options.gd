@@ -4,8 +4,8 @@ class_name OptionsMenu
 @onready var music: Control = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music
 @onready var sfx: Control = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/SFX
 @onready var voice: Control = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice
-@onready var deadzone: Control = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/Deadzone
 @onready var exit: TextButton = $MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Exit
+@onready var deadzone: OptionSlider = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/Deadzone
 
 @onready var selector: Selector = $Selector
 
@@ -24,7 +24,7 @@ enum Option{
 	MUSIC,SFX,VOICE,DEADZONE,EXIT
 }
 
-var map:Dictionary[Option, Control]
+#var map:Dictionary[Option, Control]
 
 func _process(delta: float) -> void:
 	if state == State.SELECTING:
@@ -32,28 +32,17 @@ func _process(delta: float) -> void:
 	
 
 func _ready() -> void:
-	selector.options.set(Option.MUSIC, music)
-	selector.options.set(Option.SFX, sfx)
-	selector.options.set(Option.VOICE, voice)
-	selector.options.set(Option.DEADZONE, deadzone)
-	selector.options.set(Option.EXIT, exit)
 	selector.option_selected.connect(option_selected)
 	selector.move_selector.call_deferred()
-	map.set(Option.MUSIC, music)
-	map.set(Option.SFX, sfx)
-	map.set(Option.VOICE, voice)
-	map.set(Option.DEADZONE, deadzone)
-	map.set(Option.EXIT, exit)
 	exit.pressed.connect(exit_press)
-	for value in map.values():
+	for value in selector.options.values():
 		value.highlight(false)
 	selector.option_highlighted.connect(highlight_option)
 	
 func option_selected(val:Option):
-	print("Option Selected:", val)
 	chosen = val
-	if map[chosen] is TextButton:
-		map[chosen].press()
+	if selector.options[chosen] is TextButton:
+		selector.options[chosen].press()
 		return
 	selector.enabled = false
 	state = State.SELECTING
@@ -64,15 +53,15 @@ func option_selected(val:Option):
 
 func adjust(delta):
 	if Input.is_action_pressed("right"):
-		map[chosen].value += delta/1.5
+		selector.options[chosen].value += delta/1.5
 	if Input.is_action_pressed("left"):
-		map[chosen].value -= delta/1.5
+		selector.options[chosen].value -= delta/1.5
 	if Input.is_action_just_pressed("action") or Input.is_action_just_pressed("cancel"):
 		adjusting_finished.emit()
 
 func highlight_option(integer:Option):
-	if map[integer] is OptionSlider:
-		var highlighted = map[integer] as OptionSlider
+	if selector.options[integer] is OptionSlider:
+		var highlighted = selector.options[integer] as OptionSlider
 		highlighted.highlight(true)
 		selector.option_highlighted.connect(func(_useless:int):highlighted.highlight(false), CONNECT_ONE_SHOT)
 		
@@ -82,7 +71,6 @@ func exit_press():
 
 func _on_music_value_changed(new_value: float) -> void:
 	var bus_index:int = AudioServer.get_bus_index("Music")
-	prints("On Music Value Changed",new_value)
 	AudioServer.set_bus_volume_linear(bus_index,new_value)
 	
 	if(new_value == 0):
@@ -120,3 +108,11 @@ func _on_voice_value_changed(new_value: float) -> void:
 	
 	if !Maestro.voice_player.playing:
 		Maestro.voice_player.play()
+
+
+func _on_full_screen_pressed() -> void:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	

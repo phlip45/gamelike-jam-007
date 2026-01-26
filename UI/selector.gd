@@ -3,7 +3,7 @@ class_name Selector
 
 @export var options:Dictionary[int, Control]
 @export var enabled:bool = true
-@export var hold_cooldown:Vector2
+@export var hold_cooldown:Vector2 = Vector2(0,0.5)
 var selector_index:int
 var holding:bool
 

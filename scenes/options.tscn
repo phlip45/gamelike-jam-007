@@ -77,11 +77,19 @@ dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Deadzone" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2" instance=ExtResource("1_c2u1v")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Deadzone" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_c2u1v")]
+visible = false
 layout_mode = 2
 label_name = "Deadzone"
 highlight_color = Color(1, 1, 1, 1)
 dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="FullScreen" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("3_kv8mn")]
+layout_mode = 2
+text = "Toggle Fullscreen"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -107,10 +115,17 @@ size_flags_stretch_ratio = 3.0
 layout_mode = 2
 dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
 
-[node name="Selector" parent="." instance=ExtResource("2_yjkok")]
+[node name="Selector" parent="." node_paths=PackedStringArray("options") instance=ExtResource("2_yjkok")]
 layout_mode = 0
-hold_cooldown = Vector2(0, 0.5)
+options = {
+0: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music"),
+1: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/SFX"),
+2: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice"),
+3: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/FullScreen"),
+4: NodePath("../MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Exit")
+}
 
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice" to="." method="_on_voice_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/FullScreen" to="." method="_on_full_screen_pressed"]

@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ut36fav15fa"]
+
+[ext_resource type="Script" uid="uid://clfwtxkonxr3l" path="res://scenes/pause_screen.gd" id="1_hr2n2"]
+[ext_resource type="PackedScene" uid="uid://35e3y03gnkgy" path="res://UI/selector.tscn" id="2_27awe"]
+[ext_resource type="PackedScene" uid="uid://cug214badn3j5" path="res://UI/text_button.tscn" id="3_duq8p"]
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hr2n2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Paused" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 96.0
+offset_right = -10.0
+offset_bottom = -384.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "    ___                                               _   
+   F _ \",  ___ _    _    _     ____      ____      ___FJ  
+  J `-' | F __` L  J |  | L   F ___J    F __ J    F __  L 
+  |  __/F| |--| |  | |  | |  | '----_  | _____J  | |--| | 
+  F |__/ F L__J J  F L__J J  )-____  L F L___--. F L__J J 
+ J__|   J\\____,__LJ\\____,__LJ\\______/FJ\\______/FJ\\____,__L
+ |__L    J____,__F J____,__F J______F  J______F  J____,__F
+                                                          "
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Selector" parent="." node_paths=PackedStringArray("options") instance=ExtResource("2_27awe")]
+layout_mode = 0
+options = {
+0: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/Resume"),
+1: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/Options"),
+2: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/Exit")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 415
+theme_override_constants/margin_bottom = 120
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Resume" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_duq8p")]
+layout_mode = 2
+text = "Resume"
+
+[node name="Options" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_duq8p")]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_duq8p")]
+layout_mode = 2
+
+[node name="OptionsHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="option_highlighted" from="Selector" to="." method="_on_selector_option_highlighted"]
+[connection signal="option_selected" from="Selector" to="." method="_on_selector_option_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

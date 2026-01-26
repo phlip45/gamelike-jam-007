@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://lcvhdr41todm"]
+[gd_scene load_steps=7 format=3 uid="uid://lcvhdr41todm"]
 
 [ext_resource type="Script" uid="uid://bdp2tpouu72ud" path="res://player_rogue.gd" id="1_g1dw6"]
+[ext_resource type="Resource" uid="uid://dv0ghhhyu2duh" path="res://inventory/weapons/unarmed.weapon.tres" id="2_qjkh3"]
 [ext_resource type="Resource" uid="uid://gm1pgv1dawcp" path="res://stats/player.stats.tres" id="2_yw30f"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="3_qjkh3"]
 
@@ -16,6 +17,7 @@ height = 24
 [node name="Player" type="Area2D" groups=["player"]]
 script = ExtResource("1_g1dw6")
 walk_cooldown = Vector2(0, 0.4)
+unarmed_weapon = ExtResource("2_qjkh3")
 actor_name = "Player"
 base_stats = ExtResource("2_yw30f")
 symbol_char = "@"

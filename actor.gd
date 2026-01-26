@@ -8,7 +8,7 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 @export var base_stats:Stats
 var stats:Stats
 @export var symbol_char:String = "🐛"
-@export var innate_hand_slot:Item
+@export var projectile_data:ProjectileData
 var inventory:Inventory
 var cooldown:int = 100
 var coord:Vector2i

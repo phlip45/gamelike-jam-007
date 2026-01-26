@@ -1,8 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw167vmulxm7l"]
+[gd_scene load_steps=5 format=3 uid="uid://dw167vmulxm7l"]
 
 [ext_resource type="PackedScene" uid="uid://f6lstewm8j73" path="res://enemies/enemy.tscn" id="1_gr7uu"]
-[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="2_byx88"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="2_gr7uu"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="3_byx88"]
+
+[sub_resource type="Resource" id="Resource_byx88"]
+resource_local_to_scene = true
+script = ExtResource("2_gr7uu")
+hp = 14
+hp_max = 14
+hunger_max = 15
+stremf = 10
+woowoo = 1
+whoosh = 1
+vision_radius = 8
+metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [node name="Goblin" instance=ExtResource("1_gr7uu")]
-attack_action = ExtResource("2_byx88")
 actor_name = "Goblin"
+base_stats = SubResource("Resource_byx88")
+projectile_data = ExtResource("3_byx88")

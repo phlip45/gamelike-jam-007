@@ -4,6 +4,7 @@ class_name Player
 @onready var feeler: Area2D = $Feeler
 @onready var feet_feeler: Area2D = $FeetFeeler
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
+@export var unarmed_weapon:Weapon
 var running:bool = false
 var state:State
 var ground_item_husks:Array[ItemHusk]
@@ -82,6 +83,10 @@ func premove(delta:float):
 		pass
 	elif Input.is_action_just_pressed("cancel"):
 		open_inventory()
+		walk_cooldown.x = walk_cooldown.y
+		return
+	elif Input.is_action_just_pressed("pause"):
+		pause()
 		walk_cooldown.x = walk_cooldown.y
 		return
 	elif Input.is_action_just_pressed("pickup"):
@@ -185,12 +190,21 @@ func attack(enemy:Enemy):
 	target = enemy
 	if inventory.weapon_slot:
 		inventory.weapon_slot.attack(self)
+	else:
+		unarmed_weapon.attack(self)
 	finished_turn.emit(50)
 
 func open_inventory():
 	state = State.INVENTORY
 	Global.ui.open_inventory(inventory)
 	await Global.ui.inventory_closed
+	state = State.AWAITING_INPUT
+
+func pause():
+	state = State.INVENTORY
+	var menu = PauseMenu.create()
+	Global.ui.pause_holder.add_child(menu)
+	await menu.pause_closed
 	state = State.AWAITING_INPUT
 
 func pickup_items():

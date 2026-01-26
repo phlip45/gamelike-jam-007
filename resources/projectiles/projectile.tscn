@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhnycni0hkd1h"]
+
+[ext_resource type="Script" uid="uid://tduoru870lu8" path="res://resources/projectiles/projectile.gd" id="1_ohecy"]
+[ext_resource type="Script" uid="uid://cr6fhixmn0hpj" path="res://resources/projectiles/projectile_data.gd" id="2_rgtum"]
+
+[sub_resource type="Resource" id="Resource_qtw3u"]
+script = ExtResource("2_rgtum")
+color = Color(0.62, 0.39679998, 0.12399999, 1)
+metadata/_custom_type_script = "uid://cr6fhixmn0hpj"
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_ohecy")
+projectile_data = SubResource("Resource_qtw3u")
+
+[node name="Symbol" type="Label" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 21.0
+text = "—"

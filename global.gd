@@ -8,6 +8,10 @@ static var tile_size:Vector2i = Vector2i(23,23)
 static var signals:BusEvents = BusEvents.new()
 static var current_level:Level
 
+static func exit_game():
+	current_level = null
+	ui = null
+
 static func actor_moved(actor:Actor, coord:Vector2i):
 	signals.actor_moved.emit(actor,coord)
 

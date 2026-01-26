@@ -13,6 +13,7 @@ class_name UI
 @onready var whoosh_text: RichTextLabel = $"UI/Stats/Line 3/StatBox/WhooshText"
 @onready var inventory_ui: InventoryUI = $"UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"
 @onready var ground_log: RichTextLabel = $UI/TopPanel/LeftPanel/MarginContainer/GroundLog
+@onready var pause_holder: Control = $PauseHolder
 
 var player:Player
 
@@ -88,7 +89,6 @@ func open_inventory(_inventory:Inventory):
 	inventory_closed.emit()
 
 func _on_button_pressed() -> void:
-	print("clicked")
 	if inventory_ui.inventory.items.size() == 0: return
 	inventory_ui.inventory.remove(inventory_ui.inventory.items.pick_random())
 

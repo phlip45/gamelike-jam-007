@@ -4,7 +4,7 @@ class_name Effect
 var activate:Callable
 
 enum Func{
-	NULL, PHYS_ATTACK, HEAL, RANGED_ATTACK
+	NULL, PHYS_ATTACK, HEAL, RANGED_ATTACK, GOTO_NEXT_LEVEL
 }
 
 enum TargeterName{
@@ -13,7 +13,8 @@ enum TargeterName{
 
 static var func_to_callable:Dictionary[Func, Effect]={
 	Func.PHYS_ATTACK: phys_attack(),
-	Func.RANGED_ATTACK: ranged_attack()
+	Func.RANGED_ATTACK: ranged_attack(),
+	Func.GOTO_NEXT_LEVEL: goto_next_level(),
 }
 
 static func phys_attack() -> Effect:
@@ -30,7 +31,7 @@ static func phys_attack() -> Effect:
 		Global.push_message(message)
 	return effect
 
-static func ranged_attack()-> Effect:
+static func ranged_attack() -> Effect:
 	var effect = Effect.new()
 	effect.activate = func(source:Actor, targets:Array[Actor]):
 		var hits:Dictionary[Actor,int]
@@ -46,4 +47,11 @@ static func ranged_attack()-> Effect:
 		for hit:Actor in hits:
 			message += "%s took [color=red]%s damage!" % [hit.actor_name, hits[hit]]
 		Global.push_message(message)
+	return effect
+
+static func goto_next_level() -> Effect:
+	var effect = Effect.new()
+	effect.activate = func(source:Actor = null, _targets:Array = []):
+		if source is Player:
+			Global.goto_next_level()
 	return effect

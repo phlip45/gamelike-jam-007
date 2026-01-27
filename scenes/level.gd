@@ -7,8 +7,9 @@ var level_rng:RandomNumberGenerator
 var item_rng:RandomNumberGenerator
 var combat_rng:RandomNumberGenerator
 
-var item_manager:ItemManager
 var turn_manager:TurnManager
+var item_manager:ItemManager
+var feature_manager:FeatureManager
 
 var size:Vector2i
 @export var tilemap:TileMapLayer
@@ -29,17 +30,20 @@ func _ready() -> void:
 	turn_manager.add_actor(player)
 	player.teleport(layout.get_random_floor().coord , false)
 	player.started_turn.connect(update_from_players_vision)
-	for i in 7:
+	for i in 8:
 		var goblin:Enemy = actor_scenes["Goblin"].instantiate()
 		goblin.teleport(layout.get_random_floor().coord, false)
 		turn_manager.add_actor(goblin)
 
-	for i in 100:
+	for i in 7:
 		item_manager.add_random_item_husk()
 		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	
-	#for i in item_manager.item_husks:
-	#turn_manager.player = player
+	feature_manager = FeatureManager.create(self)
+	for i in 12:
+		var stairs:Feature = Feature.create(">", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
+		feature_manager.add_feature(stairs)
+	add_child(feature_manager)
 	add_child(item_manager)
 	add_child(turn_manager)
 	update_from_players_vision.call_deferred()
@@ -126,7 +130,8 @@ func get_actors_in_range(center:Vector2i,radius:int) -> Array[Actor]:
 func is_cell_occupied(coord:Vector2i) -> bool:
 	for actor:Actor in turn_manager.actors:
 		if coord == actor.coord:
-			return true
+			if actor.blocks_movement:
+				return true
 	return false
 
 func is_cell_walkable(coord:Vector2i) -> bool:

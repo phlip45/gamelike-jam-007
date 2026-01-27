@@ -6,9 +6,10 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 
 @export var actor_name:String
 @export var base_stats:Stats
-var stats:Stats
+@export var blocks_movement:bool = true
 @export var symbol_char:String = "🐛"
 @export var projectile_data:ProjectileData
+var stats:Stats
 var inventory:Inventory
 var cooldown:int = 100
 var coord:Vector2i

@@ -8,6 +8,7 @@ class_name Player
 var running:bool = false
 var state:State
 var ground_item_husks:Array[ItemHusk]
+var ground_features:Array[Feature]
 var equipped_weapon:Weapon
 @export var time_til_heal:Vector2i = Vector2i(500,500)
 
@@ -85,6 +86,11 @@ func premove(delta:float):
 		open_inventory()
 		walk_cooldown.x = walk_cooldown.y
 		return
+	elif Input.is_action_just_pressed("action"):
+		if ground_features.size() > 0:
+			for feature in ground_features:
+				if feature.trigger == Feature.Trigger.USE:
+					feature.use(self)
 	elif Input.is_action_just_pressed("pause"):
 		pause()
 		walk_cooldown.x = walk_cooldown.y
@@ -99,6 +105,7 @@ func premove(delta:float):
 		return
 	if walk_cooldown.x <= 0:
 		var bumpables:Array = await get_bumpables_at_location(desired_move)
+		hunger()
 		if bumpables.size() > 0:
 			walk_cooldown.x = walk_cooldown.y/10 if running else walk_cooldown.y
 			running = true
@@ -109,8 +116,7 @@ func premove(delta:float):
 			move(desired_move,delta)
 
 func move(desired_coord:Vector2i, _delta:float = 0):
-	#position = Global.coord_to_position(desired_coord)
-	#coord = desired_coord
+	hunger()
 	teleport(desired_coord)
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
@@ -137,12 +143,15 @@ func get_items_at_location(_target:Vector2) -> Array[Item]:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	ground_item_husks.clear()
+	ground_features.clear()
 	var areas:Array = feeler.get_overlapping_areas()
 	var items:Array[Item]
 	for a:Area2D in areas:
 		if a is ItemHusk:
 			ground_item_husks.append(a)
 			items.append(a.item as Item)
+		if a is Feature:
+			ground_features.append(a)
 	return items
 	
 func bump_into(bumpables:Array):
@@ -187,6 +196,7 @@ func get_ground_items() -> Array[Item]:
 	return await get_items_at_location(global_position)
 
 func attack(enemy:Enemy):
+	hunger()
 	target = enemy
 	if inventory.weapon_slot:
 		inventory.weapon_slot.attack(self)
@@ -214,7 +224,10 @@ func pickup_items():
 	Global.set_ground_items(await get_ground_items())
 
 func regenerate():
-	heal(1)
+	heal(ceil(stats.hp_max/10.0))
+
+func hunger(amount:int = 1):
+	stats.hunger -= amount
 
 func die():
 	pass

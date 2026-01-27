@@ -2,7 +2,7 @@ extends Node2D
 class_name Projectile
 
 @onready var symbol: Label = $Symbol
-
+static var offset:Vector2 = Vector2(-5,-11)
 @export var projectile_data:ProjectileData
 var tween:Tween
 signal finished
@@ -17,9 +17,10 @@ static func create(proj_data:ProjectileData) -> Projectile:
 	return proj
 	
 func fire_projectile(from:Vector2i, to:Vector2i):
-	global_position = Global.coord_to_position(from)
-	var end = Global.coord_to_position(to)
-	symbol.text = projectile_data.symbol_list[vec2_to_dir8(end - global_position)]
+	var start:Vector2 = Global.coord_to_position(from) + offset
+	var end:Vector2 = Global.coord_to_position(to) + offset
+	symbol.text = projectile_data.symbol_list[vec2_to_dir8(end - start)]
+	global_position = start
 	if tween: tween.kill()
 	tween = create_tween()
 	tween.tween_property(self,"global_position",end,.25)

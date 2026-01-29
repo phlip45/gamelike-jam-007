@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://2047lwjgmxsq"]
+
+[ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="1_l8gnx"]
+
+[resource]
+script = ExtResource("1_l8gnx")
+level_seed = null
+item_seed = null
+combat_seed = null
+metadata/_custom_type_script = "uid://xpe1aharownm"

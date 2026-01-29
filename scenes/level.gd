@@ -2,6 +2,8 @@ extends Node
 class_name Level
 
 @export var enemy_pool:EnemyPool
+@export var item_pool:ItemPool
+@export var feature_pool:FeaturePool
 
 var level_rng:RandomNumberGenerator
 var item_rng:RandomNumberGenerator
@@ -16,17 +18,20 @@ var size:Vector2i
 var layout:LevelLayout
 var pathfinder:Pathfinder
 var player:Player
-var options:Options
+var options:LevelOptions
 
-static func create(_options:Options = null) -> Level:
+static func create(_options:LevelOptions = null) -> Level:
 	var level = Level.new()
 	if _options:
 		level.options = _options
 	else:
-		level.options = Options.new()
+		level.options = LevelOptions.new()
 	return level
 
 func _ready() -> void:
+	enemy_pool = options.enemy_pool
+	item_pool = options.item_pool
+	feature_pool = options.feature_pool
 	setup()
 
 func _process(_delta: float) -> void:
@@ -37,9 +42,9 @@ func setup():
 	Global.current_level = self
 	setup_rng()
 	generate_level(true)
-	setup_turn_manager()
-	setup_item_manager()
 	setup_feature_manager()
+	setup_item_manager()
+	setup_turn_manager()
 	update_from_players_vision.call_deferred()
 
 func setup_rng():
@@ -55,8 +60,8 @@ func setup_turn_manager():
 	for i in options.num_starting_enemies:
 		# Spawn random enemy from pool and give em brains and junk.
 		var index = level_rng.randi_range(0, enemy_pool.enemies.size()-1)
-		var enemy:Enemy = Enemy.new()
-		enemy.data = enemy_pool.enemies[index].duplicate()
+		var enemy_data = enemy_pool.enemies[index].duplicate()
+		var enemy:Enemy = Enemy.create(enemy_data)
 		enemy.teleport(layout.get_random_floor().coord, false)
 		turn_manager.add_actor(enemy)
 	add_child(turn_manager)
@@ -159,19 +164,3 @@ func is_cell_occupied(coord:Vector2i) -> bool:
 func is_cell_walkable(coord:Vector2i) -> bool:
 	if !layout.tiles.has(coord): return false
 	return layout.tiles[coord].type == Tile.Type.FLOOR
-	
-
-class Options:
-	var level_seed:int = randi()
-	var item_seed:int = randi()
-	var combat_seed:int = randi()
-	var level_layout_type:LevelLayoutType = LevelLayoutType.SIMPLE_ROOM_CORRIDOR
-	var level_layout_options:Variant = SimpleRoomCorridorOptions.new()
-	var num_starting_enemies:int = 7
-	var enemy_pool:EnemyPool
-	var item_pool:ItemPool
-	var feature_pool:FeaturePool
-	
-	enum LevelLayoutType{
-		NULL, SIMPLE_ROOM_CORRIDOR, FOREST
-	}

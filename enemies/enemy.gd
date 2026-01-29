@@ -15,23 +15,24 @@ enum State{
 	SPECIAL0, SPECIAL1, SPECIAL2
 }
 
-func _ready() -> void:
-	super()
-	if !data:
+static func create(_data:EnemyData) -> Enemy:
+	var enemy = load("res://enemies/enemy.tscn").instantiate()
+	if !_data:
 		push_error("Enemy Data missing!! Aborting enemy")
-		die()
+		enemy.die()
 		return
-	data = data.duplicate()
-	actor_name = data.actor_name
-	base_stats = data.base_stats.duplicate()
-	symbol_char = data.symbol_char
-	color = data.color
-	attack_action = data.attack_action
-	projectile_data = data.projectile_data
-	level = Global.current_level
-	debug_color = Global.rand_color()
-	debug_offset = Vector2(randi_range(-16,16),randi_range(-16,16))
-	
+	enemy.data = _data.duplicate()
+	enemy.actor_name = _data.actor_name
+	enemy.base_stats = _data.base_stats.duplicate()
+	enemy.symbol_char = _data.symbol_char
+	enemy.color = _data.color
+	enemy.attack_action = _data.attack_action
+	enemy.projectile_data = _data.projectile_data
+	enemy.level = Global.current_level
+	enemy.debug_color = Global.rand_color()
+	enemy.debug_offset = Vector2(randi_range(-16,16),randi_range(-16,16))
+	return enemy
+
 func _process(_delta):
 	if _debug_draw_path:
 		queue_redraw()

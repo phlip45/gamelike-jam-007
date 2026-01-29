@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lcvhdr41todm"]
+[gd_scene format=3 uid="uid://lcvhdr41todm"]
 
 [ext_resource type="Script" uid="uid://bdp2tpouu72ud" path="res://actors/player_rogue.gd" id="1_g1dw6"]
 [ext_resource type="Resource" uid="uid://dv0ghhhyu2duh" path="res://inventory/weapons/unarmed.weapon.tres" id="2_qjkh3"]
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_g1dw6")
 width = 24
 height = 24
 
-[node name="Player" type="Area2D" groups=["player"]]
+[node name="Player" type="Area2D" unique_id=486927611 groups=["player"]]
 script = ExtResource("1_g1dw6")
 walk_cooldown = Vector2(0, 0.4)
 unarmed_weapon = ExtResource("2_qjkh3")
@@ -23,18 +23,18 @@ base_stats = ExtResource("2_yw30f")
 symbol_char = "@"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546569276]
 shape = ExtResource("3_qjkh3")
 
-[node name="Feeler" type="Area2D" parent="."]
+[node name="Feeler" type="Area2D" parent="." unique_id=183491368]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Feeler"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Feeler" unique_id=654349743]
 shape = ExtResource("3_qjkh3")
 
-[node name="FeetFeeler" type="Area2D" parent="."]
+[node name="FeetFeeler" type="Area2D" parent="." unique_id=1635067591]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="FeetFeeler"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FeetFeeler" unique_id=59384496]
 shape = ExtResource("3_qjkh3")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=459079505]
 texture = SubResource("GradientTexture2D_yw30f")

@@ -7,14 +7,16 @@ var options:SimpleRoomCorridorOptions
 var triangulator:Delaunay
 
 static func generate(opts:SimpleRoomCorridorOptions = null) -> LevelLayout:
-	opts.rng.seed = opts.rng_seed
+	if !opts:
+		print("Running with no ops")
+		opts = SimpleRoomCorridorOptions.new()
 	var layout:LevelLayout = SimpleRoomCorridorLayout.new()
 	if !opts:
 		layout.options = SimpleRoomCorridorOptions.new()
 	else:
 		layout.options = opts
 	layout.rng = RandomNumberGenerator.new()
-	layout.rng.seed = opts.rng.seed
+	layout.rng.seed = opts.rng_seed
 	layout.rect = Rect2i(opts.offset, opts.size)
 	
 	layout.make_rooms(opts)
@@ -23,7 +25,7 @@ static func generate(opts:SimpleRoomCorridorOptions = null) -> LevelLayout:
 	
 	return layout
 
-func make_rooms(opts:Options):
+func make_rooms(opts:SimpleRoomCorridorOptions):
 	while(rooms.size() < opts.num_rooms.y && opts.tries > 0):
 		opts.tries -= 1
 		var room:Room = make_room()

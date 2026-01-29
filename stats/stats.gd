@@ -46,23 +46,26 @@ signal stat_changed(stat_name:String, new_val:int)
 		stat_changed.emit("vision_radius", val)
 
 func add(other_stats:Stats):
-	hp = hp + other_stats.hp
+	if other_stats.hp_max > 0:
+		hp = hp + other_stats.hp_max
 	hp_max = hp_max + other_stats.hp_max
-	hunger = hunger + other_stats.hunger
-	hunger_max = hunger_max + other_stats.hunger_max
-	mp = mp + other_stats.mp
+	if other_stats.mp_max > 0:
+		mp = mp + other_stats.mp_max
 	mp_max = mp_max + other_stats.mp_max
+	if other_stats.hunger_max > 0:
+		hunger = hunger + other_stats.hunger_max
+	hunger_max = hunger_max + other_stats.hunger_max
 	stremf = stremf + other_stats.stremf
 	woowoo = woowoo + other_stats.woowoo
 	whoosh = whoosh + other_stats.whoosh
 	vision_radius = vision_radius + other_stats.vision_radius
 	
 func overwrite(other_stats:Stats):
-	hp = other_stats.hp
+	#hp = other_stats.hp
 	hp_max = other_stats.hp_max
-	hunger = other_stats.hunger
+	#hunger = other_stats.hunger
 	hunger_max = other_stats.hunger_max
-	mp = other_stats.mp
+	#mp = other_stats.mp
 	mp_max = other_stats.mp_max
 	stremf = other_stats.stremf
 	woowoo = other_stats.woowoo

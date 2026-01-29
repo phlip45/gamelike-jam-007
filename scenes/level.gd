@@ -1,7 +1,7 @@
 extends Node
 class_name Level
 
-@export var actor_scenes:Dictionary[String,PackedScene]
+@export var enemy_pool:EnemyPool
 
 var level_rng:RandomNumberGenerator
 var item_rng:RandomNumberGenerator
@@ -16,46 +16,68 @@ var size:Vector2i
 var layout:LevelLayout
 var pathfinder:Pathfinder
 var player:Player
+var options:Options
+
+static func create(_options:Options = null) -> Level:
+	var level = Level.new()
+	if _options:
+		level.options = _options
+	else:
+		level.options = Options.new()
+	return level
 
 func _ready() -> void:
+	setup()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug_top"):
+		generate_level()
+
+func setup():
+	Global.current_level = self
+	setup_rng()
+	generate_level(true)
+	setup_turn_manager()
+	setup_item_manager()
+	setup_feature_manager()
+	update_from_players_vision.call_deferred()
+
+func setup_rng():
 	level_rng = RandomNumberGenerator.new()
 	item_rng = RandomNumberGenerator.new()
 	combat_rng = RandomNumberGenerator.new()
-	item_manager = ItemManager.create(self)
-	
-	player = actor_scenes["Player"].instantiate()
-	Global.current_level = self
-	generate_level(true)
+
+func setup_turn_manager():
 	turn_manager = TurnManager.new()
 	turn_manager.add_actor(player)
 	player.teleport(layout.get_random_floor().coord , false)
 	player.started_turn.connect(update_from_players_vision)
-	for i in 8:
-		var goblin:Enemy = actor_scenes["Goblin"].instantiate()
-		goblin.teleport(layout.get_random_floor().coord, false)
-		turn_manager.add_actor(goblin)
-
+	for i in options.num_starting_enemies:
+		# Spawn random enemy from pool and give em brains and junk.
+		var index = level_rng.randi_range(0, enemy_pool.enemies.size()-1)
+		var enemy:Enemy = Enemy.new()
+		enemy.data = enemy_pool.enemies[index].duplicate()
+		enemy.teleport(layout.get_random_floor().coord, false)
+		turn_manager.add_actor(enemy)
+	add_child(turn_manager)
+	
+func setup_item_manager():
+	item_manager = ItemManager.create(self)
 	for i in 7:
 		item_manager.add_random_item_husk()
 		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
-	
+	add_child(item_manager)
+func setup_feature_manager():
 	feature_manager = FeatureManager.create(self)
 	for i in 12:
 		var stairs:Feature = Feature.create(">", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
 		feature_manager.add_feature(stairs)
 	add_child(feature_manager)
-	add_child(item_manager)
-	add_child(turn_manager)
-	update_from_players_vision.call_deferred()
-	
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug_top"):
-		generate_level()
+
 
 func generate_level(seeded:bool = false):
 	tilemap.clear()
-	var opts:SimpleRoomCorridorLayout.Options = SimpleRoomCorridorLayout.Options.new()
-	opts.rng = level_rng
+	var opts:SimpleRoomCorridorOptions = SimpleRoomCorridorOptions.new()
 	if seeded:
 		opts.rng_seed = 2622252045
 	opts.num_rooms = Vector2i(3,40)
@@ -137,3 +159,19 @@ func is_cell_occupied(coord:Vector2i) -> bool:
 func is_cell_walkable(coord:Vector2i) -> bool:
 	if !layout.tiles.has(coord): return false
 	return layout.tiles[coord].type == Tile.Type.FLOOR
+	
+
+class Options:
+	var level_seed:int = randi()
+	var item_seed:int = randi()
+	var combat_seed:int = randi()
+	var level_layout_type:LevelLayoutType = LevelLayoutType.SIMPLE_ROOM_CORRIDOR
+	var level_layout_options:Variant = SimpleRoomCorridorOptions.new()
+	var num_starting_enemies:int = 7
+	var enemy_pool:EnemyPool
+	var item_pool:ItemPool
+	var feature_pool:FeaturePool
+	
+	enum LevelLayoutType{
+		NULL, SIMPLE_ROOM_CORRIDOR, FOREST
+	}

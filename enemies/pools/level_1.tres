@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyPool" load_steps=5 format=3 uid="uid://b26d48wr24jem"]
+
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_j7f3i"]
+[ext_resource type="Resource" uid="uid://bmjxswsriggdr" path="res://enemies/datas/goblin_berserker.tres" id="2_hxms8"]
+[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="2_tbyg3"]
+[ext_resource type="Resource" uid="uid://cran3nivf5kaa" path="res://enemies/datas/goblin_warlord.enemy_data.tres" id="3_hxms8"]
+
+[resource]
+script = ExtResource("2_tbyg3")
+enemies = Array[ExtResource("1_j7f3i")]([ExtResource("2_hxms8"), ExtResource("3_hxms8")])
+metadata/_custom_type_script = "uid://bpsvcxcnc70ri"

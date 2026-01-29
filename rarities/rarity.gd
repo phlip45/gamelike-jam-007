@@ -1,8 +1,9 @@
-extends RefCounted
+extends Resource
 class_name Rarity
 
-var name:String
-var value:float
+@export var name:String
+@export var value:float
+@export var color:Color
 
 static func common() -> Rarity:
 	var rarity:Rarity = new()

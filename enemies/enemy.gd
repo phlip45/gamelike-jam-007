@@ -1,9 +1,9 @@
 extends Actor
 class_name Enemy
 
-@export var _brain_script:GDScript
+@export var data:EnemyData
 @export var _debug_draw_path:bool
-@export var attack_action:Action
+var attack_action:Action
 var brain:Brain
 var debug_color:Color
 var debug_offset:Vector2
@@ -17,6 +17,17 @@ enum State{
 
 func _ready() -> void:
 	super()
+	if !data:
+		push_error("Enemy Data missing!! Aborting enemy")
+		die()
+		return
+	data = data.duplicate()
+	actor_name = data.actor_name
+	base_stats = data.base_stats.duplicate()
+	symbol_char = data.symbol_char
+	color = data.color
+	attack_action = data.attack_action
+	projectile_data = data.projectile_data
 	level = Global.current_level
 	debug_color = Global.rand_color()
 	debug_offset = Vector2(randi_range(-16,16),randi_range(-16,16))
@@ -42,7 +53,7 @@ func _draw() -> void:
 func take_turn() -> int:
 	if !level: level = Global.current_level
 	if !brain:
-		brain = _brain_script.create(self,level)
+		brain = data.brain_script.create(self,level)
 	return brain.take_turn()
 
 func take_damage(amount:int) -> void:

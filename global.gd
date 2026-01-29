@@ -16,9 +16,13 @@ static func actor_moved(actor:Actor, coord:Vector2i):
 	signals.actor_moved.emit(actor,coord)
 
 static func goto_next_level():
-	var _new_level = Level.new()
+	# Save player info
+	var player = current_level.player
+	var new_level = Level.new()
+	new_level.player = player
+	
 	push_error("Havne't implemented this yet")
-	TODO: ADD GOTO NEXT LEVEL! AND GENERALLY IMPLEMENT LEVELS YOU DING DONG
+	#TODO: ADD GOTO NEXT LEVEL! AND GENERALLY IMPLEMENT LEVELS YOU DING DONG
 
 static func ui_loaded():
 	signals.ui_loaded.emit()

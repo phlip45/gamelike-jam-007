@@ -8,6 +8,7 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 @export var base_stats:Stats
 @export var blocks_movement:bool = true
 @export var symbol_char:String = "🐛"
+@export var color:Color = Color.WHITE
 @export var projectile_data:ProjectileData
 var stats:Stats
 var inventory:Inventory

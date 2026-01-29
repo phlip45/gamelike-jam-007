@@ -128,7 +128,7 @@ func get_bumpables_at_location(target_coord:Vector2i) -> Array:
 	feeler.position = Global.coord_to_position(target_coord) - position
 	state = State.AWAITING_BUMPABLES
 	## Takes two frames for feeler to move and for it to correctly
-	## register overlapping areas it seems.
+	## register overlapping areas it seems, Changing state blocks input
 	await get_tree().process_frame
 	await get_tree().process_frame
 	var areas:Array[Area2D] = feeler.get_overlapping_areas()

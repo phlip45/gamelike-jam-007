@@ -138,7 +138,6 @@ class Row extends RefCounted:
 		
 	func round_ties_down(n:float) -> int:
 			return ceil(n - 0.5)
-
 	
 	func next() -> Row:
 		depth += 1
@@ -150,22 +149,3 @@ func slope(rel_vec:Vector2i) -> Fraction:
 func is_symmetric(row:Row, rel_vec:Vector2i) -> bool:
 	return (rel_vec.x >= row.depth * row.start_slope.value
 		and rel_vec.x <= row.depth * row.end_slope.value)
-
-
-#func scan_iterative(row:Row) -> void:
-	#var rows:Array[Row] = [row]
-	#while rows.size() > 0:
-		#row = rows.pop_back()
-		#var prev_tile:Tile = null
-		#for tile in row.tiles():
-			#if is_wall(tile) or is_symmetric(row, tile):
-				#reveal(tile)
-			#if is_wall(prev_tile) and is_floor(tile):
-					#row.start_slope = slope(tile)
-			#if is_floor(prev_tile) and is_wall(tile):
-				#next_row = row.next()
-				#next_row.end_slope = slope(tile)
-				#rows.append(next_row)
-			#prev_tile = tile
-		#if is_floor(prev_tile):
-				#rows.append(row.next())

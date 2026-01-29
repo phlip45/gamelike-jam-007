@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_6rrrt"]
 [ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="1_8nkya"]
-[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="3_uxfc6"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_uxfc6"]
 
 [sub_resource type="Resource" id="Resource_j8ob7"]
 script = ExtResource("3_uxfc6")

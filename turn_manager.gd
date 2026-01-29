@@ -11,7 +11,7 @@ func _ready() -> void:
 		if actor is Player: player = actor
 		actor.died.connect(remove_actor.bind(actor))
 
-	take_next_turn()
+	take_next_turn.call_deferred()
 	
 func take_next_turn():
 	## front of queue takes turn

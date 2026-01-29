@@ -1,22 +1,20 @@
 extends LevelLayout
 class_name SimpleRoomCorridorLayout
 
-#rng
-#rect
-#tiles
 var rooms:Dictionary[Vector2i,Room]
 var corridors:Dictionary[Vector2i,Corridor]
-var options:Options
+var options:SimpleRoomCorridorOptions
 var triangulator:Delaunay
 
-static func generate(opts:Options = null) -> LevelLayout:
+static func generate(opts:SimpleRoomCorridorOptions = null) -> LevelLayout:
 	opts.rng.seed = opts.rng_seed
 	var layout:LevelLayout = SimpleRoomCorridorLayout.new()
 	if !opts:
-		layout.options = Options.new()
+		layout.options = SimpleRoomCorridorOptions.new()
 	else:
 		layout.options = opts
-	layout.rng = opts.rng
+	layout.rng = RandomNumberGenerator.new()
+	layout.rng.seed = opts.rng.seed
 	layout.rect = Rect2i(opts.offset, opts.size)
 	
 	layout.make_rooms(opts)
@@ -138,20 +136,3 @@ func is_room_coord(coord:Vector2i):
 		if r.has_coord(coord):
 			return true
 	return false
-
-class Options:
-	var tries:int = 1000
-	var rng = RandomNumberGenerator.new()
-	var rng_seed:int = rng.randi()
-	var size:Vector2i = Global.grid_size
-	var offset:Vector2i = Global.grid_offset
-	var num_rooms:Vector2i = Vector2i(3,10)
-	var room_width:Vector2i = Vector2i(3,10)
-	var room_height:Vector2i = Vector2i(2,7)
-	## 0.0:1.0 - The higher connectivity means more hallways
-	## 0.0 will produce only the core hallways.
-	var connectivity:float = 0.0
-	var hidden_rooms:bool = false
-	## chance that a room is lit by torches
-	var lit_chance:float = 1.0
-	#

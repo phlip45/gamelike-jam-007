@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqk3j3725mvey"]
+
+[ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="1_052mc"]
+
+[node name="Level" type="Node" node_paths=PackedStringArray("tilemap")]
+script = ExtResource("1_052mc")
+tilemap = NodePath("")

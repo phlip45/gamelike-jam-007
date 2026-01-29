@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Rarity" load_steps=2 format=3 uid="uid://bn1ile0a0ejqg"]
+
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="1_uxaun"]
+
+[resource]
+script = ExtResource("1_uxaun")
+name = "Trash"
+value = 250.0
+color = Color(0.29586652, 0.2958665, 0.2958665, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"

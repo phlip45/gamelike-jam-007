@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SimpleRoomCorridorOptions" load_steps=2 format=3 uid="uid://cnow8dlf66d48"]
+
+[ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="1_8g6tw"]
+
+[resource]
+script = ExtResource("1_8g6tw")
+size = null
+offset = null
+metadata/_custom_type_script = "uid://ctkw5v52m1l0f"

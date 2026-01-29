@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvgdddwbo7wia"]
 
-[ext_resource type="Script" uid="uid://ckosn8c7grmir" path="res://item_manager.gd" id="1_0atio"]
+[ext_resource type="Script" uid="uid://ckosn8c7grmir" path="res://inventory/item_manager.gd" id="1_0atio"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="2_c2aka"]
 [ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="3_we678"]
 [ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/weapons/sword.weapon.tres" id="4_aw0m1"]

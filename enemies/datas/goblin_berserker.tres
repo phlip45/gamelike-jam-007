@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://bmjxswsriggdr"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_6k5pl"]
+[ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_te1ab"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_7qoy5"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_mwq48"]
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="5_pfurg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("5_pfurg")
+actor_name = "Goblin Berserker"
+description = "A warty fellow with a large axe. He would tell you that your bones will be decorations for his home, except he is too busy screaming."
+brain_script = ExtResource("3_7qoy5")
+base_stats = ExtResource("2_te1ab")
+symbol_char = "g"
+color = Color(0.97879964, 0, 0.16433048, 1)
+attack_action = ExtResource("1_6k5pl")
+projectile_data = ExtResource("4_mwq48")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

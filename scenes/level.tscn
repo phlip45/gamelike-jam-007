@@ -1,10 +1,24 @@
-[gd_scene load_steps=8 format=4 uid="uid://bbgbsh61547bf"]
+[gd_scene load_steps=15 format=4 uid="uid://bbgbsh61547bf"]
 
-[ext_resource type="PackedScene" uid="uid://cbhye1cu1m2jk" path="res://enemies/ranged_goblin.enemy.tscn" id="4_ppgk2"]
-[ext_resource type="PackedScene" uid="uid://lcvhdr41todm" path="res://player/player.tscn" id="8_5dd4i"]
+[ext_resource type="Script" uid="uid://dww0j03dryhqf" path="res://scenes/dungeon.gd" id="1_2r41h"]
+[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="2_ppgk2"]
+[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="3_2r41h"]
+[ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="4_klq6b"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="4_olg7q"]
+[ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="5_b121j"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="5_t1rx8"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="6_8iemx"]
 [ext_resource type="PackedScene" uid="uid://ogjq01f3q1pj" path="res://example_tilemap.tscn" id="8_jk1qb"]
 [ext_resource type="PackedScene" uid="uid://bvkes44jj2fea" path="res://UI/ui.tscn" id="8_tbmy8"]
-[ext_resource type="Script" uid="uid://cw7jgx8kr32qi" path="res://scenes/level.gd" id="9_jk1qb"]
+
+[sub_resource type="Resource" id="Resource_64w2a"]
+script = ExtResource("4_olg7q")
+items = Array[ExtResource("5_t1rx8")]([ExtResource("6_8iemx")])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"
+
+[sub_resource type="Resource" id="Resource_8c41q"]
+script = ExtResource("4_klq6b")
+metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
 
 [sub_resource type="Gradient" id="Gradient_vue75"]
 interpolation_mode = 1
@@ -19,7 +33,17 @@ fill = 1
 fill_from = Vector2(0.48387095, 0.50537634)
 fill_to = Vector2(0, 0)
 
-[node name="MainMenu" type="Node2D"]
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_2r41h")
+enemy_pool_lookup = Dictionary[int, ExtResource("2_ppgk2")]({
+1: ExtResource("3_2r41h")
+})
+item_pool_lookup = Dictionary[int, ExtResource("4_olg7q")]({
+0: SubResource("Resource_64w2a")
+})
+feature_pool_lookup = Dictionary[int, ExtResource("4_klq6b")]({
+0: SubResource("Resource_8c41q")
+})
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-23, 0)
@@ -34,11 +58,3 @@ tile_map_data = PackedByteArray("AAD6//7/AQAAAAAAAAD7//7/AQABAAAAAAD8//7/AQABAAA
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("8_tbmy8")]
-
-[node name="Level" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
-script = ExtResource("9_jk1qb")
-actor_scenes = Dictionary[String, PackedScene]({
-"Goblin": ExtResource("4_ppgk2"),
-"Player": ExtResource("8_5dd4i")
-})
-tilemap = NodePath("../Tile")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://gm1pgv1dawcp"]
 
-[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats.gd" id="1_bjd7b"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="1_bjd7b"]
 
 [resource]
 resource_local_to_scene = true

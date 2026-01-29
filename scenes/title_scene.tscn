@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcx3454f8ygg4"]
+[gd_scene format=3 uid="uid://dcx3454f8ygg4"]
 
 [ext_resource type="Script" uid="uid://blrg2ygjtqkdx" path="res://scenes/title_scene.gd" id="1_4k7ef"]
 [ext_resource type="Shader" uid="uid://bcieiwhbxq7qo" path="res://shaders/title_scene.gdshader" id="1_6jsh8"]
@@ -41,14 +41,14 @@ shader_parameter/blur_amount = 3.0
 shader_parameter/bloom_spread = 1.0
 shader_parameter/bloom_intensity = 2.0
 
-[node name="TitleScene" type="CanvasLayer" node_paths=PackedStringArray("titles", "options")]
+[node name="TitleScene" type="CanvasLayer" unique_id=2037617237 node_paths=PackedStringArray("titles", "options")]
 script = ExtResource("1_4k7ef")
 titles = [NodePath("VBoxContainer/MarginContainer/RichTextLabel5")]
 cooldown = Vector2(0, 0.5)
 options = [null, null, null]
 hold_cooldown = Vector2(0, 0.5)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=716825570]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -56,27 +56,26 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Selector" parent="." node_paths=PackedStringArray("options") instance=ExtResource("2_s8xmt")]
+[node name="Selector" parent="." unique_id=1347036517 node_paths=PackedStringArray("options") instance=ExtResource("2_s8xmt")]
 options = {
 0: NodePath("../VBoxContainer/HBoxContainer/Options/Start"),
 1: NodePath("../VBoxContainer/HBoxContainer/Options/Options"),
 2: NodePath("../VBoxContainer/HBoxContainer/Options/Exit")
 }
-hold_cooldown = Vector2(0, 0.5)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=236537670]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=864995620]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=2139856966]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bq8jb")
 layout_mode = 2
@@ -101,42 +100,42 @@ text = "[rainbow sat=.15 freq=0.1 val=1]@@@@@@@   @@@  @@@  @@@  @@@       @@@  
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1258451627]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1555347671]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Options" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="Options" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1435133968]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Start" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
+[node name="Start" parent="VBoxContainer/HBoxContainer/Options" unique_id=1700887431 instance=ExtResource("3_7rdyk")]
 layout_mode = 2
 text = "Start"
 
-[node name="Options" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
+[node name="Options" parent="VBoxContainer/HBoxContainer/Options" unique_id=1905854749 instance=ExtResource("3_7rdyk")]
 layout_mode = 2
 text = "Options"
 
-[node name="Exit" parent="VBoxContainer/HBoxContainer/Options" instance=ExtResource("3_7rdyk")]
+[node name="Exit" parent="VBoxContainer/HBoxContainer/Options" unique_id=358586730 instance=ExtResource("3_7rdyk")]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1508884287]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="Control" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="Control" parent="VBoxContainer/HBoxContainer2" unique_id=1840615968]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer2" type="Control" parent="VBoxContainer/HBoxContainer2" unique_id=439574807]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=689079588]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,7 +144,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Legal" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+[node name="Legal" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer" unique_id=1171511782]
 layout_mode = 2
 bbcode_enabled = true
 text = "Made for Gamelike Jam 007
@@ -153,11 +152,11 @@ text = "Made for Gamelike Jam 007
 fit_content = true
 horizontal_alignment = 1
 
-[node name="VBoxContainer3" type="Control" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer3" type="Control" parent="VBoxContainer/HBoxContainer2" unique_id=885438606]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionMenuHodler" type="Control" parent="."]
+[node name="OptionMenuHodler" type="Control" parent="." unique_id=1573001726]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +164,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AntiClickShader" type="TextureRect" parent="."]
+[node name="AntiClickShader" type="TextureRect" parent="." unique_id=1156992220]
 visible = false
 material = SubResource("ShaderMaterial_l5n7b")
 anchors_preset = 15
@@ -183,7 +182,7 @@ focus_behavior_recursive = 1
 mouse_filter = 2
 texture = ExtResource("5_bq8jb")
 
-[node name="ClickDetector" type="Button" parent="."]
+[node name="ClickDetector" type="Button" parent="." unique_id=607601687]
 z_index = 999
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,7 +193,7 @@ focus_next = NodePath("../ColorRect")
 focus_mode = 1
 flat = true
 
-[node name="ColorRect2" type="ColorRect" parent="ClickDetector"]
+[node name="ColorRect2" type="ColorRect" parent="ClickDetector" unique_id=948134621]
 material = SubResource("ShaderMaterial_6jsh8")
 layout_mode = 1
 anchors_preset = 15

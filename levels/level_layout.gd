@@ -90,7 +90,6 @@ func compute_fov(origin:Vector2i, _range:int = 99):
 	previous_visible_tiles = current_visible_tiles.duplicate()
 	current_visible_tiles.clear()
 	tiles_updated.emit(changed_tiles)
-	
 
 class Quadrant extends RefCounted:
 	enum Dir{
@@ -149,3 +148,12 @@ func slope(rel_vec:Vector2i) -> Fraction:
 func is_symmetric(row:Row, rel_vec:Vector2i) -> bool:
 	return (rel_vec.x >= row.depth * row.start_slope.value
 		and rel_vec.x <= row.depth * row.end_slope.value)
+
+func get_adjacent_voids(coord:Vector2i) -> Array[Vector2i]:
+	var voids:Array[Vector2i]
+	for y in range(-1,2):
+		for x in range(-1,2):
+			var spot:Vector2i = Vector2i(coord.x + x, coord.y + y)
+			if !tiles.has(spot):
+				voids.append(spot)
+	return voids

@@ -7,9 +7,9 @@ var options:SimpleRoomCorridorOptions
 var triangulator:Delaunay
 
 static func generate(opts:SimpleRoomCorridorOptions = null) -> LevelLayout:
-	if !opts:
-		print("Running with no ops")
-		opts = SimpleRoomCorridorOptions.new()
+	#if !opts:
+		#print("Running with no ops")
+		#opts = SimpleRoomCorridorOptions.new()
 	var layout:LevelLayout = SimpleRoomCorridorLayout.new()
 	if !opts:
 		layout.options = SimpleRoomCorridorOptions.new()
@@ -112,14 +112,7 @@ func populate_tiles() -> void:
 	#for wall_location:Vector2i in walls:
 		#var tile:Tile = Tile.create(wall_location, Tile.Type.WALL)
 
-func get_adjacent_voids(coord:Vector2i) -> Array[Vector2i]:
-	var voids:Array[Vector2i]
-	for y in range(-1,2):
-		for x in range(-1,2):
-			var spot:Vector2i = Vector2i(coord.x + x, coord.y + y)
-			if !tiles.has(spot):
-				voids.append(spot)
-	return voids
+
 
 func is_corridor_coord(coord:Vector2i):
 	for c:Corridor in corridors.values():

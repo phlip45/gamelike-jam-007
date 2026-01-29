@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://b6b2b0i8dulox"]
+
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/ranged_attack.action.tres" id="1_eekm6"]
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_f2e7t"]
+[ext_resource type="Resource" uid="uid://c8s61af17etvh" path="res://stats/boulean.stats.tres" id="2_7fvsj"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_w8ial"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_g1uq5"]
+[ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="5_7e7r6"]
+
+[resource]
+script = ExtResource("1_f2e7t")
+actor_name = "Boulean"
+description = "Eh pretty cool guy"
+brain_script = ExtResource("3_w8ial")
+base_stats = ExtResource("2_7fvsj")
+symbol_char = "B"
+color = Color(0.4858747, 0.12871578, 0.68735474, 1)
+attack_action = ExtResource("1_eekm6")
+projectile_data = ExtResource("4_g1uq5")
+rarity = ExtResource("5_7e7r6")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://irvyekssfi8g"]
+[gd_scene format=3 uid="uid://irvyekssfi8g"]
 
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="1_r736i"]
 [ext_resource type="Script" uid="uid://b8eiyxrhg6hga" path="res://features/feature.gd" id="1_s2fax"]
 
-[node name="Feature" type="Area2D"]
+[node name="Feature" type="Area2D" unique_id=977873156]
 script = ExtResource("1_s2fax")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2052351247]
 shape = ExtResource("1_r736i")

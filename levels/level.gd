@@ -20,6 +20,8 @@ var pathfinder:Pathfinder
 var player:Player
 var options:LevelOptions
 
+signal level_finished
+
 static func create(_options:LevelOptions = null) -> Level:
 	var level = Level.new()
 	if _options:
@@ -41,7 +43,7 @@ func _process(_delta: float) -> void:
 func setup():
 	Global.current_level = self
 	setup_rng()
-	generate_level(true)
+	generate_level()
 	setup_feature_manager()
 	setup_item_manager()
 	setup_turn_manager()
@@ -51,6 +53,9 @@ func setup_rng():
 	level_rng = RandomNumberGenerator.new()
 	item_rng = RandomNumberGenerator.new()
 	combat_rng = RandomNumberGenerator.new()
+	level_rng.seed = options.level_seed
+	item_rng.seed = options.item_seed
+	combat_rng.seed = options.combat_seed
 
 func setup_turn_manager():
 	turn_manager = TurnManager.new()
@@ -74,21 +79,20 @@ func setup_item_manager():
 	add_child(item_manager)
 func setup_feature_manager():
 	feature_manager = FeatureManager.create(self)
-	for i in 12:
-		var stairs:Feature = Feature.create(">", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
-		feature_manager.add_feature(stairs)
+	var stairs:Feature = Feature.create(">", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
+	feature_manager.add_feature(stairs)
 	add_child(feature_manager)
-
 
 func generate_level(seeded:bool = false):
 	tilemap.clear()
-	var opts:SimpleRoomCorridorOptions = SimpleRoomCorridorOptions.new()
+	var opts = options.level_layout_options
+	opts.rng_seed = options.level_seed
 	if seeded:
 		opts.rng_seed = 2622252045
-	opts.num_rooms = Vector2i(3,40)
-	opts.room_height = Vector2i(2,20)
-	opts.room_width = Vector2i(2,8)
-	layout = SimpleRoomCorridorLayout.generate(opts)
+	#opts.num_rooms = Vector2i(3,40)
+	#opts.room_height = Vector2i(2,20)
+	#opts.room_width = Vector2i(2,8)
+	layout = opts.generate()
 	pathfinder = Pathfinder.new()
 	pathfinder.initialize(layout)
 	layout.tiles_updated.connect(update_tilemap)
@@ -121,6 +125,7 @@ func update_from_players_vision(_unused:int = -1):
 	layout.compute_fov(player.coord)
 	turn_manager.check_visibility()
 	item_manager.check_visibility()
+	feature_manager.check_visibility()
 
 func get_random_floor_tile_symbol():
 	var floor_sprite_coords:Array[Vector2i] = [Vector2i(6,0), Vector2i(7,0),Vector2i(0,2),Vector2i(1,2),Vector2i(5,2)]
@@ -164,3 +169,44 @@ func is_cell_occupied(coord:Vector2i) -> bool:
 func is_cell_walkable(coord:Vector2i) -> bool:
 	if !layout.tiles.has(coord): return false
 	return layout.tiles[coord].type == Tile.Type.FLOOR
+
+func finish_level():
+	level_finished.emit()
+
+func get_bumpables_at_location(coord:Vector2i) -> Array[Area2D]:
+	var areas:Array[Area2D]
+	var actors_at_coord:Array[Actor] = turn_manager.actors.filter(
+		func(a:Actor): return a.coord == coord
+	)
+	var features_at_coord:Array[Feature] = feature_manager.features.filter(
+		func (f:Feature): return f.coord == coord
+	)
+	for actor:Actor in actors_at_coord:
+		areas.append(actor)
+	for feature:Feature in features_at_coord:
+		if feature.blocks_movement:
+			areas.append(feature)
+	if layout.walls.has(coord):
+		areas.append(Wall.new())
+	return areas
+
+func get_items_at_coord(coord:Vector2i) -> Array[Item]:
+	var husks_at_coord:Array[ItemHusk] =item_manager.item_husks.filter(
+		func(h:ItemHusk): return h.coord == coord
+	)
+	var items:Array[Item]
+	for husk:ItemHusk in husks_at_coord:
+		items.append(husk.item)
+	return items
+
+func get_features_at_coord(coord:Vector2i) -> Array[Feature]:
+	var features_at_coord:Array[Feature] = feature_manager.features.filter(
+		func(f:Feature): return f.coord == coord
+	)
+	return features_at_coord
+
+func get_item_husks_at_coord(coord:Vector2i) -> Array[ItemHusk]:
+	var husks_at_coord:Array[ItemHusk] =item_manager.item_husks.filter(
+		func(h:ItemHusk): return h.coord == coord
+	)
+	return husks_at_coord

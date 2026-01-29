@@ -53,5 +53,5 @@ static func goto_next_level() -> Effect:
 	var effect = Effect.new()
 	effect.activate = func(source:Actor = null, _targets:Array = []):
 		if source is Player:
-			Global.goto_next_level()
+			source.level.finish_level.call_deferred()
 	return effect

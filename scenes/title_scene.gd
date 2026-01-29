@@ -54,7 +54,8 @@ func _process(delta: float) -> void:
 		material.set_shader_parameter("black_offset_multiplier", .02)
 
 func start():
-	get_tree().change_scene_to_file("res://scenes/level.tscn")
+	get_tree().change_scene_to_file("res://scenes/dungeon.tscn")
+	
 func open_options():
 	selector.enabled = false
 	var option_menu_scene:PackedScene = load("res://scenes/options.tscn")

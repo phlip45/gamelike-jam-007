@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://f6lstewm8j73"]
+[gd_scene format=3 uid="uid://f6lstewm8j73"]
 
 [ext_resource type="Script" uid="uid://dshe7tor462n7" path="res://enemies/enemy.gd" id="1_ttxdi"]
 [ext_resource type="Resource" uid="uid://bmjxswsriggdr" path="res://enemies/datas/goblin_berserker.tres" id="2_07tka"]
 [ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_ttxdi"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="4_mu1c2"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="5_3t1x0"]
+[ext_resource type="Texture2D" uid="uid://chn8cxg37a2ry" path="res://resources/background.sprite_2d.tres" id="6_3t1x0"]
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" unique_id=2079047202]
 script = ExtResource("1_ttxdi")
 data = ExtResource("2_07tka")
 actor_name = "Goblin"
@@ -14,5 +15,8 @@ base_stats = ExtResource("2_ttxdi")
 symbol_char = "g"
 projectile_data = ExtResource("5_3t1x0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1991397410]
 shape = ExtResource("4_mu1c2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537286090]
+texture = ExtResource("6_3t1x0")

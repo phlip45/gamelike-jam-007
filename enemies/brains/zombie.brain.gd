@@ -20,7 +20,7 @@ func take_turn() -> int:
 		if level.is_cell_occupied(path[-1]):
 			body.move(get_alternate_step(body.coord,level.player.coord))
 			path = []
-			return 25
+			return 100
 		body.move(path.pop_back())
 		return 100
 	else:
@@ -53,16 +53,17 @@ func get_alternate_step(current: Vector2i, desired: Vector2i) -> Vector2i:
 		Vector2i.RIGHT + Vector2i.UP,
 		Vector2i.DOWN + Vector2i.RIGHT,
 	]:
-		var candidate:Vector2i= current + dir
+		var candidate:Vector2i = current + dir
 
 		if not level.is_cell_walkable(candidate):
 			continue
 		if level.is_cell_occupied(candidate):
 			continue
 
-		var d:float= candidate.distance_squared_to(desired)
+		var d:float = candidate.distance_squared_to(desired)
 		if d < best_dist:
 			best_dist = d
 			best_tile = candidate
-
+	print("I'm at %s" % body.coord)
+	print("Wanted to go from %s to %s. Went to %s instead" % [current,desired,best_tile])
 	return best_tile

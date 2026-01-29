@@ -4,27 +4,32 @@ var _seed:int
 var rng:RandomNumberGenerator
 var level_count:int = 1
 var current_level:Level
-@export var level_options_lookup:Dictionary[int, LevelOptions]
-@export var enemy_pool_lookup:Dictionary[int, EnemyPool]
-@export var item_pool_lookup:Dictionary[int, ItemPool]
-@export var feature_pool_lookup:Dictionary[int, FeaturePool]
+@export var playlist:DungeonPlaylist
 @onready var tilemap: TileMapLayer = $Tilemap
+var player:Player
 
 func _ready() -> void:
 	if _seed == 0:
 		_seed = randi()
-	var current_level_options = LevelOptions.new()
-	current_level_options.combat_seed = _seed
-	current_level_options.item_seed = _seed
-	current_level_options.level_seed = _seed
-	current_level_options.level_layout_type = LevelOptions.LevelLayoutType.SIMPLE_ROOM_CORRIDOR
-	current_level_options.num_starting_enemies = 7
-	current_level_options.enemy_pool = enemy_pool_lookup[level_count].duplicate()
-	current_level_options.item_pool = item_pool_lookup[level_count].duplicate()
-	current_level_options.feature_pool = feature_pool_lookup[level_count].duplicate()
-	current_level = Level.create(current_level_options)
-	var player:Player = load("res://player/player.tscn").instantiate()
-	current_level.player = player
-	current_level.tilemap = tilemap
-	
+	player = load("res://player/player.tscn").instantiate()
+	current_level = setup_level(level_count)
 	add_child(current_level)
+
+func move_to_next_level():
+	level_count += 1
+	var next_level:Level = setup_level(level_count)
+	player.get_parent().remove_child(player)
+	remove_child(current_level)
+	current_level.queue_free()
+	await get_tree().process_frame
+	current_level = next_level
+	player.level = current_level
+	add_child(next_level)
+	
+func setup_level(level_num:int) -> Level:
+	var level_opts:LevelOptions =  playlist.level_options_lookup[level_num]
+	var level:Level = Level.create(level_opts)
+	level.level_finished.connect(move_to_next_level, CONNECT_ONE_SHOT)
+	level.player = player
+	level.tilemap = tilemap
+	return level

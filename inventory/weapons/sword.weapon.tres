@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://b11vt7x2jerev"]
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://b11vt7x2jerev"]
 
 [ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_tqxf8"]
 [ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_3v847"]

@@ -1,4 +1,4 @@
-extends Resource
+extends LayoutOptions
 class_name SimpleRoomCorridorOptions
 
 ## How many tries should room gen get? Should be more than 100
@@ -22,3 +22,6 @@ class_name SimpleRoomCorridorOptions
 @export var hidden_rooms:bool = false
 ## Not Implemented
 @export var lit_chance:float = 1.0
+
+func generate() -> LevelLayout:
+	return SimpleRoomCorridorLayout.generate(self)

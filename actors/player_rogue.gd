@@ -1,13 +1,10 @@
 extends Actor
 class_name Player
 
-@onready var feeler: Area2D = $Feeler
-@onready var feet_feeler: Area2D = $FeetFeeler
 @export var walk_cooldown:Vector2 = Vector2(0,.5)
 @export var unarmed_weapon:Weapon
 var running:bool = false
 var state:State
-var ground_item_husks:Array[ItemHusk]
 var ground_features:Array[Feature]
 var equipped_weapon:Weapon
 @export var time_til_heal:Vector2i = Vector2i(500,500)
@@ -32,7 +29,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("debug_bottom"):
-		stats.hp -= 1
+		stats.hp = randi_range( 2,2444)
 	if Input.is_action_pressed("debug_top"):
 		stats.hp += 1
 	if Input.is_action_pressed("debug_left"):
@@ -91,6 +88,7 @@ func premove(delta:float):
 			for feature in ground_features:
 				if feature.trigger == Feature.Trigger.USE:
 					feature.use(self)
+					return
 	elif Input.is_action_just_pressed("pause"):
 		pause()
 		walk_cooldown.x = walk_cooldown.y
@@ -104,7 +102,7 @@ func premove(delta:float):
 		running = false
 		return
 	if walk_cooldown.x <= 0:
-		var bumpables:Array = await get_bumpables_at_location(desired_move)
+		var bumpables:Array = get_bumpables_at_location(desired_move)
 		hunger()
 		if bumpables.size() > 0:
 			walk_cooldown.x = walk_cooldown.y/10 if running else walk_cooldown.y
@@ -121,38 +119,18 @@ func move(desired_coord:Vector2i, _delta:float = 0):
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
 	state = State.AWAITING_TURN
-	Global.set_ground_items(await get_ground_items())
+	Global.set_ground_items(get_ground_items())
+	ground_features = get_features_at_coord(coord)
 	finished_turn.emit( max(100 - stats.whoosh,1) )
 
-func get_bumpables_at_location(target_coord:Vector2i) -> Array:
-	feeler.position = Global.coord_to_position(target_coord) - position
-	state = State.AWAITING_BUMPABLES
-	## Takes two frames for feeler to move and for it to correctly
-	## register overlapping areas it seems, Changing state blocks input
-	await get_tree().process_frame
-	await get_tree().process_frame
-	var areas:Array[Area2D] = feeler.get_overlapping_areas()
-	areas = areas.filter(is_bumpable)
-	var physics_stuffs:Array[Node2D] = feeler.get_overlapping_bodies()
-	if physics_stuffs.size() > 0:
-		areas.append(Wall.new())
-	return areas
+func get_bumpables_at_location(target_coord:Vector2i) -> Array[Area2D]:
+	return level.get_bumpables_at_location(target_coord)
 
-func get_items_at_location(_target:Vector2) -> Array[Item]:
-	feeler.position = _target - position
-	await get_tree().process_frame
-	await get_tree().process_frame
-	ground_item_husks.clear()
-	ground_features.clear()
-	var areas:Array = feeler.get_overlapping_areas()
-	var items:Array[Item]
-	for a:Area2D in areas:
-		if a is ItemHusk:
-			ground_item_husks.append(a)
-			items.append(a.item as Item)
-		if a is Feature:
-			ground_features.append(a)
-	return items
+func get_items_at_coord(_target:Vector2i) -> Array[Item]:
+	return level.get_items_at_coord(_target)
+
+func get_features_at_coord(_target:Vector2i) -> Array[Feature]:
+	return level.get_features_at_coord(_target)
 	
 func bump_into(bumpables:Array):
 	var enemy:Enemy = null
@@ -193,7 +171,7 @@ func is_bumpable(area:Area2D) -> bool:
 		 area is Interactable
 
 func get_ground_items() -> Array[Item]:
-	return await get_items_at_location(global_position)
+	return get_items_at_coord(coord)
 
 func attack(enemy:Enemy):
 	hunger()
@@ -218,10 +196,11 @@ func pause():
 	state = State.AWAITING_INPUT
 
 func pickup_items():
-	for item_husk:ItemHusk in ground_item_husks:
+	var husks:Array[ItemHusk] = level.get_item_husks_at_coord(coord)
+	for item_husk:ItemHusk in husks:
 		inventory.add(item_husk.item)
 		item_husk.die()
-	Global.set_ground_items(await get_ground_items())
+	Global.set_ground_items(get_ground_items())
 
 func regenerate():
 	heal(ceil(stats.hp_max/10.0))

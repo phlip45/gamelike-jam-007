@@ -16,7 +16,7 @@ enum State{
 }
 
 static func create(_data:EnemyData) -> Enemy:
-	var enemy = load("res://enemies/enemy.tscn").instantiate()
+	var enemy:Enemy = load("res://enemies/enemy.tscn").instantiate()
 	if !_data:
 		push_error("Enemy Data missing!! Aborting enemy")
 		enemy.die()
@@ -26,6 +26,7 @@ static func create(_data:EnemyData) -> Enemy:
 	enemy.base_stats = _data.base_stats.duplicate()
 	enemy.symbol_char = _data.symbol_char
 	enemy.color = _data.color
+	enemy.modulate = _data.color
 	enemy.attack_action = _data.attack_action
 	enemy.projectile_data = _data.projectile_data
 	enemy.level = Global.current_level

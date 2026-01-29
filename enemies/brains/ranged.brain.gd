@@ -22,9 +22,9 @@ func take_turn() -> int:
 		return 100
 	if path.size() > 1:
 		if level.is_cell_occupied(path[-1]):
-			body.move(get_alternate_step(body.coord,level.player.coord))
+			body.move(get_alternate_step(body.coord,path[-1]))
 			path = []
-			return 25
+			return 100
 		body.move(path.pop_back())
 		return 100
 	else:

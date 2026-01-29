@@ -4,17 +4,10 @@
 [ext_resource type="Resource" uid="uid://dv0ghhhyu2duh" path="res://inventory/weapons/unarmed.weapon.tres" id="2_qjkh3"]
 [ext_resource type="Resource" uid="uid://gm1pgv1dawcp" path="res://stats/player.stats.tres" id="2_yw30f"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="3_qjkh3"]
-
-[sub_resource type="Gradient" id="Gradient_g1dw6"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw30f"]
-gradient = SubResource("Gradient_g1dw6")
-width = 24
-height = 24
+[ext_resource type="Texture2D" uid="uid://chn8cxg37a2ry" path="res://resources/background.sprite_2d.tres" id="5_qjkh3"]
 
 [node name="Player" type="Area2D" unique_id=486927611 groups=["player"]]
+z_index = 1
 script = ExtResource("1_g1dw6")
 walk_cooldown = Vector2(0, 0.4)
 unarmed_weapon = ExtResource("2_qjkh3")
@@ -26,15 +19,5 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546569276]
 shape = ExtResource("3_qjkh3")
 
-[node name="Feeler" type="Area2D" parent="." unique_id=183491368]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Feeler" unique_id=654349743]
-shape = ExtResource("3_qjkh3")
-
-[node name="FeetFeeler" type="Area2D" parent="." unique_id=1635067591]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="FeetFeeler" unique_id=59384496]
-shape = ExtResource("3_qjkh3")
-
 [node name="Background" type="Sprite2D" parent="." unique_id=459079505]
-texture = SubResource("GradientTexture2D_yw30f")
+texture = ExtResource("5_qjkh3")

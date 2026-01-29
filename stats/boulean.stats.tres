@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Stats" format=3 uid="uid://c8s61af17etvh"]
+
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="1_quy1e"]
+
+[resource]
+script = ExtResource("1_quy1e")
+hp = 20
+hp_max = 20
+hunger_max = 16
+stremf = 7
+woowoo = 15
+whoosh = 20
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"

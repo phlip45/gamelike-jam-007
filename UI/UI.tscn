@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvkes44jj2fea"]
+[gd_scene format=3 uid="uid://bvkes44jj2fea"]
 
 [ext_resource type="Script" uid="uid://sffu4mef7xwj" path="res://UI/ui.gd" id="1_dhe1o"]
 [ext_resource type="Script" uid="uid://b5hylbi272160" path="res://UI/combat_log.ui.gd" id="2_q0uhn"]
@@ -6,11 +6,11 @@
 [ext_resource type="Theme" uid="uid://qvfqj7buuvpx" path="res://UI/default_theme.tres" id="3_q0uhn"]
 [ext_resource type="PackedScene" uid="uid://bnn0m1li4otoe" path="res://UI/item_rich_text.tscn" id="4_nm1m0"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("combat_log")]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1971220057 node_paths=PackedStringArray("combat_log")]
 script = ExtResource("1_dhe1o")
 combat_log = NodePath("UI/TopPanel/LeftPanel/ScrollContainer/CombatLog")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1923767000]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="UI" type="VBoxContainer" parent="."]
+[node name="UI" type="VBoxContainer" parent="." unique_id=1290535069]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,26 +32,26 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="TopPanel" type="HBoxContainer" parent="UI"]
+[node name="TopPanel" type="HBoxContainer" parent="UI" unique_id=2019483360]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="LeftPanel" type="VBoxContainer" parent="UI/TopPanel"]
+[node name="LeftPanel" type="VBoxContainer" parent="UI/TopPanel" unique_id=1454916867]
 custom_minimum_size = Vector2(245, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/TopPanel/LeftPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/TopPanel/LeftPanel" unique_id=820100474]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="CombatLog" type="VBoxContainer" parent="UI/TopPanel/LeftPanel/ScrollContainer"]
+[node name="CombatLog" type="VBoxContainer" parent="UI/TopPanel/LeftPanel/ScrollContainer" unique_id=1404820985]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
@@ -59,32 +59,27 @@ mouse_filter = 2
 theme_override_constants/separation = 0
 script = ExtResource("2_q0uhn")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/LeftPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/LeftPanel" unique_id=458947727]
 layout_mode = 2
 size_flags_vertical = 10
 mouse_filter = 2
 theme_override_constants/margin_left = 10
 
-[node name="GroundLog" type="RichTextLabel" parent="UI/TopPanel/LeftPanel/MarginContainer"]
+[node name="GroundLog" type="RichTextLabel" parent="UI/TopPanel/LeftPanel/MarginContainer" unique_id=684103075]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 bbcode_enabled = true
-text = "[center]On This Tile:[/center]
-ONE
-1234567890123456
-THREE
-FOUR"
 fit_content = true
 
-[node name="InventoryHolder" type="ColorRect" parent="UI/TopPanel"]
+[node name="InventoryHolder" type="ColorRect" parent="UI/TopPanel" unique_id=884545939]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/InventoryHolder"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopPanel/InventoryHolder" unique_id=269534079]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,45 +92,45 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 37
 theme_override_constants/margin_bottom = 20
 
-[node name="Main View" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer"]
+[node name="Main View" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer" unique_id=282806334]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Inventory" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View"]
+[node name="Inventory" type="HBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View" unique_id=1540666025]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("3_hat8c")
 
-[node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
+[node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory" unique_id=674884592]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Left Panel" instance=ExtResource("4_nm1m0")]
+[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Left Panel" unique_id=1064914686 instance=ExtResource("4_nm1m0")]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Right Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory"]
+[node name="Right Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory" unique_id=1431582713]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Right Panel" instance=ExtResource("4_nm1m0")]
+[node name="ItemRichText" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory/Right Panel" unique_id=1419036933 instance=ExtResource("4_nm1m0")]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryHolder/MarginContainer"]
+[node name="Blinder" type="ColorRect" parent="UI/TopPanel/InventoryHolder/MarginContainer" unique_id=742501266]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Selector" type="RichTextLabel" parent="UI/TopPanel/InventoryHolder"]
+[node name="Selector" type="RichTextLabel" parent="UI/TopPanel/InventoryHolder" unique_id=2042742456]
 texture_filter = 1
 layout_mode = 0
 offset_left = 20.0
@@ -147,7 +142,7 @@ bbcode_enabled = true
 text = ">"
 metadata/_edit_use_anchors_ = true
 
-[node name="PopUpHolder" type="MarginContainer" parent="UI/TopPanel/InventoryHolder"]
+[node name="PopUpHolder" type="MarginContainer" parent="UI/TopPanel/InventoryHolder" unique_id=962675520]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 115.0
@@ -155,22 +150,22 @@ offset_right = 784.0
 offset_bottom = 437.0
 mouse_filter = 2
 
-[node name="Stats" type="VBoxContainer" parent="UI"]
+[node name="Stats" type="VBoxContainer" parent="UI" unique_id=1920347209]
 custom_minimum_size = Vector2(0, 122)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Line 1" type="HBoxContainer" parent="UI/Stats"]
+[node name="Line 1" type="HBoxContainer" parent="UI/Stats" unique_id=1770287164]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="HPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 1"]
+[node name="HPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 1" unique_id=2093835400]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HPBar" type="RichTextLabel" parent="UI/Stats/Line 1/HPBarHolder"]
+[node name="HPBar" type="RichTextLabel" parent="UI/Stats/Line 1/HPBarHolder" unique_id=1074056594]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -181,27 +176,27 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 1"]
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 1" unique_id=1951191287]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StremfText" type="RichTextLabel" parent="UI/Stats/Line 1/StatBox"]
+[node name="StremfText" type="RichTextLabel" parent="UI/Stats/Line 1/StatBox" unique_id=2096849916]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "Stremf:"
 vertical_alignment = 1
 
-[node name="Line 2" type="HBoxContainer" parent="UI/Stats"]
+[node name="Line 2" type="HBoxContainer" parent="UI/Stats" unique_id=510309381]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="MPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 2"]
+[node name="MPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 2" unique_id=2073941855]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MPBar" type="RichTextLabel" parent="UI/Stats/Line 2/MPBarHolder"]
+[node name="MPBar" type="RichTextLabel" parent="UI/Stats/Line 2/MPBarHolder" unique_id=1411983703]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -212,27 +207,27 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 2"]
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 2" unique_id=258067523]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WoowooText" type="RichTextLabel" parent="UI/Stats/Line 2/StatBox"]
+[node name="WoowooText" type="RichTextLabel" parent="UI/Stats/Line 2/StatBox" unique_id=598494541]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "Woowoo:"
 vertical_alignment = 1
 
-[node name="Line 3" type="HBoxContainer" parent="UI/Stats"]
+[node name="Line 3" type="HBoxContainer" parent="UI/Stats" unique_id=1183617079]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Hunger" type="HBoxContainer" parent="UI/Stats/Line 3"]
+[node name="Hunger" type="HBoxContainer" parent="UI/Stats/Line 3" unique_id=959931951]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HungerText" type="RichTextLabel" parent="UI/Stats/Line 3/Hunger"]
+[node name="HungerText" type="RichTextLabel" parent="UI/Stats/Line 3/Hunger" unique_id=1799671991]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -243,25 +238,25 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 3"]
+[node name="StatBox" type="HBoxContainer" parent="UI/Stats/Line 3" unique_id=505145450]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WhooshText" type="RichTextLabel" parent="UI/Stats/Line 3/StatBox"]
+[node name="WhooshText" type="RichTextLabel" parent="UI/Stats/Line 3/StatBox" unique_id=297754064]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "Whoosh:"
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1000436522]
 offset_left = 1140.0
 offset_top = 682.0
 offset_right = 1270.0
 offset_bottom = 711.0
 text = "Debug Button"
 
-[node name="PauseHolder" type="Control" parent="."]
+[node name="PauseHolder" type="Control" parent="." unique_id=809101300]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

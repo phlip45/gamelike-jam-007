@@ -3,12 +3,11 @@ class_name PauseMenu
 
 @onready var selector: Selector = $Selector
 @onready var options_holder: Control = $OptionsHolder
-const PAUSE_SCREEN = preload("uid://7ut36fav15fa")
 var chosen:int = 0
 signal pause_closed
 
 static func create() -> PauseMenu:
-	var menu = PAUSE_SCREEN.instantiate()
+	var menu = load("res://scenes/pause_screen.tscn").instantiate()
 	return menu
 
 func _on_resume_pressed() -> void:

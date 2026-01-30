@@ -8,9 +8,10 @@ var state:State
 var ground_features:Array[Feature]
 var equipped_weapon:Weapon
 @export var time_til_heal:Vector2i = Vector2i(500,500)
+var death_start:Vector2
 
 enum State{
-	NULL, AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,
+	NULL,AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,DEAD
 }
 
 signal started_turn
@@ -26,6 +27,7 @@ func _ready() -> void:
 		Global.signals.ui_loaded.connect(func():
 			Global.ui.connect_to_player(self)
 		)
+	inventory.item_dropped.connect(drop_item)
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("debug_bottom"):
@@ -39,6 +41,8 @@ func _process(delta: float) -> void:
 	premove(delta)
 
 func take_turn() -> int:
+	if state == State.DEAD:
+		await finished_turn
 	if time_til_heal.x <= 0:
 		regenerate()
 		time_til_heal.x = time_til_heal.y
@@ -87,8 +91,13 @@ func premove(delta:float):
 		if ground_features.size() > 0:
 			for feature in ground_features:
 				if feature.trigger == Feature.Trigger.USE:
+					state = State.ANIMATING
+					if tween:
+						tween.kill()
 					feature.use(self)
+					ground_features.clear()
 					return
+					
 	elif Input.is_action_just_pressed("pause"):
 		pause()
 		walk_cooldown.x = walk_cooldown.y
@@ -122,7 +131,12 @@ func move(desired_coord:Vector2i, _delta:float = 0):
 	Global.set_ground_items(get_ground_items())
 	ground_features = get_features_at_coord(coord)
 	finished_turn.emit( max(100 - stats.whoosh,1) )
-
+	
+func take_damage(amount:int) -> void:
+	stats.hp -= amount
+	DamageNumber.create(amount,coord)
+	if stats.hp <= 0:
+		die()
 func get_bumpables_at_location(target_coord:Vector2i) -> Array[Area2D]:
 	return level.get_bumpables_at_location(target_coord)
 
@@ -202,11 +216,28 @@ func pickup_items():
 		item_husk.die()
 	Global.set_ground_items(get_ground_items())
 
+func drop_item(item:Item):
+	var item_husk:ItemHusk = ItemHusk.create(item)
+	level.item_manager.add_item_husk(item_husk,coord)
+	Global.set_ground_items(get_ground_items())
+
 func regenerate():
 	heal(ceil(stats.hp_max/10.0))
 
 func hunger(amount:int = 1):
 	stats.hunger -= amount
+	print(stats.hunger)
+	if stats.hunger == 0:
+		die.call_deferred()
 
 func die():
-	pass
+	state = State.DEAD
+	death_start = Vector2(randf_range(-4,4), randf_range(-18,-9))
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_method(func(_progress:float):
+		death_start += Vector2.DOWN * .016 * 20
+		global_position += death_start 
+		,0.0,1.0,3)
+	tween.tween_callback(get_tree().change_scene_to_file.call_deferred.bind("res://scenes/game_over.tscn"))

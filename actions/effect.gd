@@ -21,6 +21,11 @@ static func phys_attack() -> Effect:
 	var effect = Effect.new()
 	effect.activate = func(source:Actor, targets:Array[Actor]):
 		var hits:Dictionary[Actor,int]
+		if source.tween:
+			source.tween.kill()
+		source.tween = source.create_tween()
+		source.tween.tween_property(source.symbol,"global_position",targets[0].symbol.global_position, 0.1)
+		source.tween.tween_property(source.symbol,"position",source.symbol.offset, 0.1)
 		for target:Actor in targets:
 			var damage:int = max(source.stats.stremf - target.stats.woowoo,1)
 			target.take_damage(damage)
@@ -40,7 +45,7 @@ static func ranged_attack() -> Effect:
 			source.add_child(projectile)
 			projectile.fire_projectile(source.coord, target.coord)
 			await projectile.finished
-			var damage:int = max(source.stats.stremf - target.stats.woowoo,1)
+			var damage:int = max(source.stats.whoosh - target.stats.woowoo,1)
 			target.take_damage(damage)
 			hits.set(target, damage)
 		var message:String = ""

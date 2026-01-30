@@ -17,6 +17,9 @@ func _ready() -> void:
 
 func move_to_next_level():
 	level_count += 1
+	if level_count >= playlist.level_options_lookup.size():
+		get_tree().change_scene_to_file.call_deferred("res://scenes/game_over.tscn")
+		return
 	var next_level:Level = setup_level(level_count)
 	player.get_parent().remove_child(player)
 	remove_child(current_level)

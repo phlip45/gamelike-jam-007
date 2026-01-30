@@ -8,12 +8,8 @@ var tween:Tween
 signal finished
 
 static func create(proj_data:ProjectileData) -> Projectile:
-	var proj = Projectile.new()
+	var proj:Projectile = load("res://resources/projectiles/projectile.tscn").instantiate() as Projectile
 	proj.projectile_data = proj_data
-	var sym:Label = Label.new()
-	proj.symbol = sym
-	sym.name = "Symbol"
-	proj.add_child(sym)
 	return proj
 	
 func fire_projectile(from:Vector2i, to:Vector2i):

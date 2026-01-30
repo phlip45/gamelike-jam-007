@@ -44,8 +44,8 @@ func setup():
 	Global.current_level = self
 	setup_rng()
 	generate_level()
-	setup_feature_manager()
 	setup_item_manager()
+	setup_feature_manager()
 	setup_turn_manager()
 	update_from_players_vision.call_deferred()
 
@@ -64,8 +64,7 @@ func setup_turn_manager():
 	player.started_turn.connect(update_from_players_vision)
 	for i in options.num_starting_enemies:
 		# Spawn random enemy from pool and give em brains and junk.
-		var index = level_rng.randi_range(0, enemy_pool.enemies.size()-1)
-		var enemy_data = enemy_pool.enemies[index].duplicate()
+		var enemy_data:EnemyData = enemy_pool.get_rand_enemy_data(level_rng)
 		var enemy:Enemy = Enemy.create(enemy_data)
 		enemy.teleport(layout.get_random_floor().coord, false)
 		turn_manager.add_actor(enemy)

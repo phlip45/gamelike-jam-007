@@ -17,14 +17,13 @@ var time_bucket:float
 
 # selector
 var state:State
-@export var hold_cooldown:Vector2
+@export var hold_cooldown:Vector2 = Vector2(0,0.5)
 var holding:bool
 var selector_index:int
 
 enum State{
 	NULL, AWAITING_INPUT, ANIMATING
 }
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

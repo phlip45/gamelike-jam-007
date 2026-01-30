@@ -69,6 +69,7 @@ func select(item:Item):
 			inventory.equip(item)
 			state = State.SELECTING
 		PopUpItemUI.Option.DROP:
+			inventory.drop(item)
 			state = State.SELECTING
 		PopUpItemUI.Option.THROW:
 			state = State.SELECTING

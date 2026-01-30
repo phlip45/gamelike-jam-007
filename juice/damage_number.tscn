@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqxuwt0dd17gn"]
+
+[ext_resource type="Script" uid="uid://djlggnclibmf6" path="res://juice/damage_number.gd" id="1_eqtu6"]
+
+[node name="DamageNum" type="RichTextLabel" unique_id=1606486081]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "3"
+script = ExtResource("1_eqtu6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=866719722]
+z_index = -1
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)

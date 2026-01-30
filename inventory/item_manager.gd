@@ -15,6 +15,15 @@ static func create(_level:Level):
 	manager.level = _level
 	return manager
 
+func add_item_husk(item_husk:ItemHusk, coord:Vector2i = Vector2i(-999,-999)):
+	if coord == Vector2i(-999,-999):
+		item_husk.coord = level.layout.get_random_floor().coord
+	else:
+		item_husk.coord = coord
+	item_husk.destroyed.connect(remove_item_husk.bind(item_husk),CONNECT_ONE_SHOT)
+	item_husks.append(item_husk)
+	add_child(item_husk)
+
 func add_item(item_name:ItemName):
 	var item_husk:ItemHusk = ItemHusk.create(item_resources[item_name])
 	item_husk.coord = level.layout.get_random_floor().coord

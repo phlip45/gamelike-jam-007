@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://cran3nivf5kaa" path="res://enemies/datas/goblin_warlord.enemy_data.tres" id="3_jjose"]
 [ext_resource type="Resource" uid="uid://b8gpbdm5pchv3" path="res://enemies/datas/rosa.enemy_data.tres" id="4_iu4q7"]
 [ext_resource type="Resource" uid="uid://b6b2b0i8dulox" path="res://enemies/datas/boulean.enemy_data.tres" id="5_kjjhj"]
+[ext_resource type="Resource" uid="uid://ceovup8ime3yn" path="res://enemies/datas/goblin_archer.enemy_data.tres" id="6_c6g4k"]
 
 [resource]
 script = ExtResource("2_tbyg3")
-enemies = Array[ExtResource("1_j7f3i")]([ExtResource("2_hxms8"), ExtResource("3_jjose"), ExtResource("4_iu4q7"), ExtResource("5_kjjhj")])
+enemies = Array[ExtResource("1_j7f3i")]([ExtResource("2_hxms8"), ExtResource("3_jjose"), ExtResource("4_iu4q7"), ExtResource("5_kjjhj"), ExtResource("6_c6g4k")])
 metadata/_custom_type_script = "uid://bpsvcxcnc70ri"

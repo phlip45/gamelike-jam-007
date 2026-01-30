@@ -54,9 +54,7 @@ func check_visibility():
 
 func take_damage(amount:int) -> void:
 	stats.hp -= amount
-	print_rich("[color=red]I've been hit for %s damage" % amount)
-	print("effective stats hp: ",stats.hp)
-	print("base stats hp: ",base_stats.hp)
+	DamageNumber.create(amount,coord,color)
 	if stats.hp <= 0:
 		die()
 

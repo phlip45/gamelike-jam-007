@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_7qoy5"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_mwq48"]
 [ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="5_pfurg"]
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="5_te1ab"]
 
 [resource]
 resource_local_to_scene = true
@@ -17,4 +18,5 @@ symbol_char = "g"
 color = Color(0.408883, 0.5880571, 0.25212115, 1)
 attack_action = ExtResource("1_6k5pl")
 projectile_data = ExtResource("4_mwq48")
+rarity = ExtResource("5_te1ab")
 metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

@@ -24,6 +24,15 @@ func get_weapons() -> Array[Item]:
 	var weapons:Array[Item] = items.filter(func(a:Item): return a.type == Item.Type.WEAPON)
 	return weapons
 
+func unequip(item:Item):
+	if item == weapon_slot:
+		weapon_slot = null
+	item.equipped = false
+	equipped_items.erase(item)
+	equipment_changed.emit()
+	order_changed.emit()
+	
+
 func equip(item:Item):
 	if item is Weapon:
 		if item == weapon_slot:
@@ -55,6 +64,8 @@ func add(item:Item) -> bool:
 	return true
 
 func drop(item:Item) -> void:
+	if item.equipped:
+		unequip(item)
 	remove(item)
 	item_dropped.emit(item)
 

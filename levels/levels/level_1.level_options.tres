@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="4_nx03c"]
 [ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="5_tsihp"]
 [ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="6_tuiu4"]
+[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/weapons/sword.weapon.tres" id="6_yk6xf"]
 [ext_resource type="Resource" uid="uid://cnow8dlf66d48" path="res://levels/level_1.src_options.tres" id="7_idxlg"]
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="8_acr3l"]
 
@@ -20,15 +21,13 @@ metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
 
 [sub_resource type="Resource" id="Resource_q777q"]
 script = ExtResource("6_tuiu4")
-items = Array[ExtResource("4_nx03c")]([ExtResource("5_tsihp")])
+items = Array[ExtResource("4_nx03c")]([ExtResource("5_tsihp"), ExtResource("6_yk6xf")])
 metadata/_custom_type_script = "uid://dee2rpwljmlar"
 
 [resource]
 script = ExtResource("8_acr3l")
-level_seed = 8675309
-item_seed = 123456789
-combat_seed = 5555555
 level_layout_options = ExtResource("7_idxlg")
+num_starting_enemies = 2
 enemy_pool = ExtResource("1_ascjr")
 item_pool = SubResource("Resource_q777q")
 feature_pool = SubResource("Resource_nivu8")

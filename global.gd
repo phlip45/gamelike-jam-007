@@ -26,7 +26,7 @@ static func goto_next_level():
 static func ui_loaded():
 	signals.ui_loaded.emit()
 	
-static func push_message(rich_text:String, duration:float = 8):
+static func push_message(rich_text:String, duration:float = 2):
 	if !ui: return
 	ui.combat_log.add_log(rich_text,duration)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhnycni0hkd1h"]
+[gd_scene format=3 uid="uid://dhnycni0hkd1h"]
 
 [ext_resource type="Script" uid="uid://tduoru870lu8" path="res://resources/projectiles/projectile.gd" id="1_ohecy"]
 [ext_resource type="Script" uid="uid://cr6fhixmn0hpj" path="res://resources/projectiles/projectile_data.gd" id="2_rgtum"]
@@ -8,11 +8,11 @@ script = ExtResource("2_rgtum")
 color = Color(0.62, 0.39679998, 0.12399999, 1)
 metadata/_custom_type_script = "uid://cr6fhixmn0hpj"
 
-[node name="Projectile" type="Node2D"]
+[node name="Projectile" type="Node2D" unique_id=828617745]
 script = ExtResource("1_ohecy")
 projectile_data = SubResource("Resource_qtw3u")
 
-[node name="Symbol" type="Label" parent="."]
+[node name="Symbol" type="Label" parent="." unique_id=1629658738]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 21.0

@@ -5,7 +5,7 @@ const COMBAT_LOG_EVENT = preload("uid://c7pcy740cm072")
 
 var events:Array[CombatLogEvent] = []
 
-func add_log(rich_text_message:String, duration:float = 8):
+func add_log(rich_text_message:String, duration:float = .5):
 	var event:CombatLogEvent = COMBAT_LOG_EVENT.instantiate()
 	event.text = rich_text_message
 	event.duration = duration

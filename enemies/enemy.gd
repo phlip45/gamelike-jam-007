@@ -58,12 +58,6 @@ func take_turn() -> int:
 		brain = data.brain_script.create(self,level)
 	return brain.take_turn()
 
-func take_damage(amount:int) -> void:
-	stats.hp -= amount
-	print_rich("[color=red]I've been hit for %s damage" % amount)
-	if stats.hp <= 0:
-		die()
-
 func move(_coord:Vector2i) -> bool:
 	teleport(_coord)
 	return true

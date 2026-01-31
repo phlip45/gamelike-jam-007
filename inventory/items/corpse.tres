@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://1bjr6wi8kqt0"]
+
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="1_1ti4x"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="2_1riqy"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="3_apggd"]
+
+[sub_resource type="Resource" id="Resource_1ti4x"]
+script = ExtResource("3_apggd")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = -100.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[resource]
+script = ExtResource("2_1riqy")
+name = "Corpse"
+description = "The corpse of a slain foe. Why would you pick this up? You monster."
+symbol = "_"
+color = Color(0.39251244, 0.3923686, 0.3572463, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_1ti4x")
+rarity = ExtResource("1_1ti4x")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

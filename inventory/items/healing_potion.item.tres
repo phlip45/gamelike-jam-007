@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dtorwcdjttur7"]
+
+[ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="1_h1ay3"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_uvk0l"]
+[ext_resource type="Resource" uid="uid://wwg3vb8ivvpl" path="res://actions/actions/heal.action.tres" id="3_enmdr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_uvk0l")
+name = "Red Juice"
+description = "A glass bottle filled with viscous crimson goo. Smells like red flavor."
+symbol = "¤"
+color = Color(0.73515314, 0.23114333, 0.2734606, 1)
+type = 9
+stackable = true
+usable = true
+use_verb = "Drink"
+use_action = ExtResource("3_enmdr")
+rarity = ExtResource("1_h1ay3")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

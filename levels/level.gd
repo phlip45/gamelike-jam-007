@@ -72,8 +72,10 @@ func setup_turn_manager():
 	
 func setup_item_manager():
 	item_manager = ItemManager.create(self)
-	for i in 7:
-		item_manager.add_random_item_husk()
+	for i in options.num_starting_item:
+		item_manager.add_item(options.item_pool.get_rand_item_data(level_rng))
+	#for i in 7:
+		#item_manager.add_random_item_husk()
 		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	add_child(item_manager)
 func setup_feature_manager():
@@ -121,7 +123,7 @@ func update_tilemap(tiles_changed:Dictionary[Vector2i,Tile]):
 		)
 
 func update_from_players_vision(_unused:int = -1):
-	layout.compute_fov(player.coord)
+	layout.compute_fov(player.coord, player.stats.vision_radius)
 	turn_manager.check_visibility()
 	item_manager.check_visibility()
 	feature_manager.check_visibility()

@@ -23,7 +23,7 @@ var selector_index:int = 0
 @onready var verb: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Verb
 @onready var equip: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Equip
 @onready var drop: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Drop
-@onready var throw: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Throw
+#@onready var throw: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Throw
 @onready var cancel: RichTextLabel = $MarginContainer/Border/MarginContainer/ItemDetails/MarginContainer2/VBoxContainer/Cancel
 
 signal option_chosen(option:Option)
@@ -60,9 +60,9 @@ func _ready() -> void:
 		selectable_options.append(equip)
 	else:
 		equip.text = dis_color + "Equip"
-	selectable_options.append_array([drop,throw,cancel])
+	selectable_options.append_array([drop,cancel])
 	drop.text = "Drop"
-	throw.text = "Throw"
+	#throw.text = "Throw"
 	cancel.text = "Cancel"
 	
 	starting_size = size
@@ -96,8 +96,8 @@ func process_selector(_delta:float):
 				chosen = Option.EQUIP
 			drop:
 				chosen = Option.DROP
-			throw:
-				chosen = Option.THROW
+			#throw:
+				#chosen = Option.THROW
 			cancel:
 				chosen = Option.CANCEL
 		option_chosen.emit(chosen)

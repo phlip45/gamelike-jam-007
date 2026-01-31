@@ -4,7 +4,12 @@ class_name Effect
 var activate:Callable
 
 enum Func{
-	NULL, PHYS_ATTACK, HEAL, RANGED_ATTACK, GOTO_NEXT_LEVEL
+	NULL,
+	PHYS_ATTACK,
+	RANGED_ATTACK,
+	CONSUME,
+	HEAL,
+	GOTO_NEXT_LEVEL
 }
 
 enum TargeterName{
@@ -13,13 +18,15 @@ enum TargeterName{
 
 static var func_to_callable:Dictionary[Func, Effect]={
 	Func.PHYS_ATTACK: phys_attack(),
+	Func.HEAL: heal(),
 	Func.RANGED_ATTACK: ranged_attack(),
 	Func.GOTO_NEXT_LEVEL: goto_next_level(),
+	Func.CONSUME: consume(),
 }
 
 static func phys_attack() -> Effect:
 	var effect = Effect.new()
-	effect.activate = func(source:Actor, targets:Array[Actor]):
+	effect.activate = func(source:Actor, targets:Array[Actor], _effect_mod:float = 0):
 		var hits:Dictionary[Actor,int]
 		if source.tween:
 			source.tween.kill()
@@ -36,9 +43,46 @@ static func phys_attack() -> Effect:
 		Global.push_message(message)
 	return effect
 
+static func heal() -> Effect:
+	var effect = Effect.new()
+	effect.activate = func(_source:Actor, targets:Array[Actor], effect_mod:float = 0):
+		var hits:Dictionary[Actor,int]
+		for target:Actor in targets:
+			var heal_amount = effect_mod
+			target.heal(heal_amount)
+			hits.set(target, heal_amount)
+		if hits.size() > 1:
+			print("Fuck")
+		var message:String = ""
+		for hit:Actor in hits:
+			message += "%s healed for [color=green]%s!" % [hit.actor_name, hits[hit]]
+		Global.push_message(message)
+	return effect
+
+static func consume() -> Effect:
+	var effect = Effect.new()
+	effect.activate = func(_source:Actor, targets:Array[Actor], effect_mod:float = 0):
+		var hits:Dictionary[Actor,int]
+		for target:Actor in targets:
+			var food_amount = effect_mod
+			if target is Player:
+				target.eat(food_amount)
+			else: return
+			hits.set(target, food_amount)
+		var message:String = ""
+		for hit:Actor in hits:
+			if hits[hit] > 0:
+				message += "Mmmm! That was delicious!"
+			elif hits[hit] == 0:
+				message += "Hmmm, didn't taste like much!"
+			else:
+				message += "Blegch! Why did I think that would be good to eat!"
+		Global.push_message(message)
+	return effect
+
 static func ranged_attack() -> Effect:
 	var effect = Effect.new()
-	effect.activate = func(source:Actor, targets:Array[Actor]):
+	effect.activate = func(source:Actor, targets:Array[Actor], _effect_mod:float = 0):
 		var hits:Dictionary[Actor,int]
 		for target:Actor in targets:
 			var projectile = Projectile.create(source.projectile_data)

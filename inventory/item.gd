@@ -7,6 +7,7 @@ enum Type{
 
 static var max_quantity:int = 99
 var coord:Vector2i
+var id:int
 @export var name:String
 @export var name_decoration_start:String
 @export var name_decoration_end:String
@@ -14,12 +15,16 @@ var coord:Vector2i
 @export var symbol:String
 @export var color:Color
 @export var type:Type
-
 @export var stackable:bool
 @export var quantity:int = 1
 @export var usable:bool
 @export var use_verb:String
-@export var use_script:GDScript
+@export var use_action:Action
+@export var rarity:Rarity = Rarity.legendary()
+signal emptied
+
+func _init() -> void:
+	id = Global.next_id
 
 func add(amount:int = 1) -> void:
 	if !stackable: return
@@ -28,3 +33,5 @@ func add(amount:int = 1) -> void:
 func subtract(amount:int = 1):
 	if !stackable and !usable: return
 	quantity = max(quantity - amount, 0)
+	if quantity == 0:
+		emptied.emit()

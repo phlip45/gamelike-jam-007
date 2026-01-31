@@ -7,7 +7,10 @@ static var grid_size:Vector2i = Vector2i(43,25)
 static var tile_size:Vector2i = Vector2i(23,23)
 static var signals:BusEvents = BusEvents.new()
 static var current_level:Level
-
+static var next_id:int =0:
+	get:
+		next_id += 1
+		return next_id
 static func exit_game():
 	current_level = null
 	ui = null

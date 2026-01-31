@@ -8,7 +8,7 @@ var state:State
 var ground_features:Array[Feature]
 var equipped_weapon:Weapon
 @export var time_til_heal:Vector2i = Vector2i(500,500)
-var death_start:Vector2
+
 
 enum State{
 	NULL,AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,DEAD
@@ -212,8 +212,8 @@ func pause():
 func pickup_items():
 	var husks:Array[ItemHusk] = level.get_item_husks_at_coord(coord)
 	for item_husk:ItemHusk in husks:
-		inventory.add(item_husk.item)
-		item_husk.die()
+		if(inventory.add(item_husk.item)):
+			item_husk.die()
 	Global.set_ground_items(get_ground_items())
 
 func drop_item(item:Item):
@@ -226,18 +226,22 @@ func regenerate():
 
 func hunger(amount:int = 1):
 	stats.hunger -= amount
-	print(stats.hunger)
 	if stats.hunger == 0:
 		die.call_deferred()
+
+func eat(amount:int = 0):
+	stats.hunger += amount
 
 func die():
 	state = State.DEAD
 	death_start = Vector2(randf_range(-4,4), randf_range(-18,-9))
+	death_rotation = .016 * randf_range(-25,25)
 	if tween:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_method(func(_progress:float):
 		death_start += Vector2.DOWN * .016 * 20
 		global_position += death_start 
+		rotation += death_rotation
 		,0.0,1.0,3)
 	tween.tween_callback(get_tree().change_scene_to_file.call_deferred.bind("res://scenes/game_over.tscn"))

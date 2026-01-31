@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cybxdhurelthi"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_4k4we"]
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="1_6s43e"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="3_jvfoa"]
+
+[sub_resource type="Resource" id="Resource_01t0h"]
+script = ExtResource("3_jvfoa")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 100.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[resource]
+script = ExtResource("1_4k4we")
+name = "Ration"
+description = "Nourishing and boring."
+symbol = "%"
+color = Color(0.5212574, 0.19455355, 0.12747702, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_01t0h")
+rarity = ExtResource("1_6s43e")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

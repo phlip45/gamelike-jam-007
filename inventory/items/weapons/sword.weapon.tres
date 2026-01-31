@@ -1,18 +1,18 @@
 [gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://b11vt7x2jerev"]
 
-[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/attack.action.tres" id="1_tqxf8"]
-[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_3v847"]
-[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_xradb"]
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_h5562"]
+[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_rtb3f"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_5edro"]
 
 [sub_resource type="Resource" id="Resource_tt6k1"]
-script = ExtResource("3_xradb")
-stremf = 80
+script = ExtResource("3_5edro")
+stremf = 1
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("2_3v847")
-attack_action = ExtResource("1_tqxf8")
+script = ExtResource("2_rtb3f")
+attack_action = ExtResource("1_h5562")
 equippable = true
 equip_slot = 3
 stats = SubResource("Resource_tt6k1")

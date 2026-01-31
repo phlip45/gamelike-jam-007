@@ -5,22 +5,29 @@ class_name Action
 @export var trigger:Trigger
 @export var effect_name:Effect.Func
 @export var targeter_name:Targeter.TargeterName
+@export var effect_modifier:float
 var args:Variant
 
 var effects:Dictionary[Effect,Callable]
 var get_args_callables:Dictionary[Effect,Callable]
 
 enum Trigger{
-	NULL, IMMEDIATE, START_TURN, END_TURN, MOVE, DAMAGE, HEAL, OTHER_STUFF
+	NULL, 
+	## Happens [color=red]immediately[/color] upon action use
+	IMMEDIATE, 
+	## NotImplemented
+	START_TURN, 
+	## NotImplemented
+	END_TURN,
+	## NotImplemented
+	MOVE,
+	## NotImplemented
+	DAMAGE,
+	## NotImplemented
+	HEAL,
+	## NotImplemented
+	OTHER_STUFF
 }
-
-var get_current_target:Callable = func(source:Actor):
-	if source.target:
-		return source.target
-	return null
-
-var heal:Callable = func(amount:int, target:Actor):
-	target.heal(amount)
 
 func activate(source:Actor):
 	match(trigger):
@@ -28,7 +35,7 @@ func activate(source:Actor):
 			var targeter:Targeter = Targeter.list[targeter_name]
 			var targets:Array[Variant] = targeter.get_targets.callv([source])
 			var effect:Effect = Effect.func_to_callable[effect_name]
-			effect.activate.callv([source, targets])
+			effect.activate.callv([source, targets, effect_modifier])
 			pass
 		Trigger.START_TURN:
 			pass

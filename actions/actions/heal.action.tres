@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Action" format=3 uid="uid://wwg3vb8ivvpl"]
+
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="1_0l3m8"]
+
+[resource]
+script = ExtResource("1_0l3m8")
+name = "Heal"
+trigger = 1
+effect_name = 4
+targeter_name = 2
+effect_modifier = 1.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"

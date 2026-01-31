@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ring" format=3 uid="uid://b5e3m6dft2uqj"]
+
+[ext_resource type="Resource" uid="uid://c27e5xvuurem7" path="res://rarities/rare.rarity.tres" id="1_au1ub"]
+[ext_resource type="Script" uid="uid://b70i6jpclmq8y" path="res://inventory/ring.gd" id="2_xk6wk"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_48g8o"]
+
+[sub_resource type="Resource" id="Resource_au1ub"]
+script = ExtResource("3_48g8o")
+woowoo = 1
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("2_xk6wk")
+equippable = true
+equip_slot = 1
+stats = SubResource("Resource_au1ub")
+name = "Ring of Woowoo"
+description = "Hehehe... Woowoo..."
+symbol = "="
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 3
+rarity = ExtResource("1_au1ub")
+metadata/_custom_type_script = "uid://b70i6jpclmq8y"

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://c25lmwa61yjwp"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_0l6r0"]
+[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/items/weapons/sword.weapon.tres" id="2_f7lf5"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="2_xj3i4"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="3_nqkxw"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="4_aajsr"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="5_m1rcj"]
+[ext_resource type="Resource" uid="uid://1bjr6wi8kqt0" path="res://inventory/items/corpse.tres" id="6_aajsr"]
+
+[sub_resource type="Resource" id="Resource_ry854"]
+script = ExtResource("3_nqkxw")
+name = "Common"
+value = 200.0
+color = Color(0.5017773, 0.2794231, 0.11849188, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_01t0h"]
+script = ExtResource("4_aajsr")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 100.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_4gh5t"]
+script = ExtResource("1_0l6r0")
+name = "Ration"
+description = "Nourishing and boring."
+symbol = "%"
+color = Color(0.5212574, 0.19455355, 0.12747702, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_01t0h")
+rarity = SubResource("Resource_ry854")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[resource]
+script = ExtResource("2_xj3i4")
+items = Array[ExtResource("1_0l6r0")]([ExtResource("2_f7lf5"), SubResource("Resource_4gh5t"), ExtResource("5_m1rcj"), ExtResource("6_aajsr")])
+drop_weights = Array[float]([0.5, 0.1])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

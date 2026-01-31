@@ -314,7 +314,12 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
+[node name="Placeholder" type="Control" parent="UI/Stats/Line 2" unique_id=594179703]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="MPBarHolder" type="HBoxContainer" parent="UI/Stats/Line 2" unique_id=2073941855]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 

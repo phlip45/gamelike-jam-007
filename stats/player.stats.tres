@@ -14,5 +14,5 @@ mp_max = 10
 stremf = 5
 woowoo = 5
 whoosh = 50
-vision_radius = 80
+vision_radius = 3
 metadata/_custom_type_script = "uid://s27656rvpvo7"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Ring" format=3 uid="uid://crfht6j8g2gnk"]
+
+[ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="1_jc6bv"]
+[ext_resource type="Script" uid="uid://b70i6jpclmq8y" path="res://inventory/ring.gd" id="2_wdgsk"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_6lnxn"]
+
+[sub_resource type="Resource" id="Resource_au1ub"]
+script = ExtResource("3_6lnxn")
+vision_radius = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("2_wdgsk")
+equippable = true
+equip_slot = 1
+stats = SubResource("Resource_au1ub")
+name = "All-seeing Ring"
+name_decoration_start = "[rainbow]"
+name_decoration_end = "[/rainbow]"
+description = "Hehehe... Woowoo..."
+symbol = "="
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 3
+rarity = ExtResource("1_jc6bv")
+metadata/_custom_type_script = "uid://b70i6jpclmq8y"

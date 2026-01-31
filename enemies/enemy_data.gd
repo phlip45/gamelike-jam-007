@@ -10,3 +10,4 @@ class_name EnemyData
 @export var attack_action:Action
 @export var projectile_data:ProjectileData
 @export var rarity:Rarity
+@export var death_drops:ItemPool

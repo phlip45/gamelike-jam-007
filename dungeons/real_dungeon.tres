@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="4_xe22j"]
 [ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="5_n0bsq"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_oi2t1"]
-[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/healing_potion.item.tres" id="7_iku3p"]
-[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/weapons/sword.weapon.tres" id="8_l0j04"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="7_iku3p"]
+[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/items/weapons/sword.weapon.tres" id="8_vwlw3"]
 [ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="9_r50q3"]
 [ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="10_dqw31"]
 
@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
 
 [sub_resource type="Resource" id="Resource_q777q"]
 script = ExtResource("9_r50q3")
-items = Array[ExtResource("6_oi2t1")]([ExtResource("7_iku3p"), ExtResource("8_l0j04")])
+items = Array[ExtResource("6_oi2t1")]([ExtResource("7_iku3p"), ExtResource("8_vwlw3")])
 metadata/_custom_type_script = "uid://dee2rpwljmlar"
 
 [sub_resource type="Resource" id="Resource_sw6qi"]

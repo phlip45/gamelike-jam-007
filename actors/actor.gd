@@ -10,6 +10,9 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 @export var symbol_char:String = "🐛"
 @export var color:Color = Color.WHITE
 @export var projectile_data:ProjectileData
+@export var attack_sound:AudioStream
+@export var hurt_sound:AudioStream
+@export var death_sound:AudioStream
 var stats:Stats
 var inventory:Inventory
 var cooldown:int = 100
@@ -18,6 +21,8 @@ var level:Level
 var symbol:RichTextLabel
 var target:Actor
 var tween:Tween
+var death_start:Vector2
+var death_rotation:float
 
 @warning_ignore("unused_signal")
 signal died()
@@ -28,6 +33,7 @@ func _ready() -> void:
 	add_child(symbol)
 	if !inventory:
 		inventory = Inventory.new()
+		inventory.owner = self
 	inventory.equipment_changed.connect(calc_stats)
 	base_stats.stat_changed.connect(calc_stats)
 	

@@ -44,9 +44,7 @@ shader_parameter/bloom_intensity = 2.0
 [node name="TitleScene" type="CanvasLayer" unique_id=2037617237 node_paths=PackedStringArray("titles", "options")]
 script = ExtResource("1_4k7ef")
 titles = [NodePath("VBoxContainer/MarginContainer/RichTextLabel5")]
-cooldown = Vector2(0, 0.5)
-options = [null, null, null]
-hold_cooldown = Vector2(0, 0.5)
+options = [NodePath("VBoxContainer/HBoxContainer/Options/Start"), NodePath("VBoxContainer/HBoxContainer/Options/Options"), NodePath("VBoxContainer/HBoxContainer/Options/Exit")]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=716825570]
 anchors_preset = 15

@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://ceovup8ime3yn"]
 
 [ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_60vdq"]
-[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/ranged_attack.action.tres" id="1_hp08h"]
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="1_hp08h"]
 [ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_gm6wc"]
 [ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="3_2s88t"]
+[ext_resource type="Resource" uid="uid://c25lmwa61yjwp" path="res://inventory/pools/goblin_loot.item_pool.tres" id="4_gm6wc"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_tp5gk"]
 [ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="5_775gq"]
 
@@ -18,4 +19,5 @@ color = Color(0.75272125, 0.53634363, 0.096464686, 1)
 attack_action = ExtResource("1_hp08h")
 projectile_data = ExtResource("4_tp5gk")
 rarity = ExtResource("5_775gq")
+death_drops = ExtResource("4_gm6wc")
 metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

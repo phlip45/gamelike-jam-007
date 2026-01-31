@@ -62,6 +62,30 @@ func move(_coord:Vector2i) -> bool:
 	teleport(_coord)
 	return true
 
+func drop_items():
+	var drops:Array[Item] = data.death_drops.get_death_drops(level.item_rng)
+	for item:Item in drops:
+		drop_item(item)
+		
+func drop_item(item:Item):
+	var item_husk:ItemHusk = ItemHusk.create(item)
+	level.item_manager.add_item_husk(item_husk,coord)
+	
 func die():
 	died.emit()
-	queue_free()
+	if !data.death_drops:
+		push_warning("Enemy %s had no death drops equipped" % actor_name)
+	else:
+		drop_items()
+	death_start = Vector2(randf_range(-4,4), randf_range(-18,-9))
+	death_rotation = .016 * randf_range(-25,25)
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_method(func(_progress:float):
+		death_start += Vector2.DOWN * .016 * 20
+		global_position += death_start 
+		rotation += death_rotation
+		,0.0,1.0,3)
+	tween.tween_callback(queue_free)
+	#queue_free()

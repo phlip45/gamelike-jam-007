@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Ring" format=3 uid="uid://363dvkyilngi"]
+
+[ext_resource type="Resource" uid="uid://c27e5xvuurem7" path="res://rarities/rare.rarity.tres" id="1_4w6q7"]
+[ext_resource type="Script" uid="uid://b70i6jpclmq8y" path="res://inventory/ring.gd" id="2_sad1k"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_0gx82"]
+
+[sub_resource type="Resource" id="Resource_ju5hs"]
+script = ExtResource("3_0gx82")
+hp_max = 5
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("2_sad1k")
+equippable = true
+equip_slot = 1
+stats = SubResource("Resource_ju5hs")
+name = "Ring of Health"
+description = "A brass band with a beautiful ruby inlaid atop. It is warm to the touch, like a baby kitten."
+symbol = "="
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 3
+rarity = ExtResource("1_4w6q7")
+metadata/_custom_type_script = "uid://b70i6jpclmq8y"

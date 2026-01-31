@@ -3,7 +3,11 @@ class_name InventoryUI
 
 const ITEM_RICH_TEXT = preload("uid://bnn0m1li4otoe")
 
-var inventory:Inventory
+var inventory:Inventory:
+	set(val):
+		inventory = val
+		if !inventory.order_changed.is_connected(inventory_updated):
+			inventory.order_changed.connect(inventory_updated)
 @export var max_items:int = 26
 @export var items_per_panel:int = 13
 @onready var left_panel: VBoxContainer = $"Left Panel"
@@ -64,6 +68,7 @@ func select(item:Item):
 	var option:PopUpItemUI.Option = await popup.option_chosen
 	match(option):
 		PopUpItemUI.Option.VERB:
+			inventory.use(item)
 			state = State.SELECTING
 		PopUpItemUI.Option.EQUIP:
 			inventory.equip(item)
@@ -156,3 +161,7 @@ func _close():
 	inventory.order_changed.disconnect(_populate)
 	inventory_holder.visible = false
 	closed.emit()
+
+func inventory_updated():
+	if selector_index >= inventory.items.size():
+		move_selector(Vector2.UP)

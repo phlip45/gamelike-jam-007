@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Action" format=3 uid="uid://bdmg77nml5n8j"]
+
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="1_0mwpq"]
+
+[resource]
+script = ExtResource("1_0mwpq")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"

@@ -38,7 +38,7 @@ func is_blocking(abs_vec:Vector2i) -> bool:
 	var tile:Tile = tiles[abs_vec]
 	return tile.blocks_vision
 
-func compute_fov(origin:Vector2i, _range:int = 99):
+func compute_fov(origin:Vector2i, _range:int):
 	current_visible_tiles.clear()
 	mark_visible(origin)
 	for i in range(4):
@@ -75,7 +75,7 @@ func compute_fov(origin:Vector2i, _range:int = 99):
 			if is_floor.call(prev_rel_vec):
 				recursive_callable.call(recursive_callable,row.next())
 			return
-		var first_row = Row.new(1, Fraction.new(-1), Fraction.new(1),tiles)
+		var first_row = Row.new(1, Fraction.new(-1), Fraction.new(1),tiles, _range)
 
 		scan.call(scan,first_row)
 		
@@ -118,9 +118,10 @@ class Row extends RefCounted:
 	var start_slope:Fraction
 	var end_slope:Fraction
 	var main_tiles:Dictionary[Vector2i,Tile]
-	var max_depth:int = 7 #Vision range?
-	func _init(_depth:int, _start_slope:Fraction, _end_slope:Fraction, ts:Dictionary[Vector2i,Tile]):
+	var max_depth:int = 2 #Vision range?
+	func _init(_depth:int, _start_slope:Fraction, _end_slope:Fraction, ts:Dictionary[Vector2i,Tile], _max_depth:int = 2):
 		depth = _depth
+		max_depth = _max_depth
 		start_slope = _start_slope
 		end_slope = _end_slope
 		main_tiles = ts
@@ -140,7 +141,7 @@ class Row extends RefCounted:
 	
 	func next() -> Row:
 		depth += 1
-		return Row.new(depth, start_slope, end_slope, main_tiles)
+		return Row.new(depth, start_slope, end_slope, main_tiles, max_depth)
 
 func slope(rel_vec:Vector2i) -> Fraction:
 	return Fraction.new(2 * rel_vec.x - 1, 2 * rel_vec.y)

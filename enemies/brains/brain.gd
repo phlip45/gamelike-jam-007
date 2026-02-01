@@ -108,3 +108,9 @@ func get_visible_enemies() -> Array[Actor]:
 		if can_see_actor(actor):
 			result.append(actor)
 	return result
+
+func calc_turn_cost(weight:float) -> int:
+	var stats:Stats = body.stats
+	var cost:int = 100 - stats.whoosh * weight + randi_range(-5,5)
+	cost = max(1,cost)
+	return cost

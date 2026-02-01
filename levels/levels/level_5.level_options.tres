@@ -1,0 +1,101 @@
+[gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://dl7736ccr36m6"]
+
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_urnmk"]
+[ext_resource type="Resource" uid="uid://bqqmpp0nb10to" path="res://enemies/datas/hobgoblin_berzerker.tres" id="2_jxh4k"]
+[ext_resource type="Resource" uid="uid://p4tncs0q1flj" path="res://features/pools/test.feature_pools.tres" id="2_uvwnh"]
+[ext_resource type="Resource" uid="uid://bsw0q2oypc230" path="res://inventory/pools/level_5.item_pool.tres" id="3_5ftyc"]
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="3_qyntf"]
+[ext_resource type="Script" uid="uid://canvwpxplyqil" path="res://forest_options.level_layout.gd" id="4_oop7x"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="4_u8ijl"]
+[ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="5_mrh4k"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="5_pdulw"]
+[ext_resource type="Resource" uid="uid://buwgk8xb8xeje" path="res://inventory/pools/hobgoblin_loot.tres" id="6_nnidk"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="7_h8sdj"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="8_x1uxv"]
+[ext_resource type="Resource" uid="uid://b8gpbdm5pchv3" path="res://enemies/datas/rosa.enemy_data.tres" id="9_nf57w"]
+[ext_resource type="Resource" uid="uid://b6b2b0i8dulox" path="res://enemies/datas/boulean.enemy_data.tres" id="10_bstac"]
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="11_n6wms"]
+[ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="12_a6af8"]
+[ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="13_osgdg"]
+[ext_resource type="Resource" uid="uid://d3ya786xjd3b3" path="res://enemies/datas/troll.enemy.tres" id="14_fay4x"]
+[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="15_rwvf4"]
+
+[sub_resource type="Resource" id="Resource_0bx2i"]
+resource_local_to_scene = true
+script = ExtResource("4_u8ijl")
+hp = 30
+hp_max = 30
+hunger_max = 20
+stremf = 10
+woowoo = 5
+whoosh = 5
+vision_radius = 7
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_8of8t"]
+script = ExtResource("8_x1uxv")
+name = "Rare"
+value = 20.0
+color = Color(3.5616756e-06, 0.5932927, 0.68929297, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_f6dyt"]
+script = ExtResource("1_urnmk")
+actor_name = "Goblin Warlord"
+description = "When this one heard about leg day it became his identity. The numerous severed legs in his bandolier are just for show."
+brain_script = ExtResource("5_pdulw")
+base_stats = SubResource("Resource_0bx2i")
+symbol_char = "G"
+color = Color(0.28065512, 0.41144955, 2.8878452e-07, 1)
+attack_action = ExtResource("3_qyntf")
+projectile_data = ExtResource("7_h8sdj")
+rarity = SubResource("Resource_8of8t")
+death_drops = ExtResource("6_nnidk")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_cidt5"]
+resource_local_to_scene = true
+script = ExtResource("4_u8ijl")
+hp = 20
+hp_max = 20
+hunger_max = 15
+stremf = 7
+woowoo = 1
+whoosh = 9
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_ocpgn"]
+script = ExtResource("1_urnmk")
+actor_name = "Hobgoblin Archer"
+description = "Archer	from the danger zone"
+brain_script = ExtResource("12_a6af8")
+base_stats = SubResource("Resource_cidt5")
+symbol_char = "h"
+color = Color(0.75272125, 0.53634363, 0.096464686, 1)
+attack_action = ExtResource("11_n6wms")
+projectile_data = ExtResource("7_h8sdj")
+rarity = ExtResource("13_osgdg")
+death_drops = ExtResource("6_nnidk")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_0qg8t"]
+script = ExtResource("15_rwvf4")
+enemies = Array[ExtResource("1_urnmk")]([ExtResource("2_jxh4k"), SubResource("Resource_f6dyt"), ExtResource("9_nf57w"), ExtResource("10_bstac"), SubResource("Resource_ocpgn"), ExtResource("14_fay4x")])
+use_guaranteed_spawns = true
+guaranteed_spawns = Array[ExtResource("1_urnmk")]([ExtResource("9_nf57w")])
+metadata/_custom_type_script = "uid://bpsvcxcnc70ri"
+
+[sub_resource type="Resource" id="Resource_yo2sl"]
+script = ExtResource("4_oop7x")
+rng_seed = null
+metadata/_custom_type_script = "uid://canvwpxplyqil"
+
+[resource]
+script = ExtResource("5_mrh4k")
+level_layout_type = 2
+level_layout_options = SubResource("Resource_yo2sl")
+enemy_pool = SubResource("Resource_0qg8t")
+item_pool = ExtResource("3_5ftyc")
+feature_pool = ExtResource("2_uvwnh")
+metadata/_custom_type_script = "uid://xpe1aharownm"

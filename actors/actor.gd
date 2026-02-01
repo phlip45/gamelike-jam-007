@@ -10,9 +10,11 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 @export var symbol_char:String = "🐛"
 @export var color:Color = Color.WHITE
 @export var projectile_data:ProjectileData
-@export var attack_sound:AudioStream
-@export var hurt_sound:AudioStream
-@export var death_sound:AudioStream
+@export var ranged_attack_sound:Array[AudioStream]
+@export var hurt_sound:Array[AudioStream]
+@export var death_sound:Array[AudioStream]
+@export var actor_sound_player: ActorSoundPlayer
+
 var stats:Stats
 var inventory:Inventory
 var cooldown:int = 100
@@ -63,6 +65,8 @@ func take_damage(amount:int) -> void:
 	DamageNumber.create(amount,coord,color)
 	if stats.hp <= 0:
 		die()
+	if amount > 0:
+		actor_sound_player.play_sound(hurt_sound.pick_random())
 
 func heal(amount:int) -> void:
 	stats.hp = min(amount + stats.hp, stats.hp_max)

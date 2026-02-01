@@ -13,14 +13,14 @@ gradient = SubResource("Gradient_g1dw6")
 width = 24
 height = 24
 
-[node name="ItemHusk" type="Area2D"]
+[node name="ItemHusk" type="Area2D" unique_id=452159757]
 script = ExtResource("1_58ik0")
 item = ExtResource("2_3j7jb")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=563512671]
 texture = SubResource("GradientTexture2D_58ik0")
 
-[node name="Symbol" type="RichTextLabel" parent="."]
+[node name="Symbol" type="RichTextLabel" parent="." unique_id=1780574727]
 texture_filter = 1
 offset_left = -23.0
 offset_top = -23.0
@@ -34,11 +34,12 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/text_highlight_h_padding = 0
 theme_override_constants/text_highlight_v_padding = 0
 theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
 text = "f"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1669022186]
 shape = ExtResource("3_odexc")

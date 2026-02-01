@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://35e3y03gnkgy"]
+[gd_scene format=3 uid="uid://35e3y03gnkgy"]
 
 [ext_resource type="Script" uid="uid://dl5qpn8qljnpc" path="res://UI/selector.gd" id="1_3mvhn"]
+[ext_resource type="AudioStream" uid="uid://coe5n13ctk1cj" path="res://sound/sfx/pip.mp3" id="2_j33tx"]
+[ext_resource type="AudioStream" uid="uid://b177j6g7wj2l2" path="res://sound/sfx/chk.mp3" id="3_ygr3y"]
 
-[node name="Selector" type="RichTextLabel"]
+[node name="Selector" type="RichTextLabel" unique_id=1241880442]
 texture_filter = 1
 offset_right = 17.0
 offset_bottom = 40.0
@@ -10,3 +12,10 @@ bbcode_enabled = true
 text = ">"
 vertical_alignment = 1
 script = ExtResource("1_3mvhn")
+sounds = Dictionary[String, AudioStream]({
+"chk": ExtResource("3_ygr3y"),
+"pip": ExtResource("2_j33tx")
+})
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=680938785]
+bus = &"SFX"

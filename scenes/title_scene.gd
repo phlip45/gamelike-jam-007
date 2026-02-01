@@ -41,16 +41,16 @@ func _process(delta: float) -> void:
 		titles[title_index].visible = false
 		title_index = posmod(title_index +1 , titles.size())
 		titles[title_index].visible = true
-	var material = color_rect_2.material as ShaderMaterial
-	var amp:float = 1
-	var per:float = .5
-	var phase:Vector2 = Vector2(0,-.5)
-	var intensity:float = amp * sin(per*(time_bucket + phase.x)) + phase.y
-	material.set_shader_parameter("bloom_intensity", intensity)
-	if sin(time_bucket) > 0.95:
-		material.set_shader_parameter("black_offset_multiplier", intensity)
-	else:
-		material.set_shader_parameter("black_offset_multiplier", .02)
+	#var material = color_rect_2.material as ShaderMaterial
+	#var amp:float = 1
+	#var per:float = .5
+	#var phase:Vector2 = Vector2(0,-.5)
+	#var intensity:float = amp * sin(per*(time_bucket + phase.x)) + phase.y
+	#material.set_shader_parameter("bloom_intensity", intensity)
+	#if sin(time_bucket) > 0.95:
+		#material.set_shader_parameter("black_offset_multiplier", intensity)
+	#else:
+		#material.set_shader_parameter("black_offset_multiplier", .02)
 
 func start():
 	get_tree().change_scene_to_file("res://scenes/dungeon.tscn")

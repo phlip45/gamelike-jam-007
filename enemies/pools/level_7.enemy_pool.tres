@@ -1,0 +1,150 @@
+[gd_resource type="Resource" script_class="EnemyPool" format=3 uid="uid://bnevw2h0p4x8l"]
+
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_3h1wr"]
+[ext_resource type="Resource" uid="uid://bqqmpp0nb10to" path="res://enemies/datas/hobgoblin_berzerker.tres" id="2_w2n23"]
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="3_xrgbf"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="4_no3g2"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="5_fq1jw"]
+[ext_resource type="Resource" uid="uid://buwgk8xb8xeje" path="res://inventory/pools/hobgoblin_loot.tres" id="6_klvkp"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="7_wfkv0"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="8_b7d1l"]
+[ext_resource type="Resource" uid="uid://b8gpbdm5pchv3" path="res://enemies/datas/rosa.enemy_data.tres" id="9_861kp"]
+[ext_resource type="Resource" uid="uid://b6b2b0i8dulox" path="res://enemies/datas/boulean.enemy_data.tres" id="10_cu8a8"]
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="11_midfo"]
+[ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="12_outa8"]
+[ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="13_1443h"]
+[ext_resource type="Resource" uid="uid://d3ya786xjd3b3" path="res://enemies/datas/troll.enemy.tres" id="14_1yteg"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="15_2hrys"]
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="16_jdbsk"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="17_thjgw"]
+[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="18_tsnxc"]
+[ext_resource type="Resource" uid="uid://b5e3m6dft2uqj" path="res://inventory/items/rings/ring_of_woowoo.tres" id="19_fj8fv"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="20_514oi"]
+[ext_resource type="Resource" uid="uid://cdnim1p7nlbfh" path="res://inventory/items/weapons/lyzs_hammer.weapon.tres" id="21_fcf5i"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="22_qiqat"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="23_44ty7"]
+[ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="24_mchcy"]
+[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="25_cmgw1"]
+
+[sub_resource type="Resource" id="Resource_0bx2i"]
+resource_local_to_scene = true
+script = ExtResource("4_no3g2")
+hp = 30
+hp_max = 30
+hunger_max = 20
+stremf = 10
+woowoo = 5
+whoosh = 5
+vision_radius = 7
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_8of8t"]
+script = ExtResource("8_b7d1l")
+name = "Rare"
+value = 20.0
+color = Color(3.5616756e-06, 0.5932927, 0.68929297, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_f6dyt"]
+script = ExtResource("1_3h1wr")
+actor_name = "Goblin Warlord"
+description = "When this one heard about leg day it became his identity. The numerous severed legs in his bandolier are just for show."
+brain_script = ExtResource("5_fq1jw")
+base_stats = SubResource("Resource_0bx2i")
+symbol_char = "G"
+color = Color(0.28065512, 0.41144955, 2.8878452e-07, 1)
+attack_action = ExtResource("3_xrgbf")
+projectile_data = ExtResource("7_wfkv0")
+rarity = SubResource("Resource_8of8t")
+death_drops = ExtResource("6_klvkp")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_cidt5"]
+resource_local_to_scene = true
+script = ExtResource("4_no3g2")
+hp = 20
+hp_max = 20
+hunger_max = 15
+stremf = 7
+woowoo = 1
+whoosh = 9
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_ocpgn"]
+script = ExtResource("1_3h1wr")
+actor_name = "Hobgoblin Archer"
+description = "Archer	from the danger zone"
+brain_script = ExtResource("12_outa8")
+base_stats = SubResource("Resource_cidt5")
+symbol_char = "h"
+color = Color(0.75272125, 0.53634363, 0.096464686, 1)
+attack_action = ExtResource("11_midfo")
+projectile_data = ExtResource("7_wfkv0")
+rarity = ExtResource("13_1443h")
+death_drops = ExtResource("6_klvkp")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_2pqss"]
+resource_local_to_scene = true
+script = ExtResource("4_no3g2")
+hp = 40
+hp_max = 40
+hunger_max = 15
+stremf = 7
+woowoo = 5
+whoosh = 2
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_3h1wr"]
+script = ExtResource("17_thjgw")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = -1000.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_w2n23"]
+script = ExtResource("15_2hrys")
+name = "Lyz Corpse"
+description = "Don't you dare"
+symbol = "[pulse]_"
+color = Color(0.39251244, 0.3923686, 0.3572463, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_3h1wr")
+rarity = ExtResource("16_jdbsk")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[sub_resource type="Resource" id="Resource_mn4ln"]
+script = ExtResource("23_44ty7")
+items = Array[ExtResource("15_2hrys")]([ExtResource("18_tsnxc"), ExtResource("19_fj8fv"), ExtResource("20_514oi"), ExtResource("21_fcf5i"), ExtResource("22_qiqat")])
+drop_weights = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
+use_guaranteed_drops = true
+guaranteed_drops = Array[ExtResource("15_2hrys")]([SubResource("Resource_w2n23")])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"
+
+[sub_resource type="Resource" id="Resource_vu6oa"]
+script = ExtResource("1_3h1wr")
+actor_name = "Lyz"
+description = "The boss of the jam"
+brain_script = ExtResource("12_outa8")
+base_stats = SubResource("Resource_2pqss")
+symbol_char = "L"
+color = Color(0.6773301, 0.5900651, 0.9913086, 1)
+attack_action = ExtResource("11_midfo")
+projectile_data = ExtResource("7_wfkv0")
+rarity = ExtResource("24_mchcy")
+death_drops = SubResource("Resource_mn4ln")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[resource]
+script = ExtResource("25_cmgw1")
+enemies = Array[ExtResource("1_3h1wr")]([ExtResource("2_w2n23"), SubResource("Resource_f6dyt"), ExtResource("9_861kp"), ExtResource("10_cu8a8"), SubResource("Resource_ocpgn"), ExtResource("14_1yteg")])
+use_guaranteed_spawns = true
+guaranteed_spawns = Array[ExtResource("1_3h1wr")]([SubResource("Resource_vu6oa")])
+metadata/_custom_type_script = "uid://bpsvcxcnc70ri"

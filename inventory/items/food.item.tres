@@ -10,7 +10,7 @@ name = "Consume"
 trigger = 1
 effect_name = 3
 targeter_name = 2
-effect_modifier = 100.0
+effect_modifier = 200.0
 metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
 
 [resource]

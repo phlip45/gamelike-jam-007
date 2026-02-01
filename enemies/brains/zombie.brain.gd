@@ -20,23 +20,23 @@ func take_turn() -> int:
 		if level.is_cell_occupied(path[-1]):
 			body.move(get_alternate_step(body.coord,level.player.coord))
 			path = []
-			return 100
+			return calc_turn_cost(3.0)
 		body.move(path.pop_back())
-		return 100
+		return calc_turn_cost(3.0)
 	else:
 		if !last_enemy:
-			return 25
+			return calc_turn_cost(5.0)
 		elif last_enemy and level.is_adjacent_to_player(body.coord):
 			#attack
 			body.target = last_enemy
 			body.attack_action.activate(body)
-			return 100
+			return calc_turn_cost(1.0)
 		if last_enemy and bloodlust.x > 0:
 			path = _get_path(last_enemy.coord)
-			return 25
+			return calc_turn_cost(4.0)
 		else:
 			last_enemy = null
-			return 25
+			return calc_turn_cost(1.0)
 			
 
 func get_alternate_step(current: Vector2i, desired: Vector2i) -> Vector2i:

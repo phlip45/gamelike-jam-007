@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://6rb8igilcffm"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_njtan"]
+[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_05nea"]
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="2_qk5b3"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_qk5b3"]
+
+[sub_resource type="Resource" id="Resource_tt6k1"]
+script = ExtResource("3_qk5b3")
+stremf = 1
+vision_radius = 1
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_05nea")
+attack_action = ExtResource("1_njtan")
+equippable = true
+equip_slot = 3
+stats = SubResource("Resource_tt6k1")
+name = "Dagger"
+name_decoration_start = "[color=#b6b6b6]"
+name_decoration_end = "[/color]"
+description = "Try to explain how this actually is a knife to your enemies. I'm sure they'll get the [tornado]point[/tornado]"
+symbol = "[font_size=12])"
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 1
+rarity = ExtResource("2_qk5b3")
+metadata/_custom_type_script = "uid://br0pkukqsr0q"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bqqmpp0nb10to"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_gye2u"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_pjds8"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_cjpim"]
+[ext_resource type="Resource" uid="uid://buwgk8xb8xeje" path="res://inventory/pools/hobgoblin_loot.tres" id="4_gye2u"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="5_mnds8"]
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="6_jem12"]
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="7_tjwae"]
+
+[sub_resource type="Resource" id="Resource_8fsuq"]
+resource_local_to_scene = true
+script = ExtResource("2_pjds8")
+hp = 20
+hp_max = 20
+hunger_max = 15
+stremf = 8
+woowoo = 1
+whoosh = 7
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("7_tjwae")
+actor_name = "Hobgoblin Berserker"
+description = "A warty fellow with a large axe. He would tell you that your bones will be decorations for his home, except he is too busy screaming."
+brain_script = ExtResource("3_cjpim")
+base_stats = SubResource("Resource_8fsuq")
+symbol_char = "h"
+color = Color(0.408883, 0.5880571, 0.25212115, 1)
+attack_action = ExtResource("1_gye2u")
+projectile_data = ExtResource("5_mnds8")
+rarity = ExtResource("6_jem12")
+death_drops = ExtResource("4_gye2u")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://daeemwhvw6pt5"]
+
+[ext_resource type="Script" uid="uid://dmsatytxc8ocn" path="res://scenes/win_screen.gd" id="1_2l6cc"]
+[ext_resource type="AudioStream" uid="uid://byukwbhhpbpx8" path="res://sound/voice/congrats.mp3" id="2_0lrm4"]
+[ext_resource type="PackedScene" uid="uid://35e3y03gnkgy" path="res://UI/selector.tscn" id="2_e41g7"]
+[ext_resource type="PackedScene" uid="uid://cug214badn3j5" path="res://UI/text_button.tscn" id="3_0lrm4"]
+
+[node name="WinScreen" type="Control" unique_id=1984926927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2l6cc")
+sounds = Dictionary[String, AudioStream]({
+"congrats": ExtResource("2_0lrm4")
+})
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=504834198]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Selector" parent="." unique_id=209579692 node_paths=PackedStringArray("options") instance=ExtResource("2_e41g7")]
+layout_mode = 0
+options = {
+0: NodePath("../MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Retry"),
+1: NodePath("../MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit2")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=847854150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1440604337]
+layout_mode = 2
+
+[node name="YouWin" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=1344638426]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[tornado] /$$     /$$ /$$$$$$  /$$   /$$       /$$      /$$ /$$$$$$ /$$   /$$
+|  $$   /$$//$$__  $$| $$  | $$      | $$  /$ | $$|_  $$_/| $$$ | $$
+ \\  $$ /$$/| $$  \\ $$| $$  | $$      | $$ /$$$| $$  | $$  | $$$$| $$
+  \\  $$$$/ | $$  | $$| $$  | $$      | $$/$$ $$ $$  | $$  | $$ $$ $$
+   \\  $$/  | $$  | $$| $$  | $$      | $$$$_  $$$$  | $$  | $$  $$$$
+    | $$   | $$  | $$| $$  | $$      | $$$/ \\  $$$  | $$  | $$\\  $$$
+    | $$   |  $$$$$$/|  $$$$$$/      | $$/   \\  $$ /$$$$$$| $$ \\  $$
+    |__/    \\______/  \\______/       |__/     \\__/|______/|__/  \\__/
+                                                                    
+                                                                    
+                                                                    "
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YouWin1" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=1157293534]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[tornado]$$\\     $$\\  $$$$$$\\  $$\\   $$\\       $$\\      $$\\ $$$$$$\\ $$\\   $$\\ 
+\\$$\\   $$  |$$  __$$\\ $$ |  $$ |      $$ | $\\  $$ |\\_$$  _|$$$\\  $$ |
+ \\$$\\ $$  / $$ /  $$ |$$ |  $$ |      $$ |$$$\\ $$ |  $$ |  $$$$\\ $$ |
+  \\$$$$  /  $$ |  $$ |$$ |  $$ |      $$ $$ $$\\$$ |  $$ |  $$ $$\\$$ |
+   \\$$  /   $$ |  $$ |$$ |  $$ |      $$$$  _$$$$ |  $$ |  $$ \\$$$$ |
+    $$ |    $$ |  $$ |$$ |  $$ |      $$$  / \\$$$ |  $$ |  $$ |\\$$$ |
+    $$ |     $$$$$$  |\\$$$$$$  |      $$  /   \\$$ |$$$$$$\\ $$ | \\$$ |
+    \\__|     \\______/  \\______/       \\__/     \\__|\\______|\\__|  \\__|
+                                                                     
+                                                                     
+                                                                     "
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YouWin2" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=2020197652]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[tornado] __      __   ______   __    __        __       __  ______  __    __ 
+|  \\    /  \\ /      \\ |  \\  |  \\      |  \\  _  |  \\|      \\|  \\  |  \\
+ \\$$\\  /  $$|  $$$$$$\\| $$  | $$      | $$ / \\ | $$ \\$$$$$$| $$\\ | $$
+  \\$$\\/  $$ | $$  | $$| $$  | $$      | $$/  $\\| $$  | $$  | $$$\\| $$
+   \\$$  $$  | $$  | $$| $$  | $$      | $$  $$$\\ $$  | $$  | $$$$\\ $$
+    \\$$$$   | $$  | $$| $$  | $$      | $$ $$\\$$\\$$  | $$  | $$\\$$ $$
+    | $$    | $$__/ $$| $$__/ $$      | $$$$  \\$$$$ _| $$_ | $$ \\$$$$
+    | $$     \\$$    $$ \\$$    $$      | $$$    \\$$$|   $$ \\| $$  \\$$$
+     \\$$      \\$$$$$$   \\$$$$$$        \\$$      \\$$ \\$$$$$$ \\$$   \\$$
+                                                                     
+                                                                     
+                                                                     "
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YouWin3" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=393048417]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = " [tornado]__      __  ______   __    __        __       __  ______  __    __ 
+/  \\    /  |/      \\ /  |  /  |      /  |  _  /  |/      |/  \\  /  |
+$$  \\  /$$//$$$$$$  |$$ |  $$ |      $$ | / \\ $$ |$$$$$$/ $$  \\ $$ |
+ $$  \\/$$/ $$ |  $$ |$$ |  $$ |      $$ |/$  \\$$ |  $$ |  $$$  \\$$ |
+  $$  $$/  $$ |  $$ |$$ |  $$ |      $$ /$$$  $$ |  $$ |  $$$$  $$ |
+   $$$$/   $$ |  $$ |$$ |  $$ |      $$ $$/$$ $$ |  $$ |  $$ $$ $$ |
+    $$ |   $$ \\__$$ |$$ \\__$$ |      $$$$/  $$$$ | _$$ |_ $$ |$$$$ |
+    $$ |   $$    $$/ $$    $$/       $$$/    $$$ |/ $$   |$$ | $$$ |
+    $$/     $$$$$$/   $$$$$$/        $$/      $$/ $$$$$$/ $$/   $$/ 
+                                                                    
+                                                                    
+                                                                    "
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=80903107]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=713422855]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=32968083]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2077854574]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=366517038]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Retry" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1423160559 instance=ExtResource("3_0lrm4")]
+layout_mode = 2
+text = "Retry"
+
+[node name="Exit2" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=461566626 instance=ExtResource("3_0lrm4")]
+layout_mode = 2
+text = "Exit
+"
+
+[connection signal="option_highlighted" from="Selector" to="." method="_on_selector_option_highlighted"]
+[connection signal="option_selected" from="Selector" to="." method="_on_selector_option_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit2" to="." method="_on_exit_2_pressed"]

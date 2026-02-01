@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Armor" format=3 uid="uid://bk3aimspmyb53"]
+
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="1_0kbk7"]
+[ext_resource type="Script" uid="uid://bqygamak54rkq" path="res://armor.gd" id="1_6275c"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_0kbk7"]
+
+[sub_resource type="Resource" id="Resource_ctdan"]
+script = ExtResource("2_0kbk7")
+hp_max = 5
+woowoo = 1
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("1_6275c")
+equippable = true
+equip_slot = 2
+stats = SubResource("Resource_ctdan")
+name = "Leather Armor"
+symbol = "["
+color = Color(0.30992877, 0.25907442, 0.17137274, 1)
+rarity = ExtResource("1_0kbk7")
+metadata/_custom_type_script = "uid://bqygamak54rkq"

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://ca5kxgtxcjtys"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_34jkk"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="3_q3t1w"]
+[ext_resource type="Resource" uid="uid://1bjr6wi8kqt0" path="res://inventory/items/corpse.tres" id="4_00hah"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="4_h8u5o"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="5_53wix"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="6_53wix"]
+[ext_resource type="Resource" uid="uid://cdnim1p7nlbfh" path="res://inventory/items/weapons/lyzs_hammer.weapon.tres" id="8_i2mbu"]
+[ext_resource type="Resource" uid="uid://crfht6j8g2gnk" path="res://inventory/items/rings/ring_of_vision.tres" id="9_8gjp4"]
+[ext_resource type="Resource" uid="uid://ct3t2tgps4mip" path="res://inventory/items/rings/ring_of_stremf.tres" id="9_x6cap"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="10_am3cq"]
+[ext_resource type="Resource" uid="uid://b5e3m6dft2uqj" path="res://inventory/items/rings/ring_of_woowoo.tres" id="10_i2mbu"]
+[ext_resource type="Resource" uid="uid://djay36kryh1cp" path="res://inventory/items/armors/armor_of_stremf.armor.tres" id="11_8gjp4"]
+[ext_resource type="Resource" uid="uid://j0vymrw35nm2" path="res://inventory/items/armors/chainmail_armor.armor.tres" id="12_am3cq"]
+[ext_resource type="Resource" uid="uid://bsua5f0uxasom" path="res://inventory/items/armors/glass_armor.armor.tres" id="13_daqjy"]
+
+[sub_resource type="Resource" id="Resource_bth8d"]
+script = ExtResource("4_h8u5o")
+name = "Common"
+value = 50.0
+color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_01t0h"]
+script = ExtResource("5_53wix")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 200.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_kh55y"]
+script = ExtResource("1_34jkk")
+name = "Ration"
+description = "Nourishing and boring."
+symbol = "%"
+color = Color(0.5212574, 0.19455355, 0.12747702, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_01t0h")
+rarity = SubResource("Resource_bth8d")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[resource]
+script = ExtResource("10_am3cq")
+items = Array[ExtResource("1_34jkk")]([ExtResource("3_q3t1w"), ExtResource("4_00hah"), SubResource("Resource_kh55y"), ExtResource("6_53wix"), ExtResource("8_i2mbu"), ExtResource("9_8gjp4"), ExtResource("9_x6cap"), ExtResource("10_i2mbu"), ExtResource("11_8gjp4"), ExtResource("12_am3cq"), ExtResource("13_daqjy")])
+drop_weights = Array[float]([0.5])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

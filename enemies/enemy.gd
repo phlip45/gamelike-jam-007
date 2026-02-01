@@ -79,6 +79,10 @@ func die():
 		drop_items()
 	death_start = Vector2(randf_range(-4,4), randf_range(-18,-9))
 	death_rotation = .016 * randf_range(-25,25)
+	var sound = death_sound.pick_random()
+	actor_sound_player.stop()
+	actor_sound_player.play_sound.call_deferred(sound)
+
 	if tween:
 		tween.kill()
 	tween = create_tween()

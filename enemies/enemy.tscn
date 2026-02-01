@@ -5,18 +5,33 @@
 [ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_ttxdi"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="4_mu1c2"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="5_3t1x0"]
+[ext_resource type="AudioStream" uid="uid://dbp1sgs5aonq6" path="res://sound/sfx/enemy_hurt_0.mp3" id="5_ccbdt"]
 [ext_resource type="Texture2D" uid="uid://chn8cxg37a2ry" path="res://resources/background.sprite_2d.tres" id="6_3t1x0"]
+[ext_resource type="AudioStream" uid="uid://bulygkhdmb8wh" path="res://sound/sfx/enemy_hurt_1.mp3" id="6_mgey2"]
+[ext_resource type="AudioStream" uid="uid://bs7x3sokg4nf5" path="res://sound/sfx/enemy_hurt_3.mp3" id="7_cjbay"]
+[ext_resource type="AudioStream" uid="uid://b757dbeqblx6b" path="res://sound/sfx/death_0.mp3" id="8_0h01o"]
+[ext_resource type="AudioStream" uid="uid://c146gjv78kq7h" path="res://sound/sfx/death_1.mp3" id="9_8cidi"]
+[ext_resource type="Script" uid="uid://o174sjbefcd5" path="res://sound/actor_sound_player.gd" id="12_ccbdt"]
 
-[node name="Enemy" type="Area2D" unique_id=2079047202]
+[node name="Enemy" type="Area2D" unique_id=2079047202 node_paths=PackedStringArray("actor_sound_player")]
 script = ExtResource("1_ttxdi")
 data = ExtResource("2_07tka")
 actor_name = "Goblin"
 base_stats = ExtResource("2_ttxdi")
 symbol_char = "g"
 projectile_data = ExtResource("5_3t1x0")
+hurt_sound = Array[AudioStream]([ExtResource("5_ccbdt"), ExtResource("6_mgey2"), ExtResource("7_cjbay")])
+death_sound = Array[AudioStream]([ExtResource("8_0h01o"), ExtResource("9_8cidi")])
+actor_sound_player = NodePath("ActorSoundPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1991397410]
 shape = ExtResource("4_mu1c2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537286090]
 texture = ExtResource("6_3t1x0")
+
+[node name="ActorSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=435708429]
+attenuation = 0.659754
+max_polyphony = 12
+bus = &"SFX"
+script = ExtResource("12_ccbdt")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dprpajv5esc7k"]
+
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="1_bt5q7"]
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="2_8dbvw"]
+[ext_resource type="Resource" uid="uid://bdmg77nml5n8j" path="res://actions/actions/consume.action.tres" id="3_2q85x"]
+
+[resource]
+script = ExtResource("2_8dbvw")
+name = "Troll Corpse"
+description = "It shouldn't even be possible for you to carry this around."
+symbol = "[b][tornado][pulse]_"
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 5
+use_verb = "Eat"
+use_action = ExtResource("3_2q85x")
+rarity = ExtResource("1_bt5q7")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"

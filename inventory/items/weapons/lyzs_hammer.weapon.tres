@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://cdnim1p7nlbfh"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_cd5q8"]
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="2_irsmb"]
+[ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_sp8wg"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_irsmb"]
+
+[sub_resource type="Resource" id="Resource_cd5q8"]
+script = ExtResource("3_irsmb")
+stremf = 3
+vision_radius = 1
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_sp8wg")
+attack_action = ExtResource("1_cd5q8")
+equippable = true
+equip_slot = 3
+stats = SubResource("Resource_cd5q8")
+name = "Lýz's Hammer"
+name_decoration_start = "[color=#aa7ff2]"
+name_decoration_end = "[/color]"
+description = "The famous enchantress Lýzurly crafted this hammer to remove unsavory individuals from her shop."
+symbol = "[tornado][pulse])[/pulse]"
+color = Color(0.66619813, 0.4992876, 0.94972354, 1)
+type = 1
+rarity = ExtResource("2_irsmb")
+metadata/_custom_type_script = "uid://br0pkukqsr0q"

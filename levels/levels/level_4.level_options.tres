@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://dgcvyp3j1dtlr"]
+
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_4g4a3"]
+[ext_resource type="Resource" uid="uid://bqqmpp0nb10to" path="res://enemies/datas/hobgoblin_berzerker.tres" id="2_vuabu"]
+[ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="2_y2nns"]
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="3_ayjej"]
+[ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="3_xtqvd"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="4_cvigu"]
+[ext_resource type="Resource" uid="uid://b6qesxtdm68in" path="res://inventory/pools/level_4.item_pool.tres" id="4_y6l1b"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="5_xxcc8"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="7_4p0ot"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="8_cvigu"]
+[ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="8_ryja3"]
+[ext_resource type="Resource" uid="uid://b8gpbdm5pchv3" path="res://enemies/datas/rosa.enemy_data.tres" id="9_0bx2i"]
+[ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="9_e6jvh"]
+[ext_resource type="Resource" uid="uid://b6b2b0i8dulox" path="res://enemies/datas/boulean.enemy_data.tres" id="10_8of8t"]
+[ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="11_xxcc8"]
+[ext_resource type="Resource" uid="uid://d3ya786xjd3b3" path="res://enemies/datas/troll.enemy.tres" id="12_cidt5"]
+[ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="12_xeiio"]
+[ext_resource type="Resource" uid="uid://buwgk8xb8xeje" path="res://inventory/pools/hobgoblin_loot.tres" id="13_4p0ot"]
+[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="13_ocpgn"]
+[ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="14_jjyiq"]
+
+[sub_resource type="Resource" id="Resource_0bx2i"]
+resource_local_to_scene = true
+script = ExtResource("4_cvigu")
+hp = 30
+hp_max = 30
+hunger_max = 20
+stremf = 10
+woowoo = 5
+whoosh = 5
+vision_radius = 7
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_8of8t"]
+script = ExtResource("8_cvigu")
+name = "Rare"
+value = 20.0
+color = Color(3.5616756e-06, 0.5932927, 0.68929297, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_f6dyt"]
+script = ExtResource("1_4g4a3")
+actor_name = "Goblin Warlord"
+description = "When this one heard about leg day it became his identity. The numerous severed legs in his bandolier are just for show."
+brain_script = ExtResource("5_xxcc8")
+base_stats = SubResource("Resource_0bx2i")
+symbol_char = "G"
+color = Color(0.28065512, 0.41144955, 2.8878452e-07, 1)
+attack_action = ExtResource("3_ayjej")
+projectile_data = ExtResource("7_4p0ot")
+rarity = SubResource("Resource_8of8t")
+death_drops = ExtResource("13_4p0ot")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_cidt5"]
+resource_local_to_scene = true
+script = ExtResource("4_cvigu")
+hp = 20
+hp_max = 20
+hunger_max = 15
+stremf = 7
+woowoo = 1
+whoosh = 9
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_ocpgn"]
+script = ExtResource("1_4g4a3")
+actor_name = "Hobgoblin Archer"
+description = "Archer	from the danger zone"
+brain_script = ExtResource("12_xeiio")
+base_stats = SubResource("Resource_cidt5")
+symbol_char = "h"
+color = Color(0.75272125, 0.53634363, 0.096464686, 1)
+attack_action = ExtResource("11_xxcc8")
+projectile_data = ExtResource("7_4p0ot")
+rarity = ExtResource("14_jjyiq")
+death_drops = ExtResource("13_4p0ot")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
+[sub_resource type="Resource" id="Resource_edai3"]
+script = ExtResource("13_ocpgn")
+enemies = Array[ExtResource("1_4g4a3")]([ExtResource("2_vuabu"), SubResource("Resource_f6dyt"), ExtResource("9_0bx2i"), ExtResource("10_8of8t"), SubResource("Resource_ocpgn"), ExtResource("12_cidt5")])
+metadata/_custom_type_script = "uid://bpsvcxcnc70ri"
+
+[sub_resource type="Resource" id="Resource_7ngmj"]
+script = ExtResource("2_y2nns")
+metadata/_custom_type_script = "uid://d0kp1kw1gmdbn"
+
+[sub_resource type="Resource" id="Resource_nivu8"]
+script = ExtResource("3_xtqvd")
+feature = Array[ExtResource("2_y2nns")]([SubResource("Resource_7ngmj")])
+metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
+
+[sub_resource type="Resource" id="Resource_vwlw3"]
+script = ExtResource("8_ryja3")
+num_rooms = Vector2i(3, 40)
+room_width = Vector2i(3, 4)
+room_height = Vector2i(2, 3)
+metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
+
+[resource]
+script = ExtResource("9_e6jvh")
+level_layout_options = SubResource("Resource_vwlw3")
+num_starting_enemies = 10
+enemy_pool = SubResource("Resource_edai3")
+item_pool = ExtResource("4_y6l1b")
+feature_pool = SubResource("Resource_nivu8")
+metadata/_custom_type_script = "uid://xpe1aharownm"

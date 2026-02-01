@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://d3ya786xjd3b3"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_ufhqu"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_ovget"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_4fgp2"]
+[ext_resource type="Resource" uid="uid://c4no86vfu756l" path="res://inventory/pools/troll_loot.item_pool.tres" id="4_75sb4"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="5_teb18"]
+[ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="6_ufhqu"]
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="7_te0li"]
+
+[sub_resource type="Resource" id="Resource_2pqss"]
+resource_local_to_scene = true
+script = ExtResource("2_ovget")
+hp = 40
+hp_max = 40
+hunger_max = 15
+stremf = 7
+woowoo = 5
+whoosh = 2
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("7_te0li")
+actor_name = "Troll"
+description = "Big ole doods"
+brain_script = ExtResource("3_4fgp2")
+base_stats = SubResource("Resource_2pqss")
+symbol_char = "T"
+color = Color(0.36874348, 0.7634729, 0.43483683, 1)
+attack_action = ExtResource("1_ufhqu")
+projectile_data = ExtResource("5_teb18")
+rarity = ExtResource("6_ufhqu")
+death_drops = ExtResource("4_75sb4")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

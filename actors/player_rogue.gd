@@ -8,7 +8,7 @@ var state:State
 var ground_features:Array[Feature]
 var equipped_weapon:Weapon
 @export var time_til_heal:Vector2i = Vector2i(500,500)
-
+@export var sounds:Dictionary[String,AudioStream]
 
 enum State{
 	NULL,AWAITING_INPUT,AWAITING_TURN,AWAITING_BUMPABLES,ANIMATING,INVENTORY,DEAD
@@ -50,6 +50,9 @@ func take_turn() -> int:
 	state = State.AWAITING_INPUT
 	var time_taken:int = await finished_turn
 	time_til_heal.x -= time_taken
+	time_taken -= stats.whoosh
+	time_taken = max(0, time_taken)
+	hunger(2)
 	return time_taken
 
 func premove(delta:float):
@@ -112,7 +115,6 @@ func premove(delta:float):
 		return
 	if walk_cooldown.x <= 0:
 		var bumpables:Array = get_bumpables_at_location(desired_move)
-		hunger()
 		if bumpables.size() > 0:
 			walk_cooldown.x = walk_cooldown.y/10 if running else walk_cooldown.y
 			running = true
@@ -123,20 +125,22 @@ func premove(delta:float):
 			move(desired_move,delta)
 
 func move(desired_coord:Vector2i, _delta:float = 0):
-	hunger()
 	teleport(desired_coord)
 	## TODO: Add micro animations here to move the @ inbetween spaces instead
 	## of instantly
 	state = State.AWAITING_TURN
 	Global.set_ground_items(get_ground_items())
 	ground_features = get_features_at_coord(coord)
-	finished_turn.emit( max(100 - stats.whoosh,1) )
+	finished_turn.emit(100)
 	
 func take_damage(amount:int) -> void:
 	stats.hp -= amount
 	DamageNumber.create(amount,coord)
 	if stats.hp <= 0:
 		die()
+		return
+	if amount > 0:
+		actor_sound_player.play_sound(hurt_sound.pick_random())
 func get_bumpables_at_location(target_coord:Vector2i) -> Array[Area2D]:
 	return level.get_bumpables_at_location(target_coord)
 
@@ -188,13 +192,12 @@ func get_ground_items() -> Array[Item]:
 	return get_items_at_coord(coord)
 
 func attack(enemy:Enemy):
-	hunger()
 	target = enemy
 	if inventory.weapon_slot:
 		inventory.weapon_slot.attack(self)
 	else:
 		unarmed_weapon.attack(self)
-	finished_turn.emit(50)
+	finished_turn.emit(80)
 
 func open_inventory():
 	state = State.INVENTORY
@@ -236,6 +239,7 @@ func die():
 	state = State.DEAD
 	death_start = Vector2(randf_range(-4,4), randf_range(-18,-9))
 	death_rotation = .016 * randf_range(-25,25)
+	actor_sound_player.play_sound(death_sound.pick_random())
 	if tween:
 		tween.kill()
 	tween = create_tween()

@@ -1,8 +1,24 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dtorwcdjttur7"]
 
-[ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="1_h1ay3"]
+[ext_resource type="Script" uid="uid://youiib2dwdvx" path="res://rarities/rarity.gd" id="1_enmdr"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_uvk0l"]
-[ext_resource type="Resource" uid="uid://wwg3vb8ivvpl" path="res://actions/actions/heal.action.tres" id="3_enmdr"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="3_enmdr"]
+
+[sub_resource type="Resource" id="Resource_61x2r"]
+script = ExtResource("1_enmdr")
+name = "Uncommon"
+value = 50.0
+color = Color(0.38594148, 0.82544297, 0, 1)
+metadata/_custom_type_script = "uid://youiib2dwdvx"
+
+[sub_resource type="Resource" id="Resource_1cf0o"]
+script = ExtResource("3_enmdr")
+name = "Heal"
+trigger = 1
+effect_name = 4
+targeter_name = 2
+effect_modifier = 10.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
 
 [resource]
 resource_local_to_scene = true
@@ -15,6 +31,6 @@ type = 9
 stackable = true
 usable = true
 use_verb = "Drink"
-use_action = ExtResource("3_enmdr")
-rarity = ExtResource("1_h1ay3")
+use_action = SubResource("Resource_1cf0o")
+rarity = SubResource("Resource_61x2r")
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"

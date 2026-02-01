@@ -10,6 +10,7 @@ var starting_size:Vector2
 var state:State
 var selectable_options:Array[RichTextLabel]
 const ITEM_POP_UP = preload("uid://c623addwcis1o")
+@export var sounds:Dictionary[String,AudioStream]
 
 @export var hold_cooldown:Vector2 = Vector2(0,.5)
 var holding:bool = false
@@ -85,9 +86,15 @@ func process_selector(_delta:float):
 	var move:float = Input.get_axis("up", "down")
 	if move < -Global.Settings.deadzone:
 		selector_index = posmod(selector_index-1, selectable_options.size())
+		Maestro.sfx_player.stream = sounds["pip"]
+		Maestro.sfx_player.play()
 	elif move > Global.Settings.deadzone:
 		selector_index = posmod(selector_index+1, selectable_options.size())
+		Maestro.sfx_player.stream = sounds["pip"]
+		Maestro.sfx_player.play()
 	if Input.is_action_just_pressed("action"):
+		Maestro.sfx_player.stream = sounds["chk"]
+		Maestro.sfx_player.play()
 		var chosen:Option
 		match(selectable_options[selector_index]):
 			verb:
@@ -115,6 +122,8 @@ func process_selector(_delta:float):
 	pass
 
 func _open():
+	Maestro.sfx_player.stream = sounds["open"]
+	Maestro.sfx_player.play()
 	tween = create_tween()
 	tween.tween_method(func(progress:float):
 		size = Vector2(
@@ -134,6 +143,8 @@ func _open():
 	#tween.tween_callback(_close)
 
 func _close(option:Option):
+	Maestro.sfx_player.stream = sounds["close"]
+	Maestro.sfx_player.play()
 	tween = create_tween()
 	tween.tween_method(func(progress:float):
 		size = Vector2(

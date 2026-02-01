@@ -51,6 +51,9 @@ static func heal() -> Effect:
 			var heal_amount = effect_mod
 			target.heal(heal_amount)
 			hits.set(target, heal_amount)
+			if target is Player:
+				var player = (target as Player)
+				player.actor_sound_player.play_sound(player.sounds["drink"])
 		if hits.size() > 1:
 			print("Fuck")
 		var message:String = ""
@@ -71,12 +74,17 @@ static func consume() -> Effect:
 			hits.set(target, food_amount)
 		var message:String = ""
 		for hit:Actor in hits:
+			var player = hit as Player
+			if !player: continue
 			if hits[hit] > 0:
 				message += "Mmmm! That was delicious!"
+				player.actor_sound_player.play_sound(player.sounds["mmm"])
 			elif hits[hit] == 0:
 				message += "Hmmm, didn't taste like much!"
+				player.actor_sound_player.play_sound(player.sounds["yuck"])
 			else:
 				message += "Blegch! Why did I think that would be good to eat!"
+				player.actor_sound_player.play_sound(player.sounds["retch"])
 		Global.push_message(message)
 	return effect
 

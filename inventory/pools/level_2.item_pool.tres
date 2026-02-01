@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://coyuw3ef0r65b"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_pongl"]
+[ext_resource type="Resource" uid="uid://6rb8igilcffm" path="res://inventory/items/weapons/dagger.weapon.tres" id="2_dos8q"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="3_mo7ie"]
+[ext_resource type="Resource" uid="uid://1bjr6wi8kqt0" path="res://inventory/items/corpse.tres" id="4_rye4o"]
+[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="5_g1w4c"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="6_0bqh4"]
+[ext_resource type="Resource" uid="uid://bk3aimspmyb53" path="res://inventory/items/armors/leather_armor.armor.tres" id="7_iqtqd"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="8_abbkx"]
+[ext_resource type="Resource" uid="uid://cdnim1p7nlbfh" path="res://inventory/items/weapons/lyzs_hammer.weapon.tres" id="8_mo7ie"]
+[ext_resource type="Resource" uid="uid://crfht6j8g2gnk" path="res://inventory/items/rings/ring_of_vision.tres" id="9_rye4o"]
+[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/items/weapons/sword.weapon.tres" id="10_rye4o"]
+
+[resource]
+script = ExtResource("8_abbkx")
+items = Array[ExtResource("1_pongl")]([ExtResource("2_dos8q"), ExtResource("3_mo7ie"), ExtResource("4_rye4o"), ExtResource("5_g1w4c"), ExtResource("6_0bqh4"), ExtResource("7_iqtqd"), ExtResource("8_mo7ie"), ExtResource("9_rye4o"), ExtResource("10_rye4o")])
+drop_weights = Array[float]([0.5])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

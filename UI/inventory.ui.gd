@@ -18,6 +18,8 @@ var inventory:Inventory:
 @onready var blinder: ColorRect = $"../../Blinder"
 var selector_index:int = 0
 
+@export var sounds:Dictionary[String, AudioStream]
+
 @export var hold_cooldown:Vector2 = Vector2(0,.5)
 var holding:bool = false
 
@@ -59,6 +61,8 @@ func select_process(_delta:float) -> void:
 		if(inventory.items.size() == 0): return
 		select(inventory.items[selector_index])
 	if Input.is_action_just_pressed("cancel"):
+		Maestro.sfx_player.stream = sounds["window_close"]
+		Maestro.sfx_player.play()
 		_close()
 
 func select(item:Item):
@@ -110,6 +114,8 @@ func move_selector_index_horizontal(negative:bool):
 		selector_index = _size - 1
 	else:
 		selector_index += items_per_panel
+	Maestro.sfx_player.stream = sounds["pip"]
+	Maestro.sfx_player.play()
 
 func clear():
 	for child:Node in left_panel.get_children():
@@ -148,6 +154,8 @@ func open(_inventory:Inventory):
 		return
 	inventory = _inventory
 	_populate()
+	Maestro.sfx_player.stream = sounds["window_open"]
+	Maestro.sfx_player.play()
 	inventory.order_changed.connect(_populate)
 	inventory_holder.visible = true
 	get_tree().create_timer(.3).timeout.connect(func():

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://buwgk8xb8xeje"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_fs11b"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="2_drb3i"]
+[ext_resource type="Resource" uid="uid://1bjr6wi8kqt0" path="res://inventory/items/corpse.tres" id="3_pk0yj"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="4_dfy0b"]
+[ext_resource type="Resource" uid="uid://ct3t2tgps4mip" path="res://inventory/items/rings/ring_of_stremf.tres" id="5_jllvw"]
+[ext_resource type="Resource" uid="uid://dq3cvjbn13ixo" path="res://inventory/items/rings/ring_of_whoosh.tres" id="6_xckhn"]
+[ext_resource type="Resource" uid="uid://b5e3m6dft2uqj" path="res://inventory/items/rings/ring_of_woowoo.tres" id="7_lxyjd"]
+[ext_resource type="Resource" uid="uid://crfht6j8g2gnk" path="res://inventory/items/rings/ring_of_vision.tres" id="8_k4pkh"]
+[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="9_m8sji"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="10_314fw"]
+[ext_resource type="Resource" uid="uid://j0vymrw35nm2" path="res://inventory/items/armors/chainmail_armor.armor.tres" id="10_pk0yj"]
+[ext_resource type="Resource" uid="uid://bsua5f0uxasom" path="res://inventory/items/armors/glass_armor.armor.tres" id="11_dfy0b"]
+
+[resource]
+script = ExtResource("10_314fw")
+items = Array[ExtResource("1_fs11b")]([ExtResource("2_drb3i"), ExtResource("3_pk0yj"), ExtResource("4_dfy0b"), ExtResource("5_jllvw"), ExtResource("6_xckhn"), ExtResource("7_lxyjd"), ExtResource("8_k4pkh"), ExtResource("9_m8sji"), ExtResource("10_pk0yj"), ExtResource("11_dfy0b")])
+drop_weights = Array[float]([0.3, 0.1])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

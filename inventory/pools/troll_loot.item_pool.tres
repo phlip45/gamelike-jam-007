@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://c4no86vfu756l"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_yl5wh"]
+[ext_resource type="Resource" uid="uid://dprpajv5esc7k" path="res://inventory/items/troll_corpse.tres" id="2_t7c57"]
+[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="4_of5ph"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="5_of5ph"]
+[ext_resource type="Resource" uid="uid://b5e3m6dft2uqj" path="res://inventory/items/rings/ring_of_woowoo.tres" id="5_spw27"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="6_m8gqf"]
+[ext_resource type="Resource" uid="uid://cdnim1p7nlbfh" path="res://inventory/items/weapons/lyzs_hammer.weapon.tres" id="7_lnprh"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="7_m8gqf"]
+
+[resource]
+script = ExtResource("7_m8gqf")
+items = Array[ExtResource("1_yl5wh")]([ExtResource("4_of5ph"), ExtResource("5_spw27"), ExtResource("6_m8gqf"), ExtResource("7_lnprh"), ExtResource("5_of5ph")])
+drop_weights = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
+use_guaranteed_drops = true
+guaranteed_drops = Array[ExtResource("1_yl5wh")]([ExtResource("2_t7c57")])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

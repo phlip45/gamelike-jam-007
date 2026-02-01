@@ -3,82 +3,22 @@
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="1_0gsy4"]
 [ext_resource type="Script" uid="uid://cncbrwer1ceyl" path="res://dungeon_playlist.gd" id="2_kr6ij"]
 [ext_resource type="Resource" uid="uid://c6ru305mj5a4q" path="res://levels/levels/level_1.level_options.tres" id="2_ueslm"]
-[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="3_pnedy"]
-[ext_resource type="Resource" uid="uid://dvqb1la05gfb7" path="res://levels/levels/forest_1.level_options.tres" id="3_rbibx"]
-[ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="4_xe22j"]
-[ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="5_n0bsq"]
-[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_oi2t1"]
-[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="7_iku3p"]
-[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/items/weapons/sword.weapon.tres" id="8_vwlw3"]
-[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="9_r50q3"]
-[ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="10_dqw31"]
-
-[sub_resource type="Resource" id="Resource_7ngmj"]
-script = ExtResource("4_xe22j")
-metadata/_custom_type_script = "uid://d0kp1kw1gmdbn"
-
-[sub_resource type="Resource" id="Resource_nivu8"]
-script = ExtResource("5_n0bsq")
-feature = Array[ExtResource("4_xe22j")]([SubResource("Resource_7ngmj")])
-metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
-
-[sub_resource type="Resource" id="Resource_q777q"]
-script = ExtResource("9_r50q3")
-items = Array[ExtResource("6_oi2t1")]([ExtResource("7_iku3p"), ExtResource("8_vwlw3")])
-metadata/_custom_type_script = "uid://dee2rpwljmlar"
-
-[sub_resource type="Resource" id="Resource_sw6qi"]
-script = ExtResource("10_dqw31")
-room_width = Vector2i(3, 5)
-room_height = Vector2i(4, 7)
-metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
-
-[sub_resource type="Resource" id="Resource_7l0o1"]
-script = ExtResource("1_0gsy4")
-level_layout_options = SubResource("Resource_sw6qi")
-enemy_pool = ExtResource("3_pnedy")
-item_pool = SubResource("Resource_q777q")
-feature_pool = SubResource("Resource_nivu8")
-metadata/_custom_type_script = "uid://xpe1aharownm"
-
-[sub_resource type="Resource" id="Resource_8rgmb"]
-script = ExtResource("10_dqw31")
-room_width = Vector2i(6, 10)
-room_height = Vector2i(2, 3)
-metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
-
-[sub_resource type="Resource" id="Resource_htvfl"]
-script = ExtResource("1_0gsy4")
-level_layout_options = SubResource("Resource_8rgmb")
-enemy_pool = ExtResource("3_pnedy")
-item_pool = SubResource("Resource_q777q")
-feature_pool = SubResource("Resource_nivu8")
-metadata/_custom_type_script = "uid://xpe1aharownm"
-
-[sub_resource type="Resource" id="Resource_vwlw3"]
-script = ExtResource("10_dqw31")
-num_rooms = Vector2i(3, 40)
-room_width = Vector2i(3, 4)
-room_height = Vector2i(2, 3)
-metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
-
-[sub_resource type="Resource" id="Resource_ow5va"]
-script = ExtResource("1_0gsy4")
-level_layout_options = SubResource("Resource_vwlw3")
-enemy_pool = ExtResource("3_pnedy")
-item_pool = SubResource("Resource_q777q")
-feature_pool = SubResource("Resource_nivu8")
-metadata/_custom_type_script = "uid://xpe1aharownm"
+[ext_resource type="Resource" uid="uid://xfy1ladki21f" path="res://levels/levels/level_2.level_options.tres" id="3_ymwjs"]
+[ext_resource type="Resource" uid="uid://mrrdkaeqq422" path="res://levels/levels/level_3.level_options.tres" id="4_nkqma"]
+[ext_resource type="Resource" uid="uid://dgcvyp3j1dtlr" path="res://levels/levels/level_4.level_options.tres" id="5_bkwtd"]
+[ext_resource type="Resource" uid="uid://dl7736ccr36m6" path="res://levels/levels/level_5.level_options.tres" id="6_vwlw3"]
+[ext_resource type="Resource" uid="uid://b6c4m1ud640od" path="res://levels/levels/level_6.level_options.tres" id="7_pnedy"]
+[ext_resource type="Resource" uid="uid://byo0l1rc6me1y" path="res://levels/levels/level_7.level_options.tres" id="8_xe22j"]
 
 [resource]
 script = ExtResource("2_kr6ij")
 level_options_lookup = Dictionary[int, ExtResource("1_0gsy4")]({
 1: ExtResource("2_ueslm"),
-2: SubResource("Resource_7l0o1"),
-3: SubResource("Resource_htvfl"),
-4: SubResource("Resource_ow5va"),
-5: ExtResource("3_rbibx"),
-6: ExtResource("3_rbibx"),
-7: ExtResource("3_rbibx")
+2: ExtResource("3_ymwjs"),
+3: ExtResource("4_nkqma"),
+4: ExtResource("5_bkwtd"),
+5: ExtResource("6_vwlw3"),
+6: ExtResource("7_pnedy"),
+7: ExtResource("8_xe22j")
 })
 metadata/_custom_type_script = "uid://cncbrwer1ceyl"

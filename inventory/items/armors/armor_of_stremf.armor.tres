@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Armor" format=3 uid="uid://djay36kryh1cp"]
+
+[ext_resource type="Resource" uid="uid://c27e5xvuurem7" path="res://rarities/rare.rarity.tres" id="1_2ay0i"]
+[ext_resource type="Script" uid="uid://bqygamak54rkq" path="res://armor.gd" id="1_5gufs"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_2ay0i"]
+
+[sub_resource type="Resource" id="Resource_lm6yq"]
+script = ExtResource("2_2ay0i")
+hp_max = 5
+stremf = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("1_5gufs")
+equippable = true
+equip_slot = 2
+stats = SubResource("Resource_lm6yq")
+name = "Armor of Stremf"
+description = "There is a six pack painted on the front."
+symbol = "["
+color = Color(0.4119095, 0.17070302, 0.27200547, 1)
+type = 2
+rarity = ExtResource("1_2ay0i")
+metadata/_custom_type_script = "uid://bqygamak54rkq"

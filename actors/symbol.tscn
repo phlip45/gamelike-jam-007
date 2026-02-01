@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://tmy3jabrxygd"]
+[gd_scene format=3 uid="uid://tmy3jabrxygd"]
 
 [ext_resource type="Script" uid="uid://bwnrsj22xkd64" path="res://actors/symbol.gd" id="1_1jtmg"]
 
-[node name="Symbol" type="RichTextLabel"]
+[node name="Symbol" type="RichTextLabel" unique_id=1403436908]
 texture_filter = 1
 offset_left = -10.0
 offset_top = -22.0
@@ -15,6 +15,7 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/text_highlight_h_padding = 0
 theme_override_constants/text_highlight_v_padding = 0
 theme_override_font_sizes/normal_font_size = 33
+theme_override_font_sizes/bold_font_size = 33
 bbcode_enabled = true
 text = "@"
 fit_content = true
@@ -24,7 +25,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_1jtmg")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=577695977]
 z_index = -1
 layout_mode = 0
 offset_top = 7.0

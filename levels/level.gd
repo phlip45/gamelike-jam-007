@@ -62,6 +62,11 @@ func setup_turn_manager():
 	turn_manager.add_actor(player)
 	player.teleport(layout.get_random_floor().coord , false)
 	player.started_turn.connect(update_from_players_vision)
+	if options.enemy_pool.use_guaranteed_spawns:
+		for enemy_data:EnemyData in options.enemy_pool.guaranteed_spawns:
+			var enemy:Enemy = Enemy.create(enemy_data)
+			enemy.teleport(layout.get_random_floor().coord, false)
+			turn_manager.add_actor(enemy)
 	for i in options.num_starting_enemies:
 		# Spawn random enemy from pool and give em brains and junk.
 		var enemy_data:EnemyData = enemy_pool.get_rand_enemy_data(level_rng)
@@ -72,15 +77,15 @@ func setup_turn_manager():
 	
 func setup_item_manager():
 	item_manager = ItemManager.create(self)
+	if options.item_pool.use_guaranteed_drops:
+		for i:Item in options.item_pool.guaranteed_drops:
+			item_manager.add_item(i)
 	for i in options.num_starting_item:
 		item_manager.add_item(options.item_pool.get_rand_item_data(level_rng))
-	#for i in 7:
-		#item_manager.add_random_item_husk()
-		#item_manager.add_item(ItemManager.ItemName.HEALTH_POTION)
 	add_child(item_manager)
 func setup_feature_manager():
 	feature_manager = FeatureManager.create(self)
-	var stairs:Feature = Feature.create(">", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
+	var stairs:Feature = Feature.create("[b][color=#3F3]>", Feature.Trigger.USE, Effect.Func.GOTO_NEXT_LEVEL)
 	feature_manager.add_feature(stairs)
 	add_child(feature_manager)
 

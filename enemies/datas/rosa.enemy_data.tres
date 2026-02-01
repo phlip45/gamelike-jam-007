@@ -1,19 +1,31 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://b8gpbdm5pchv3"]
 
 [ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="1_5ltey"]
-[ext_resource type="Resource" uid="uid://3wvomivphdt1" path="res://stats/goblin.stats.tres" id="2_5krnv"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_5krnv"]
 [ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="3_33ee7"]
 [ext_resource type="Resource" uid="uid://c25lmwa61yjwp" path="res://inventory/pools/goblin_loot.item_pool.tres" id="4_5krnv"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_nff7e"]
 [ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="5_wbgbm"]
 [ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="6_vs2xp"]
 
+[sub_resource type="Resource" id="Resource_33ee7"]
+resource_local_to_scene = true
+script = ExtResource("2_5krnv")
+hp = 20
+hp_max = 20
+hunger_max = 15
+stremf = 7
+woowoo = 1
+whoosh = 7
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
 [resource]
 script = ExtResource("6_vs2xp")
 actor_name = "Rosa"
 description = "Rosa"
 brain_script = ExtResource("3_33ee7")
-base_stats = ExtResource("2_5krnv")
+base_stats = SubResource("Resource_33ee7")
 symbol_char = "R"
 color = Color(0.9082565, 0.35998106, 0, 1)
 attack_action = ExtResource("1_5ltey")

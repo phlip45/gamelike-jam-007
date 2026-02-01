@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://b7oyibhfb3coi"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_cgrgs"]
+[ext_resource type="Resource" uid="uid://6rb8igilcffm" path="res://inventory/items/weapons/dagger.weapon.tres" id="2_3cohq"]
+[ext_resource type="Resource" uid="uid://cjacnskna7ecc" path="res://rarities/common.rarity.tres" id="2_t80sc"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="3_0jb0c"]
+[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="3_54hwg"]
+[ext_resource type="Resource" uid="uid://1bjr6wi8kqt0" path="res://inventory/items/corpse.tres" id="4_t80sc"]
+[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="5_0jb0c"]
+[ext_resource type="Resource" uid="uid://363dvkyilngi" path="res://inventory/items/rings/ring_of_health.tres" id="6_jahaq"]
+[ext_resource type="Resource" uid="uid://bk3aimspmyb53" path="res://inventory/items/armors/leather_armor.armor.tres" id="7_d28rs"]
+[ext_resource type="Resource" uid="uid://b11vt7x2jerev" path="res://inventory/items/weapons/sword.weapon.tres" id="8_3cohq"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="8_tlqll"]
+
+[sub_resource type="Resource" id="Resource_jahaq"]
+script = ExtResource("3_0jb0c")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 400.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_d28rs"]
+script = ExtResource("1_cgrgs")
+name = "Roast Turkey"
+description = "Who has been cooking turkeys down here, and to what end! Vile heathens must be brought to justice! Just as soon as I have a nibble."
+symbol = "%"
+color = Color(0.5212574, 0.19455355, 0.12747702, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_jahaq")
+rarity = ExtResource("2_t80sc")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[sub_resource type="Resource" id="Resource_01t0h"]
+script = ExtResource("3_0jb0c")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 200.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_tlqll"]
+script = ExtResource("1_cgrgs")
+name = "Biscuit"
+description = "Depending on where you're from this could be savory or sweet."
+symbol = "%"
+color = Color(0.5212574, 0.19455355, 0.12747702, 1)
+type = 5
+stackable = true
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_01t0h")
+rarity = ExtResource("2_t80sc")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[resource]
+script = ExtResource("8_tlqll")
+items = Array[ExtResource("1_cgrgs")]([ExtResource("2_3cohq"), ExtResource("3_54hwg"), ExtResource("4_t80sc"), ExtResource("5_0jb0c"), ExtResource("6_jahaq"), ExtResource("7_d28rs"), ExtResource("5_0jb0c"), ExtResource("5_0jb0c"), ExtResource("8_3cohq")])
+drop_weights = Array[float]([0.5])
+use_guaranteed_drops = true
+guaranteed_drops = Array[ExtResource("1_cgrgs")]([SubResource("Resource_d28rs"), SubResource("Resource_tlqll")])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

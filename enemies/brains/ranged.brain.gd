@@ -18,6 +18,7 @@ func take_turn() -> int:
 		bloodlust.x -= 1
 	if last_enemy and can_attack():
 		body.target = last_enemy
+		body.visible = true
 		body.attack_action.activate(body)
 		return 100
 	if path.size() > 1:

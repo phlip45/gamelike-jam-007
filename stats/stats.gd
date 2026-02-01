@@ -6,55 +6,53 @@ signal stat_changed(stat_name:String, new_val:int)
 
 @export var hp:int:
 	set(val):
-		hp = max(val,0)
+		hp = val
 		stat_changed.emit("hp", val)
 @export var hp_max:int:
 	set(val):
-		hp_max = max(val,0)
+		hp_max = val
 		stat_changed.emit("hp_max", val)
 @export var hunger:int:
 	set(val):
-		hunger = max(val,0)
+		hunger = val
 		stat_changed.emit("hunger", val)
 @export var hunger_max:int:
 	set(val):
-		hunger_max = max(val,0)
+		hunger_max = val
 		stat_changed.emit("hunger_max", val)
 @export var mp:int:
 	set(val):
-		mp = max(val,0)
+		mp = val
 		stat_changed.emit("mp", val)
 @export var mp_max:int:
 	set(val):
-		mp_max = max(val,0)
+		mp_max = val
 		stat_changed.emit("mp_max", val)
 @export var stremf:int:
 	set(val):
-		stremf = max(val,0)
+		stremf = val
 		stat_changed.emit("stremf", val)
 @export var woowoo:int:
 	set(val):
-		woowoo = max(val,0)
+		woowoo = val
 		stat_changed.emit("woowoo", val)
 @export var whoosh:int:
 	set(val):
-		whoosh = max(val,0)
+		whoosh = val
 		stat_changed.emit("whoosh", val)
 @export var vision_radius:int:
 	set(val):
-		vision_radius = max(val,0)
+		vision_radius = val
 		stat_changed.emit("vision_radius", val)
 
 func add(other_stats:Stats):
-	if other_stats.hp_max > 0:
-		hp = hp + other_stats.hp_max
 	hp_max = hp_max + other_stats.hp_max
-	if other_stats.mp_max > 0:
-		mp = mp + other_stats.mp_max
+	if hp > hp_max:
+		hp = hp_max
 	mp_max = mp_max + other_stats.mp_max
-	if other_stats.hunger_max > 0:
-		hunger = hunger + other_stats.hunger_max
 	hunger_max = hunger_max + other_stats.hunger_max
+	if hunger > hunger_max:
+		hunger = hunger_max
 	stremf = stremf + other_stats.stremf
 	woowoo = woowoo + other_stats.woowoo
 	whoosh = whoosh + other_stats.whoosh

@@ -8,6 +8,7 @@ class_name OptionsMenu
 @onready var deadzone: OptionSlider = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/Deadzone
 
 @onready var selector: Selector = $Selector
+@export var sounds:Dictionary[String, AudioStream]
 
 signal adjusting_started
 signal adjusting_finished
@@ -48,6 +49,9 @@ func option_selected(val:Option):
 	state = State.SELECTING
 	adjusting_started.emit()
 	await adjusting_finished
+	Maestro.sfx_player.stop()
+	Maestro.voice_player.stop()
+	Maestro.music_player.play()
 	state = State.NULL
 	selector.enabled = true
 
@@ -91,8 +95,9 @@ func _on_sfx_value_changed(new_value: float) -> void:
 		AudioServer.set_bus_mute(bus_index,true)
 	else:
 		AudioServer.set_bus_mute(bus_index,false)
-		
+	#Maestro.sfx_player.stop()
 	if !Maestro.sfx_player.playing:
+		Maestro.sfx_player.stream = sounds["ding"]
 		Maestro.sfx_player.play()
 
 func _on_voice_value_changed(new_value: float) -> void:
@@ -107,6 +112,7 @@ func _on_voice_value_changed(new_value: float) -> void:
 		AudioServer.set_bus_mute(bus_index,false)
 	
 	if !Maestro.voice_player.playing:
+		Maestro.voice_player.stream = sounds["voice"]
 		Maestro.voice_player.play()
 
 
@@ -116,3 +122,11 @@ func _on_full_screen_pressed() -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
+
+
+func _on_view_controls_pressed() -> void:
+	var view_controls = load("res://scenes/view_controls.tscn").instantiate()
+	add_child(view_controls)
+	selector.enabled = false
+	await view_controls.finished
+	selector.enabled = true

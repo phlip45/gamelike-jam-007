@@ -4,9 +4,10 @@ class_name Selector
 @export var options:Dictionary[int, Control]
 @export var enabled:bool = true
 @export var hold_cooldown:Vector2 = Vector2(0,0.5)
+@export var sounds:Dictionary[String, AudioStream]
+
 var selector_index:int
 var holding:bool
-
 signal option_selected(integer:int)
 signal option_highlighted(integer:int)
 
@@ -31,10 +32,16 @@ func process_selector(_delta:float):
 	var move:float = Input.get_axis("up", "down")
 	if move < -Global.Settings.deadzone:
 		selector_index = posmod(selector_index-1, options.size())
+		Maestro.sfx_player.stream = sounds["pip"]
+		Maestro.sfx_player.play()
 	elif move > Global.Settings.deadzone:
 		selector_index = posmod(selector_index+1, options.size())
+		Maestro.sfx_player.stream = sounds["pip"]
+		Maestro.sfx_player.play()
 	if Input.is_action_just_pressed("action"):
 		option_selected.emit(selector_index)
+		Maestro.sfx_player.stream = sounds["chk"]
+		Maestro.sfx_player.play()
 		
 	if hold_cooldown.x <= 0:
 		hold_cooldown.x = hold_cooldown.y/10 if holding else hold_cooldown.y

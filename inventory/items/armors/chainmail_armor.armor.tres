@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Armor" format=3 uid="uid://j0vymrw35nm2"]
+
+[ext_resource type="Resource" uid="uid://c27e5xvuurem7" path="res://rarities/rare.rarity.tres" id="1_8am5j"]
+[ext_resource type="Script" uid="uid://bqygamak54rkq" path="res://armor.gd" id="1_ije8g"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="2_l543l"]
+
+[sub_resource type="Resource" id="Resource_8am5j"]
+script = ExtResource("2_l543l")
+hp_max = 10
+woowoo = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[resource]
+script = ExtResource("1_ije8g")
+equippable = true
+equip_slot = 2
+stats = SubResource("Resource_8am5j")
+color = Color(0.21160662, 0.28446633, 0.27077088, 1)
+rarity = ExtResource("1_8am5j")
+metadata/_custom_type_script = "uid://bqygamak54rkq"

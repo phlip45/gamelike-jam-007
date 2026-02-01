@@ -3,19 +3,45 @@
 [ext_resource type="Script" uid="uid://bdp2tpouu72ud" path="res://actors/player_rogue.gd" id="1_g1dw6"]
 [ext_resource type="Resource" uid="uid://dv0ghhhyu2duh" path="res://inventory/items/weapons/unarmed.weapon.tres" id="2_qjkh3"]
 [ext_resource type="Resource" uid="uid://gm1pgv1dawcp" path="res://stats/player.stats.tres" id="2_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dxrj5potu1w8g" path="res://sound/sfx/ding.mp3" id="3_c35mf"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="3_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://df22druvunx2c" path="res://sound/sfx/drink.mp3" id="4_65viv"]
 [ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="4_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://1f5ml8j5x4jw" path="res://sound/sfx/hurt_0.mp3" id="5_8t03j"]
 [ext_resource type="Texture2D" uid="uid://chn8cxg37a2ry" path="res://resources/background.sprite_2d.tres" id="5_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://5jf3d2xh5u" path="res://sound/sfx/mmm.mp3" id="5_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://d3ewd6hpb2ueh" path="res://sound/sfx/hurt_1.mp3" id="6_2ieo8"]
+[ext_resource type="AudioStream" uid="uid://cefrfuss17mlu" path="res://sound/sfx/retch.mp3" id="6_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://bwayubxr5vp6v" path="res://sound/sfx/hurt_2.mp3" id="7_ebec5"]
+[ext_resource type="AudioStream" uid="uid://cu6luhphafvjk" path="res://sound/sfx/window_close.mp3" id="7_s7qer"]
+[ext_resource type="AudioStream" uid="uid://bh1fonh6ocj5w" path="res://sound/sfx/window_open.mp3" id="8_g4c7l"]
+[ext_resource type="AudioStream" uid="uid://cfmox0d71gkd1" path="res://sound/sfx/death_2.mp3" id="8_yllr7"]
+[ext_resource type="AudioStream" uid="uid://chhrwqj8y5e8i" path="res://sound/sfx/yuck.mp3" id="9_knn7v"]
+[ext_resource type="AudioStream" uid="uid://b177j6g7wj2l2" path="res://sound/sfx/chk.mp3" id="10_7pqkx"]
+[ext_resource type="Script" uid="uid://o174sjbefcd5" path="res://sound/actor_sound_player.gd" id="11_2ieo8"]
 
-[node name="Player" type="Area2D" unique_id=486927611 groups=["player"]]
+[node name="Player" type="Area2D" unique_id=486927611 node_paths=PackedStringArray("actor_sound_player") groups=["player"]]
 z_index = 1
 script = ExtResource("1_g1dw6")
 walk_cooldown = Vector2(0, 0.4)
 unarmed_weapon = ExtResource("2_qjkh3")
+sounds = Dictionary[String, AudioStream]({
+"chk": ExtResource("10_7pqkx"),
+"ding": ExtResource("3_c35mf"),
+"drink": ExtResource("4_65viv"),
+"mmm": ExtResource("5_x7c3f"),
+"retch": ExtResource("6_bjvpn"),
+"window_close": ExtResource("7_s7qer"),
+"window_open": ExtResource("8_g4c7l"),
+"yuck": ExtResource("9_knn7v")
+})
 actor_name = "Player"
 base_stats = ExtResource("2_yw30f")
 symbol_char = "@"
 projectile_data = ExtResource("4_g6k8r")
+hurt_sound = Array[AudioStream]([ExtResource("5_8t03j"), ExtResource("6_2ieo8"), ExtResource("7_ebec5")])
+death_sound = Array[AudioStream]([ExtResource("8_yllr7")])
+actor_sound_player = NodePath("AudioStreamPlayer2D")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546569276]
@@ -23,3 +49,11 @@ shape = ExtResource("3_qjkh3")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=459079505]
 texture = ExtResource("5_qjkh3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1660468321]
+current = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2082335266]
+max_polyphony = 12
+bus = &"SFX"
+script = ExtResource("11_2ieo8")

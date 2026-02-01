@@ -1,11 +1,9 @@
 [gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://c6ru305mj5a4q"]
 
-[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="1_ascjr"]
+[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="1_okli4"]
 [ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="2_yk6xf"]
 [ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="3_rlttt"]
-[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="4_nx03c"]
-[ext_resource type="Resource" uid="uid://crfht6j8g2gnk" path="res://inventory/items/rings/ring_of_vision.tres" id="5_ascjr"]
-[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="6_tuiu4"]
+[ext_resource type="Resource" uid="uid://b7oyibhfb3coi" path="res://inventory/pools/level_1.item_pool.tres" id="4_okli4"]
 [ext_resource type="Resource" uid="uid://cnow8dlf66d48" path="res://levels/level_1.src_options.tres" id="7_idxlg"]
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="8_acr3l"]
 
@@ -18,17 +16,12 @@ script = ExtResource("3_rlttt")
 feature = Array[ExtResource("2_yk6xf")]([SubResource("Resource_7ngmj")])
 metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
 
-[sub_resource type="Resource" id="Resource_q777q"]
-script = ExtResource("6_tuiu4")
-items = Array[ExtResource("4_nx03c")]([ExtResource("5_ascjr")])
-metadata/_custom_type_script = "uid://dee2rpwljmlar"
-
 [resource]
 script = ExtResource("8_acr3l")
 level_layout_options = ExtResource("7_idxlg")
 num_starting_enemies = 2
-num_starting_item = 50
-enemy_pool = ExtResource("1_ascjr")
-item_pool = SubResource("Resource_q777q")
+num_starting_item = 2
+enemy_pool = ExtResource("1_okli4")
+item_pool = ExtResource("4_okli4")
 feature_pool = SubResource("Resource_nivu8")
 metadata/_custom_type_script = "uid://xpe1aharownm"

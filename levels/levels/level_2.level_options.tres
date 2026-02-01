@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://xfy1ladki21f"]
+
+[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="1_yulf0"]
+[ext_resource type="Script" uid="uid://d0kp1kw1gmdbn" path="res://features/feature_data.gd" id="2_yfbgd"]
+[ext_resource type="Script" uid="uid://cb6qtuy5x3p5i" path="res://features/pools/feature_pool.gd" id="3_cj4cf"]
+[ext_resource type="Resource" uid="uid://coyuw3ef0r65b" path="res://inventory/pools/level_2.item_pool.tres" id="4_8fbh8"]
+[ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="8_dvcwx"]
+[ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="9_t084n"]
+
+[sub_resource type="Resource" id="Resource_7ngmj"]
+script = ExtResource("2_yfbgd")
+metadata/_custom_type_script = "uid://d0kp1kw1gmdbn"
+
+[sub_resource type="Resource" id="Resource_nivu8"]
+script = ExtResource("3_cj4cf")
+feature = Array[ExtResource("2_yfbgd")]([SubResource("Resource_7ngmj")])
+metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
+
+[sub_resource type="Resource" id="Resource_sw6qi"]
+script = ExtResource("8_dvcwx")
+room_width = Vector2i(3, 5)
+room_height = Vector2i(4, 7)
+metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
+
+[resource]
+script = ExtResource("9_t084n")
+level_layout_options = SubResource("Resource_sw6qi")
+enemy_pool = ExtResource("1_yulf0")
+item_pool = ExtResource("4_8fbh8")
+feature_pool = SubResource("Resource_nivu8")
+metadata/_custom_type_script = "uid://xpe1aharownm"

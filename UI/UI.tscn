@@ -4,7 +4,11 @@
 [ext_resource type="Script" uid="uid://b5hylbi272160" path="res://UI/combat_log.ui.gd" id="2_q0uhn"]
 [ext_resource type="Script" uid="uid://dnvue6wobhw4k" path="res://UI/inventory.ui.gd" id="3_hat8c"]
 [ext_resource type="Theme" uid="uid://qvfqj7buuvpx" path="res://UI/default_theme.tres" id="3_q0uhn"]
+[ext_resource type="AudioStream" uid="uid://coe5n13ctk1cj" path="res://sound/sfx/pip.mp3" id="4_4fiuh"]
 [ext_resource type="PackedScene" uid="uid://bnn0m1li4otoe" path="res://UI/item_rich_text.tscn" id="4_nm1m0"]
+[ext_resource type="AudioStream" uid="uid://b177j6g7wj2l2" path="res://sound/sfx/chk.mp3" id="5_h81ot"]
+[ext_resource type="AudioStream" uid="uid://cu6luhphafvjk" path="res://sound/sfx/window_close.mp3" id="6_6rr40"]
+[ext_resource type="AudioStream" uid="uid://bh1fonh6ocj5w" path="res://sound/sfx/window_open.mp3" id="7_0w6e5"]
 
 [sub_resource type="Shader" id="Shader_3sbvi"]
 code = "shader_type canvas_item;
@@ -226,6 +230,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("3_hat8c")
+sounds = Dictionary[String, AudioStream]({
+"chk": ExtResource("5_h81ot"),
+"pip": ExtResource("4_4fiuh"),
+"window_close": ExtResource("6_6rr40"),
+"window_open": ExtResource("7_0w6e5")
+})
 
 [node name="Left Panel" type="VBoxContainer" parent="UI/TopPanel/InventoryHolder/MarginContainer/Main View/Inventory" unique_id=674884592]
 layout_mode = 2

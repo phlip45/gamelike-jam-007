@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cxs34shna7h1s" path="res://assets/sprite_sheet.png" id="1_dr5hg"]
 [ext_resource type="Script" uid="uid://cti7bxecf52tp" path="res://UI/item_pop_up.ui.gd" id="1_tpver"]
+[ext_resource type="AudioStream" uid="uid://coe5n13ctk1cj" path="res://sound/sfx/pip.mp3" id="2_uh44n"]
+[ext_resource type="AudioStream" uid="uid://b177j6g7wj2l2" path="res://sound/sfx/chk.mp3" id="3_8k2fi"]
+[ext_resource type="AudioStream" uid="uid://cu6luhphafvjk" path="res://sound/sfx/window_close.mp3" id="4_py4fo"]
+[ext_resource type="AudioStream" uid="uid://bh1fonh6ocj5w" path="res://sound/sfx/window_open.mp3" id="5_5nwi6"]
 
 [node name="ItemPopUp" type="ColorRect" unique_id=1622580870]
 texture_filter = 1
@@ -17,6 +21,12 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_tpver")
 blinder_color = Color(0, 0, 0, 0.8901961)
 disabled_color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+sounds = Dictionary[String, AudioStream]({
+"chk": ExtResource("3_8k2fi"),
+"close": ExtResource("4_py4fo"),
+"open": ExtResource("5_5nwi6"),
+"pip": ExtResource("2_uh44n")
+})
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1874656859]
 layout_mode = 1

@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="ItemPool" format=3 uid="uid://c031n40wudghb"]
+
+[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="1_1ycrs"]
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="2_kxedm"]
+[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="3_1ycrs"]
+[ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="4_f3cfi"]
+[ext_resource type="Script" uid="uid://bqygamak54rkq" path="res://armor.gd" id="5_fy07d"]
+[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="6_54nr3"]
+[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="8_c34ta"]
+
+[sub_resource type="Resource" id="Resource_ogjre"]
+script = ExtResource("3_1ycrs")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 2.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_bkvu1"]
+script = ExtResource("1_1ycrs")
+name = "Javier Corpse"
+name_decoration_start = "[color=red]"
+name_decoration_end = "[/color]"
+description = "Don't you dare"
+symbol = "[b][tornado][pulse]_"
+color = Color(0.49734133, 0.070223115, 0.122815795, 1)
+type = 5
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_ogjre")
+rarity = ExtResource("2_kxedm")
+metadata/_custom_type_script = "uid://bc2apnqcxlusv"
+
+[sub_resource type="Resource" id="Resource_ccair"]
+script = ExtResource("6_54nr3")
+hp_max = -10
+stremf = 5
+woowoo = 5
+vision_radius = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_c34ta"]
+script = ExtResource("3_1ycrs")
+name = "Consume"
+trigger = 1
+effect_name = 3
+targeter_name = 2
+effect_modifier = 15.0
+metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
+
+[sub_resource type="Resource" id="Resource_ampii"]
+script = ExtResource("5_fy07d")
+equippable = true
+equip_slot = 2
+stats = SubResource("Resource_ccair")
+name = "Plexiglass Armor"
+name_decoration_start = "[color=#30acaa]"
+name_decoration_end = "[/color]"
+description = "[rainbow]Shiiiiny[/rainbow]"
+symbol = "["
+color = Color(0.18903938, 0.67299837, 0.6677959, 1)
+type = 2
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_c34ta")
+rarity = ExtResource("4_f3cfi")
+metadata/_custom_type_script = "uid://bqygamak54rkq"
+
+[sub_resource type="Resource" id="Resource_bsbmh"]
+script = ExtResource("5_fy07d")
+equippable = true
+equip_slot = 2
+stats = SubResource("Resource_ccair")
+name = "Plexiglass Armor"
+name_decoration_start = "[color=#30acaa]"
+name_decoration_end = "[/color]"
+description = "[rainbow]Shiiiiny[/rainbow]"
+symbol = "["
+color = Color(0.18903938, 0.67299837, 0.6677959, 1)
+type = 2
+usable = true
+use_verb = "Eat"
+use_action = SubResource("Resource_c34ta")
+rarity = ExtResource("4_f3cfi")
+metadata/_custom_type_script = "uid://bqygamak54rkq"
+
+[resource]
+script = ExtResource("8_c34ta")
+items = Array[ExtResource("1_1ycrs")]([SubResource("Resource_bsbmh")])
+drop_weights = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
+use_guaranteed_drops = true
+guaranteed_drops = Array[ExtResource("1_1ycrs")]([SubResource("Resource_bkvu1"), SubResource("Resource_ampii")])
+metadata/_custom_type_script = "uid://dee2rpwljmlar"

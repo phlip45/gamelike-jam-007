@@ -9,6 +9,8 @@ const SYMBOL = preload("uid://tmy3jabrxygd")
 @export var func_name:Effect.Func
 @export var trigger:Trigger
 @export var blocks_movement:bool = false
+@export var show_when_not_visible:bool
+@export var hidden_color:Color
 var symbol:RichTextLabel
 var level:Level
 var tween:Tween

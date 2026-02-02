@@ -85,14 +85,14 @@ rarity = ExtResource("13_1443h")
 death_drops = ExtResource("6_klvkp")
 metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
 
-[sub_resource type="Resource" id="Resource_2pqss"]
+[sub_resource type="Resource" id="Resource_xrgbf"]
 resource_local_to_scene = true
 script = ExtResource("4_no3g2")
 hp = 40
 hp_max = 40
 hunger_max = 15
 stremf = 7
-woowoo = 5
+woowoo = -15000
 whoosh = 2
 vision_radius = 6
 metadata/_custom_type_script = "uid://s27656rvpvo7"
@@ -122,10 +122,10 @@ metadata/_custom_type_script = "uid://bc2apnqcxlusv"
 
 [sub_resource type="Resource" id="Resource_mn4ln"]
 script = ExtResource("23_44ty7")
-items = Array[ExtResource("15_2hrys")]([ExtResource("18_tsnxc"), ExtResource("19_fj8fv"), ExtResource("20_514oi"), ExtResource("21_fcf5i"), ExtResource("22_qiqat")])
+items = Array[ExtResource("15_2hrys")]([ExtResource("18_tsnxc"), ExtResource("19_fj8fv"), ExtResource("20_514oi"), ExtResource("22_qiqat")])
 drop_weights = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
 use_guaranteed_drops = true
-guaranteed_drops = Array[ExtResource("15_2hrys")]([SubResource("Resource_w2n23")])
+guaranteed_drops = Array[ExtResource("15_2hrys")]([SubResource("Resource_w2n23"), ExtResource("21_fcf5i")])
 metadata/_custom_type_script = "uid://dee2rpwljmlar"
 
 [sub_resource type="Resource" id="Resource_vu6oa"]
@@ -133,7 +133,7 @@ script = ExtResource("1_3h1wr")
 actor_name = "Lyz"
 description = "The boss of the jam"
 brain_script = ExtResource("12_outa8")
-base_stats = SubResource("Resource_2pqss")
+base_stats = SubResource("Resource_xrgbf")
 symbol_char = "L"
 color = Color(0.6773301, 0.5900651, 0.9913086, 1)
 attack_action = ExtResource("11_midfo")

@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://br0pkukqsr0q" path="res://inventory/weapon.gd" id="2_sp8wg"]
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_irsmb"]
 
-[sub_resource type="Resource" id="Resource_cd5q8"]
+[sub_resource type="Resource" id="Resource_sp8wg"]
 script = ExtResource("3_irsmb")
-stremf = 3
+stremf = 6
 vision_radius = 1
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
@@ -17,7 +17,7 @@ script = ExtResource("2_sp8wg")
 attack_action = ExtResource("1_cd5q8")
 equippable = true
 equip_slot = 3
-stats = SubResource("Resource_cd5q8")
+stats = SubResource("Resource_sp8wg")
 name = "Lýz's Hammer"
 name_decoration_start = "[color=#aa7ff2]"
 name_decoration_end = "[/color]"

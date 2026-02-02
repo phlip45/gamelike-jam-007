@@ -22,7 +22,7 @@ var hunger_words:Dictionary[float,String] = {
 	.5: "[color=white]Content",
 	.25: "[color=orange]Peckish",
 	0.0001: "[color=red]Starving",
-	0: "[color=#222]Dead",
+	0: "[color=#222]Dying",
 }
 
 signal inventory_closed
@@ -112,4 +112,4 @@ func get_hunger_text() -> String:
 	for key in hunger_words.keys():
 		if hungriness >= key:
 			return hunger_words[key]
-	return "[color=#222]Dead"
+	return "[color=#222]Dying"

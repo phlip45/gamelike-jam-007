@@ -52,7 +52,6 @@ func take_turn() -> int:
 	time_til_heal.x -= time_taken
 	time_taken -= stats.whoosh
 	time_taken = max(0, time_taken)
-	hunger(2)
 	return time_taken
 
 func premove(delta:float):
@@ -91,6 +90,10 @@ func premove(delta:float):
 		walk_cooldown.x = walk_cooldown.y
 		return
 	elif Input.is_action_just_pressed("action"):
+		if get_items_at_coord(coord).size() > 0:
+			pickup_items()
+			walk_cooldown.x = walk_cooldown.y
+			return
 		if ground_features.size() > 0:
 			for feature in ground_features:
 				if feature.trigger == Feature.Trigger.USE:
@@ -103,10 +106,6 @@ func premove(delta:float):
 					
 	elif Input.is_action_just_pressed("pause"):
 		pause()
-		walk_cooldown.x = walk_cooldown.y
-		return
-	elif Input.is_action_just_pressed("pickup"):
-		pickup_items()
 		walk_cooldown.x = walk_cooldown.y
 		return
 	else:  # for example if a mouse is clicked or something.
@@ -225,12 +224,17 @@ func drop_item(item:Item):
 	Global.set_ground_items(get_ground_items())
 
 func regenerate():
-	heal(ceil(stats.hp_max/10.0))
+	@warning_ignore("integer_division")
+	var heal_amount:int = ceil(float(stats.hp_max) * 0.1 * (stats.hunger/(stats.hunger_max - 200.0)) )
+	heal_amount = max(heal_amount,1) if stats.hunger > 0 else 0
+	heal(heal_amount)
+	hunger(10)
 
 func hunger(amount:int = 1):
 	stats.hunger -= amount
-	if stats.hunger == 0:
-		die.call_deferred()
+	stats.hunger = max(stats.hunger,0)
+	if stats.hunger <= 0:
+		take_damage(1)
 
 func eat(amount:int = 0):
 	stats.hunger += amount

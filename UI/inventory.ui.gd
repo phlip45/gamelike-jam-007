@@ -84,6 +84,7 @@ func select(item:Item):
 			state = State.SELECTING
 		PopUpItemUI.Option.CANCEL:
 			state = State.SELECTING
+	_populate()
 
 func move_selector(move:Vector2):
 	var item_count:int = inventory.items.size()
@@ -137,6 +138,8 @@ func _populate():
 			rich_text.text += "[E]" if item.equipped else ""
 		rich_text.text += item.name
 		rich_text.text += item.name_decoration_end
+		if item.stackable and item.quantity > 1:
+			rich_text.text += " x %s" % item.quantity
 		item_labels.set(item, rich_text)
 	
 	for i in items_per_panel:

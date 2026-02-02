@@ -1,100 +1,12 @@
 [gd_resource type="Resource" script_class="DungeonPlaylist" format=3 uid="uid://cqvmd2dx7655f"]
 
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="1_csllp"]
-[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="2_ds4x5"]
-[ext_resource type="Resource" uid="uid://p4tncs0q1flj" path="res://features/pools/test.feature_pools.tres" id="3_aifmx"]
-[ext_resource type="Resource" uid="uid://wwg3vb8ivvpl" path="res://actions/actions/heal.action.tres" id="3_nkkxa"]
-[ext_resource type="Resource" uid="uid://uswwnoytfpak" path="res://inventory/pools/test.item_pool.tres" id="4_1mamh"]
-[ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="4_5qgqo"]
-[ext_resource type="Script" uid="uid://canvwpxplyqil" path="res://forest_options.level_layout.gd" id="5_c8io8"]
-[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="5_wsikl"]
+[ext_resource type="Resource" uid="uid://byo0l1rc6me1y" path="res://levels/levels/level_7.level_options.tres" id="2_sg6wl"]
 [ext_resource type="Script" uid="uid://cncbrwer1ceyl" path="res://dungeon_playlist.gd" id="6_nhdkq"]
-[ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="6_pfvcd"]
-[ext_resource type="Resource" uid="uid://bn1ile0a0ejqg" path="res://rarities/trash.rarity.tres" id="7_28j7f"]
-[ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="8_66xnm"]
-[ext_resource type="Resource" uid="uid://cybxdhurelthi" path="res://inventory/items/food.item.tres" id="9_vlmdw"]
-[ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="10_3tjpj"]
-[ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="11_8qcii"]
-[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="12_diym6"]
-[ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="13_8nrs5"]
-
-[sub_resource type="Resource" id="Resource_gg5dh"]
-script = ExtResource("4_5qgqo")
-hp = 1
-hp_max = 1
-hunger_max = 1
-stremf = 1
-woowoo = 1
-whoosh = 1
-vision_radius = 15
-metadata/_custom_type_script = "uid://s27656rvpvo7"
-
-[sub_resource type="Resource" id="Resource_1ti4x"]
-script = ExtResource("8_66xnm")
-name = "Consume"
-trigger = 1
-effect_name = 3
-targeter_name = 2
-effect_modifier = -100.0
-metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
-
-[sub_resource type="Resource" id="Resource_arssj"]
-script = ExtResource("6_pfvcd")
-name = "Corpse"
-description = "The corpse of a slain foe. Why would you pick this up? You monster."
-symbol = "_"
-color = Color(0.39251244, 0.3923686, 0.3572463, 1)
-type = 5
-stackable = true
-usable = true
-use_verb = "Eat"
-use_action = SubResource("Resource_1ti4x")
-rarity = ExtResource("7_28j7f")
-metadata/_custom_type_script = "uid://bc2apnqcxlusv"
-
-[sub_resource type="Resource" id="Resource_8u05s"]
-script = ExtResource("11_8qcii")
-items = Array[ExtResource("6_pfvcd")]([SubResource("Resource_arssj"), ExtResource("9_vlmdw"), ExtResource("10_3tjpj")])
-drop_weights = Array[float]([1.0, 1.0, 1.0, 1.0])
-metadata/_custom_type_script = "uid://dee2rpwljmlar"
-
-[sub_resource type="Resource" id="Resource_28xgg"]
-script = ExtResource("2_ds4x5")
-actor_name = "Goblin Child"
-description = "Will eventually grow up to avenge their slain family members."
-brain_script = ExtResource("5_wsikl")
-base_stats = SubResource("Resource_gg5dh")
-symbol_char = "c"
-color = Color(2.117753e-06, 0.8444656, 0.99924046, 1)
-attack_action = ExtResource("3_nkkxa")
-projectile_data = ExtResource("12_diym6")
-rarity = ExtResource("7_28j7f")
-death_drops = SubResource("Resource_8u05s")
-metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
-
-[sub_resource type="Resource" id="Resource_ni84f"]
-script = ExtResource("13_8nrs5")
-enemies = Array[ExtResource("2_ds4x5")]([SubResource("Resource_28xgg")])
-metadata/_custom_type_script = "uid://bpsvcxcnc70ri"
-
-[sub_resource type="Resource" id="Resource_tkjml"]
-script = ExtResource("5_c8io8")
-rng_seed = null
-metadata/_custom_type_script = "uid://canvwpxplyqil"
-
-[sub_resource type="Resource" id="Resource_5hkx1"]
-script = ExtResource("1_csllp")
-level_layout_type = 2
-level_layout_options = SubResource("Resource_tkjml")
-num_starting_enemies = 100
-enemy_pool = SubResource("Resource_ni84f")
-item_pool = ExtResource("4_1mamh")
-feature_pool = ExtResource("3_aifmx")
-metadata/_custom_type_script = "uid://xpe1aharownm"
 
 [resource]
 script = ExtResource("6_nhdkq")
 level_options_lookup = Dictionary[int, ExtResource("1_csllp")]({
-1: SubResource("Resource_5hkx1")
+1: ExtResource("2_sg6wl")
 })
 metadata/_custom_type_script = "uid://cncbrwer1ceyl"

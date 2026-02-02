@@ -16,6 +16,9 @@ equippable = true
 equip_slot = 2
 stats = SubResource("Resource_ctdan")
 name = "Leather Armor"
+name_decoration_start = "[color=#4f422c]"
+name_decoration_end = "[/color]"
+description = "At least you hope its armor."
 symbol = "["
 color = Color(0.30992877, 0.25907442, 0.17137274, 1)
 rarity = ExtResource("1_0kbk7")

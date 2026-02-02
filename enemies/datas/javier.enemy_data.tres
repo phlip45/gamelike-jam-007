@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://dlf1tb2h7lk4e"]
+
+[ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="1_rrgja"]
+[ext_resource type="Script" uid="uid://cvo0q8fn2mgm3" path="res://enemies/enemy_data.gd" id="1_xlc5x"]
+[ext_resource type="Resource" uid="uid://0cbd57rovsi0" path="res://stats/javier.stats.tres" id="2_4cesa"]
+[ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="3_qc4bc"]
+[ext_resource type="Resource" uid="uid://c031n40wudghb" path="res://inventory/pools/javier.item_pool.tres" id="4_1mr3n"]
+[ext_resource type="Resource" uid="uid://bhkbtq6w5wcuc" path="res://resources/projectiles/arrow.projectile_data.tres" id="5_ftksm"]
+[ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="6_6axf7"]
+
+[resource]
+script = ExtResource("1_xlc5x")
+actor_name = "Javier"
+description = "Look at this cool guy. He's gonna get you!"
+brain_script = ExtResource("3_qc4bc")
+base_stats = ExtResource("2_4cesa")
+symbol_char = "J"
+color = Color(0.12, 0.12, 0.12, 1)
+attack_action = ExtResource("1_rrgja")
+projectile_data = ExtResource("5_ftksm")
+rarity = ExtResource("6_6axf7")
+death_drops = ExtResource("4_1mr3n")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"

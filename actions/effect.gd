@@ -94,7 +94,7 @@ static func ranged_attack() -> Effect:
 		var hits:Dictionary[Actor,int]
 		for target:Actor in targets:
 			var projectile = Projectile.create(source.projectile_data)
-			source.add_child(projectile)
+			source.get_tree().current_scene.add_child(projectile)
 			projectile.fire_projectile(source.coord, target.coord)
 			await projectile.finished
 			var damage:int = max(source.stats.whoosh - target.stats.woowoo,1)

@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://cb6qtuy5x3p5i"
 
 [resource]
 script = ExtResource("8_acr3l")
+level_seed = 1968100431
 level_layout_options = ExtResource("7_idxlg")
 num_starting_enemies = 2
 num_starting_item = 2

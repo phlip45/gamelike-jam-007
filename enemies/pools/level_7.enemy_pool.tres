@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://x437camlyb3c" path="res://actions/actions/ranged_attack.action.tres" id="11_midfo"]
 [ext_resource type="Script" uid="uid://d4h1lwfq84eeg" path="res://enemies/brains/ranged.brain.gd" id="12_outa8"]
 [ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="13_1443h"]
-[ext_resource type="Resource" uid="uid://d3ya786xjd3b3" path="res://enemies/datas/troll.enemy.tres" id="14_1yteg"]
+[ext_resource type="Resource" uid="uid://c4no86vfu756l" path="res://inventory/pools/troll_loot.item_pool.tres" id="14_3h1wr"]
 [ext_resource type="Script" uid="uid://bc2apnqcxlusv" path="res://inventory/item.gd" id="15_2hrys"]
 [ext_resource type="Resource" uid="uid://jc3x8sy1oe78" path="res://rarities/godly.rarity.tres" id="16_jdbsk"]
 [ext_resource type="Script" uid="uid://ci6xc6hc3gcjn" path="res://actions/actions.gd" id="17_thjgw"]
@@ -85,6 +85,32 @@ rarity = ExtResource("13_1443h")
 death_drops = ExtResource("6_klvkp")
 metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
 
+[sub_resource type="Resource" id="Resource_2pqss"]
+resource_local_to_scene = true
+script = ExtResource("4_no3g2")
+hp = 40
+hp_max = 40
+hunger_max = 15
+stremf = 7
+woowoo = 5
+whoosh = 2
+vision_radius = 6
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_no3g2"]
+script = ExtResource("1_3h1wr")
+actor_name = "Troll"
+description = "Big ole doods"
+brain_script = ExtResource("5_fq1jw")
+base_stats = SubResource("Resource_2pqss")
+symbol_char = "T"
+color = Color(0.36874348, 0.7634729, 0.43483683, 1)
+attack_action = ExtResource("3_xrgbf")
+projectile_data = ExtResource("7_wfkv0")
+rarity = ExtResource("24_mchcy")
+death_drops = ExtResource("14_3h1wr")
+metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
+
 [sub_resource type="Resource" id="Resource_xrgbf"]
 resource_local_to_scene = true
 script = ExtResource("4_no3g2")
@@ -144,7 +170,7 @@ metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
 
 [resource]
 script = ExtResource("25_cmgw1")
-enemies = Array[ExtResource("1_3h1wr")]([ExtResource("2_w2n23"), SubResource("Resource_f6dyt"), ExtResource("9_861kp"), ExtResource("10_cu8a8"), SubResource("Resource_ocpgn"), ExtResource("14_1yteg")])
+enemies = Array[ExtResource("1_3h1wr")]([ExtResource("2_w2n23"), SubResource("Resource_f6dyt"), ExtResource("9_861kp"), ExtResource("10_cu8a8"), SubResource("Resource_ocpgn"), SubResource("Resource_no3g2")])
 use_guaranteed_spawns = true
 guaranteed_spawns = Array[ExtResource("1_3h1wr")]([SubResource("Resource_vu6oa")])
 metadata/_custom_type_script = "uid://bpsvcxcnc70ri"

@@ -36,7 +36,6 @@ func activate(source:Actor):
 			var targets:Array[Variant] = targeter.get_targets.callv([source])
 			var effect:Effect = Effect.func_to_callable[effect_name]
 			effect.activate.callv([source, targets, effect_modifier])
-			pass
 		Trigger.START_TURN:
 			pass
 		Trigger.END_TURN:

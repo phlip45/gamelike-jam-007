@@ -270,10 +270,6 @@ func triangulate() -> Array[Triangle]:
 		for bad_tirangle:Triangle in bad_triangles:
 			triangulation.erase(bad_tirangle)
 		
-		#I think at this point there is only the triangulation and the super
-		#rectangle, so this would be the best place to make adjacancies?
-		
-		
 		_make_outer_polygon(bad_triangles, polygon)
 		for edge:Edge in polygon:
 			triangulation.append(Triangle.new(point, edge.a, edge.b))

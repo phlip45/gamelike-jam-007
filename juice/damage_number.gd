@@ -6,6 +6,7 @@ var life:float = 2
 var working_position:Vector2
 
 static func create(_amount, coord:Vector2i, color:Color = Color.RED) -> void:
+	BloodSplatter.create(_amount,coord,color)
 	var dam_num:DamageNumber = load("res://juice/damage_number.tscn").instantiate()
 	dam_num.fit_content = true
 	dam_num.text = str(_amount)

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://d0hke728vwbti"]
+
+[ext_resource type="Script" uid="uid://kck2bwnolb7e" path="res://blood_splatter.gd" id="1_xenmx"]
+
+[sub_resource type="Gradient" id="Gradient_ay4ps"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ns081"]
+gradient = SubResource("Gradient_ay4ps")
+width = 22
+height = 22
+fill = 1
+fill_from = Vector2(0.49358973, 0.5448718)
+fill_to = Vector2(0.50213677, 0.8311966)
+
+[sub_resource type="Gradient" id="Gradient_kq8ol"]
+colors = PackedColorArray(1, 1, 1, 1, 0.34781694, 0.34781697, 0.3478169, 1)
+
+[node name="Node2D" type="CPUParticles2D" unique_id=1721142045]
+texture_filter = 1
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_ns081")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.96
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 13.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 600.0
+damping_min = 600.0
+damping_max = 600.0
+scale_amount_min = 0.2
+color_ramp = SubResource("Gradient_kq8ol")
+script = ExtResource("1_xenmx")

@@ -27,6 +27,7 @@ enum State{
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().keep_title_visible =false
 	title_index = randi_range(0,titles.size()-1)
 	titles[title_index].visible = true
 
@@ -34,6 +35,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("click"):
+		get_window().keep_title_visible = !titles[title_index].visible
+		
 	time_bucket += delta
 	cooldown.x -= delta
 	if cooldown.x < 0:

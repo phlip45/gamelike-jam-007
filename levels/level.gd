@@ -98,6 +98,7 @@ func generate_level(seeded:bool = false):
 	#opts.num_rooms = Vector2i(3,40)
 	#opts.room_height = Vector2i(2,20)
 	#opts.room_width = Vector2i(2,8)
+	
 	layout = opts.generate()
 	pathfinder = Pathfinder.new()
 	pathfinder.initialize(layout)

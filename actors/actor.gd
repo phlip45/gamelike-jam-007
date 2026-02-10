@@ -55,6 +55,7 @@ func teleport(_coord:Vector2i, animate:bool = true):
 	symbol.global_position = prior_symbol_pos 
 	tween = create_tween()
 	tween.tween_property(symbol,"global_position", global_position + symbol.offset, .2)
+	tween.tween_property(symbol,"position", Vector2.ZERO + symbol.offset,0)
 
 func check_visibility():
 	if !level.layout.tiles.has(coord): return

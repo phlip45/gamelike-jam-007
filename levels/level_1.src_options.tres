@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_8g6tw")
-num_rooms = Vector2i(3, 3)
+num_rooms = Vector2i(3, 4)
 room_width = Vector2i(2, 7)
 metadata/_custom_type_script = "uid://ctkw5v52m1l0f"

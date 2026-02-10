@@ -24,7 +24,9 @@
 [ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="22_qiqat"]
 [ext_resource type="Script" uid="uid://dee2rpwljmlar" path="res://inventory/pools/item_pool.gd" id="23_44ty7"]
 [ext_resource type="Resource" uid="uid://ba4gn4pt43kb8" path="res://rarities/legendary.rarity.tres" id="24_mchcy"]
+[ext_resource type="Resource" uid="uid://bsua5f0uxasom" path="res://inventory/items/armors/glass_armor.armor.tres" id="24_xrgbf"]
 [ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="25_cmgw1"]
+[ext_resource type="Script" uid="uid://b70i6jpclmq8y" path="res://inventory/ring.gd" id="25_no3g2"]
 
 [sub_resource type="Resource" id="Resource_0bx2i"]
 resource_local_to_scene = true
@@ -114,16 +116,16 @@ metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
 [sub_resource type="Resource" id="Resource_xrgbf"]
 resource_local_to_scene = true
 script = ExtResource("4_no3g2")
-hp = 40
-hp_max = 40
+hp = 100
+hp_max = 100
 hunger_max = 15
 stremf = 7
-woowoo = -15000
+woowoo = -15
 whoosh = 2
 vision_radius = 6
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
-[sub_resource type="Resource" id="Resource_3h1wr"]
+[sub_resource type="Resource" id="Resource_wfkv0"]
 script = ExtResource("17_thjgw")
 name = "Consume"
 trigger = 1
@@ -132,7 +134,7 @@ targeter_name = 2
 effect_modifier = -1000.0
 metadata/_custom_type_script = "uid://ci6xc6hc3gcjn"
 
-[sub_resource type="Resource" id="Resource_w2n23"]
+[sub_resource type="Resource" id="Resource_b7d1l"]
 script = ExtResource("15_2hrys")
 name = "Lyz Corpse"
 description = "Don't you dare"
@@ -142,22 +144,42 @@ type = 5
 stackable = true
 usable = true
 use_verb = "Eat"
-use_action = SubResource("Resource_3h1wr")
+use_action = SubResource("Resource_wfkv0")
 rarity = ExtResource("16_jdbsk")
 metadata/_custom_type_script = "uid://bc2apnqcxlusv"
 
-[sub_resource type="Resource" id="Resource_mn4ln"]
+[sub_resource type="Resource" id="Resource_au1ub"]
+script = ExtResource("4_no3g2")
+vision_radius = 2
+metadata/_custom_type_script = "uid://s27656rvpvo7"
+
+[sub_resource type="Resource" id="Resource_fq1jw"]
+script = ExtResource("25_no3g2")
+equippable = true
+equip_slot = 1
+stats = SubResource("Resource_au1ub")
+name = "All-seeing Ring"
+name_decoration_start = "[rainbow][shake]"
+name_decoration_end = "[/shake][/rainbow]"
+description = "Gelatinous and moist, you can feel your hayfever acting up."
+symbol = "[rainbow]=[/rainbow]"
+color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+type = 3
+rarity = ExtResource("24_mchcy")
+metadata/_custom_type_script = "uid://b70i6jpclmq8y"
+
+[sub_resource type="Resource" id="Resource_klvkp"]
 script = ExtResource("23_44ty7")
-items = Array[ExtResource("15_2hrys")]([ExtResource("18_tsnxc"), ExtResource("19_fj8fv"), ExtResource("20_514oi"), ExtResource("22_qiqat")])
+items = Array[ExtResource("15_2hrys")]([ExtResource("18_tsnxc"), ExtResource("19_fj8fv"), ExtResource("20_514oi"), ExtResource("22_qiqat"), ExtResource("24_xrgbf"), SubResource("Resource_fq1jw")])
 drop_weights = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5])
 use_guaranteed_drops = true
-guaranteed_drops = Array[ExtResource("15_2hrys")]([SubResource("Resource_w2n23"), ExtResource("21_fcf5i")])
+guaranteed_drops = Array[ExtResource("15_2hrys")]([SubResource("Resource_b7d1l"), ExtResource("21_fcf5i")])
 metadata/_custom_type_script = "uid://dee2rpwljmlar"
 
 [sub_resource type="Resource" id="Resource_vu6oa"]
 script = ExtResource("1_3h1wr")
-actor_name = "Lyz"
-description = "The boss of the jam"
+actor_name = "Lýz"
+description = "The boss of the jam."
 brain_script = ExtResource("12_outa8")
 base_stats = SubResource("Resource_xrgbf")
 symbol_char = "L"
@@ -165,7 +187,7 @@ color = Color(0.6773301, 0.5900651, 0.9913086, 1)
 attack_action = ExtResource("11_midfo")
 projectile_data = ExtResource("7_wfkv0")
 rarity = ExtResource("24_mchcy")
-death_drops = SubResource("Resource_mn4ln")
+death_drops = SubResource("Resource_klvkp")
 metadata/_custom_type_script = "uid://cvo0q8fn2mgm3"
 
 [resource]

@@ -238,6 +238,7 @@ func hunger(amount:int = 1):
 
 func eat(amount:int = 0):
 	stats.hunger += amount
+	stats.hunger = clamp(stats.hunger,0,stats.hunger_max)
 
 func die():
 	state = State.DEAD

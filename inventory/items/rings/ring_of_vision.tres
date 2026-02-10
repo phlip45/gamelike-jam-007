@@ -17,8 +17,8 @@ stats = SubResource("Resource_au1ub")
 name = "All-seeing Ring"
 name_decoration_start = "[rainbow]"
 name_decoration_end = "[/rainbow]"
-description = "Hehehe... Woowoo..."
-symbol = "="
+description = "Gelatinous and moist, you can feel your hayfever acting up."
+symbol = "[rainbow]=[/rainbow]"
 color = Color(0.26666668, 0.26666668, 0.26666668, 1)
 type = 3
 rarity = ExtResource("1_jc6bv")

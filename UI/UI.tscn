@@ -386,13 +386,6 @@ bbcode_enabled = true
 text = "Whoosh:"
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="." unique_id=1000436522]
-offset_left = 1140.0
-offset_top = 682.0
-offset_right = 1270.0
-offset_bottom = 711.0
-text = "Debug Button"
-
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=482560804]
 material = SubResource("ShaderMaterial_nm1m0")
 anchors_preset = 15
@@ -412,5 +405,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

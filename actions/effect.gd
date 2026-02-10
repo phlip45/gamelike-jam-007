@@ -97,6 +97,7 @@ static func ranged_attack() -> Effect:
 			source.get_tree().current_scene.add_child(projectile)
 			projectile.fire_projectile(source.coord, target.coord)
 			await projectile.finished
+			if !source: return null
 			var damage:int = max(source.stats.whoosh - target.stats.woowoo,1)
 			target.take_damage(damage)
 			hits.set(target, damage)

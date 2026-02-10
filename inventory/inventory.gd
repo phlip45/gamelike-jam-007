@@ -27,6 +27,8 @@ func get_weapons() -> Array[Item]:
 func unequip(item:Item):
 	if item == weapon_slot:
 		weapon_slot = null
+	if item is Ring:
+		ring_slots.erase(item)
 	item.equipped = false
 	equipped_items.erase(item)
 	equipment_changed.emit()
@@ -66,9 +68,10 @@ func equip(item:Item):
 		if ring_slots.has(item):
 			unequip(item)
 			ring_slots.erase(item)
+			ring_index = 0
 		elif ring_slots.size() >= max_rings:
 			unequip(ring_slots[ring_index])
-			ring_index += 1
+			ring_index = posmod(ring_index + 1, max_rings)
 			item.equipped = true
 			equipped_items.append(item)
 			ring_slots.append(item)
@@ -76,6 +79,9 @@ func equip(item:Item):
 			item.equipped = true
 			equipped_items.append(item)
 			ring_slots.append(item)
+	if ring_slots.size() > max_rings:
+		for i in ring_slots.size() - max_rings:
+			unequip(ring_slots[max_rings-i-1])
 	sort()
 	equipment_changed.emit()
 

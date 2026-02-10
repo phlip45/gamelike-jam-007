@@ -88,10 +88,6 @@ func open_inventory(_inventory:Inventory):
 	await inventory_ui.closed
 	inventory_closed.emit()
 
-func _on_button_pressed() -> void:
-	if inventory_ui.inventory.items.size() == 0: return
-	inventory_ui.inventory.remove(inventory_ui.inventory.items.pick_random())
-
 func set_ground_items(items:Array[Item]) -> void:
 	if items.size() == 0:
 		ground_log.text = ""

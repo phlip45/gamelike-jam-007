@@ -9,6 +9,7 @@ var current_level:Level
 var player:Player
 
 func _ready() -> void:
+	
 	if _seed == 0:
 		_seed = randi()
 	player = load("res://player/player.tscn").instantiate()

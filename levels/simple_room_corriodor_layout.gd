@@ -7,9 +7,6 @@ var options:SimpleRoomCorridorOptions
 var triangulator:Delaunay
 
 static func generate(opts:SimpleRoomCorridorOptions = null) -> LevelLayout:
-	#if !opts:
-		#print("Running with no ops")
-		#opts = SimpleRoomCorridorOptions.new()
 	var layout:LevelLayout = SimpleRoomCorridorLayout.new()
 	if !opts:
 		layout.options = SimpleRoomCorridorOptions.new()
@@ -62,10 +59,12 @@ func make_corridors():
 		center_to_room.set(center, room)
 		triangulator.add_point(center)
 	var triangles:Array[Delaunay.Triangle] = triangulator.triangulate()
-	triangulator.remove_border_triangles(triangles)
+	#triangulator.remove_border_triangles(triangles)
 	var core_corridors:Array[Delaunay.Edge] = Prim.get_mst_from_triangulation(triangles)
 	
 	for edge:Delaunay.Edge in core_corridors:
+		if !center_to_room.has(edge.a):continue
+		if !center_to_room.has(edge.b):continue
 		var room_a:Room = center_to_room[edge.a]
 		var room_b:Room = center_to_room[edge.b]
 		var corridor = make_corridor(room_a,room_b)

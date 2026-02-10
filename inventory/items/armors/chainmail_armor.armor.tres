@@ -15,6 +15,12 @@ script = ExtResource("1_ije8g")
 equippable = true
 equip_slot = 2
 stats = SubResource("Resource_8am5j")
-color = Color(0.21160662, 0.28446633, 0.27077088, 1)
+name = "Chainmail"
+name_decoration_start = "[color=#96b4ad]"
+name_decoration_end = "[/color]"
+description = "[b]Re:Re:Re:Fwd:Re: You won't believe![/b]
+Send this armor to 6 of your closest friends or be cursed to a lonely night."
+symbol = "["
+color = Color(0.5878242, 0.70464826, 0.6790441, 1)
 rarity = ExtResource("1_8am5j")
 metadata/_custom_type_script = "uid://bqygamak54rkq"

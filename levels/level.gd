@@ -31,6 +31,11 @@ static func create(_options:LevelOptions = null) -> Level:
 	return level
 
 func _ready() -> void:
+	if !OS.is_debug_build():
+		Global.Settings.debug = false
+	if Global.Settings.debug:
+		player.stats.hp = 20000
+		player.stats.hp_max = 20000
 	enemy_pool = options.enemy_pool
 	item_pool = options.item_pool
 	feature_pool = options.feature_pool
@@ -107,6 +112,7 @@ func generate_level(seeded:bool = false):
 	for tile:Tile in layout.tiles.values():
 		if tile.type == Tile.Type.FLOOR:
 			tile.tile_map_atlas_coord = get_random_floor_tile_symbol()
+			
 			tilemap.set_cell(
 				tile.coord,
 			 	0 if tile.visible else 1 if tile.discovered else 2, 
@@ -119,6 +125,12 @@ func generate_level(seeded:bool = false):
 				0 if tile.visible else 1 if tile.discovered else 2, 
 				tile.tile_map_atlas_coord
 			)
+		if Global.Settings.debug:
+			tilemap.set_cell(
+				tile.coord,
+			 	0 if tile.visible else 0 if tile.discovered else 0, 
+				tile.tile_map_atlas_coord
+			)
 
 func update_tilemap(tiles_changed:Dictionary[Vector2i,Tile]):
 	for tile:Tile in tiles_changed.values():
@@ -127,6 +139,12 @@ func update_tilemap(tiles_changed:Dictionary[Vector2i,Tile]):
 			0 if tile.visible else 1 if tile.discovered else 3 if tile.type == Tile.Type.DEBUG else 2, 
 			tile.tile_map_atlas_coord
 		)
+		if Global.Settings.debug:
+			tilemap.set_cell(
+				tile.coord,
+			 	0 if tile.visible else 0 if tile.discovered else 0, 
+				tile.tile_map_atlas_coord
+			)
 
 func update_from_players_vision(_unused:int = -1):
 	layout.compute_fov(player.coord, player.stats.vision_radius)

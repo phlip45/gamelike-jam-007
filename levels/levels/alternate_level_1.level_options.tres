@@ -3,13 +3,15 @@
 [ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="1_7x3t4"]
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="1_pl8kd"]
 [ext_resource type="Resource" uid="uid://p4tncs0q1flj" path="res://features/pools/test.feature_pools.tres" id="2_01eqf"]
-[ext_resource type="Resource" uid="uid://uswwnoytfpak" path="res://inventory/pools/test.item_pool.tres" id="3_1kxb1"]
+[ext_resource type="Resource" uid="uid://ca5kxgtxcjtys" path="res://inventory/pools/level_7.item_pool.tres" id="3_7x3t4"]
 [ext_resource type="Resource" uid="uid://cnow8dlf66d48" path="res://levels/level_1.src_options.tres" id="4_3agmn"]
 
 [resource]
 script = ExtResource("1_pl8kd")
+level_seed = 442234813
 level_layout_options = ExtResource("4_3agmn")
+num_starting_item = 300
 enemy_pool = ExtResource("1_7x3t4")
-item_pool = ExtResource("3_1kxb1")
+item_pool = ExtResource("3_7x3t4")
 feature_pool = ExtResource("2_01eqf")
 metadata/_custom_type_script = "uid://xpe1aharownm"

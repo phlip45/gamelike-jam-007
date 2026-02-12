@@ -60,7 +60,9 @@ class BusEvents:
 	
 class Settings:
 	static var deadzone:float = 0.2
-	static var debug:bool = false
+	static var debug:bool = true
+	static var extra_juice:bool = false
+	static var hyperbole:bool = false
 	
 static func position_to_coord(pos:Vector2) -> Vector2i:
 	var coord:Vector2i

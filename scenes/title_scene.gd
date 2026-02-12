@@ -35,6 +35,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			
 	if Input.is_action_just_pressed("click"):
 		get_window().keep_title_visible = !titles[title_index].visible
 		
@@ -77,6 +83,7 @@ func _on_click_detector_pressed() -> void:
 	)
 
 func _on_selector_option_highlighted(integer: int) -> void:
+	if selector.options.size() < 1: return
 	if selector.options[integer].has_method("highlight"):
 		var highlighted = selector.options[integer]
 		highlighted.highlight(true)

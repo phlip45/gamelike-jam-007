@@ -39,11 +39,15 @@ static func phys_attack() -> Effect:
 			hits.set(target, damage)
 		var message:String = ""
 		for hit:Actor in hits:
+			if Global.Settings.hyperbole:
+				var hyperbole_amt:int = randi_range(100,999)
+				hits[hit] = hits[hit]*1000 + hyperbole_amt
 			message += "%s took [color=red]%s damage!" % [hit.actor_name, hits[hit]]
 		Global.push_message(message)
 	return effect
 
 static func heal() -> Effect:
+	var hyperbole_amt:int = randi_range(100,999)
 	var effect = Effect.new()
 	effect.activate = func(_source:Actor, targets:Array[Actor], effect_mod:float = 0):
 		var hits:Dictionary[Actor,int]
@@ -58,6 +62,8 @@ static func heal() -> Effect:
 			print("Fuck")
 		var message:String = ""
 		for hit:Actor in hits:
+			if Global.Settings.hyperbole:
+				hits[hit] = hits[hit]*1000 + hyperbole_amt
 			message += "%s healed for [color=green]%s!" % [hit.actor_name, hits[hit]]
 		Global.push_message(message)
 	return effect
@@ -103,6 +109,9 @@ static func ranged_attack() -> Effect:
 			hits.set(target, damage)
 		var message:String = ""
 		for hit:Actor in hits:
+			if Global.Settings.hyperbole:
+				var hyperbole_amt:int = randi_range(100,999)
+				hits[hit] = hits[hit]*1000 + hyperbole_amt
 			message += "%s took [color=red]%s damage!" % [hit.actor_name, hits[hit]]
 		Global.push_message(message)
 	return effect

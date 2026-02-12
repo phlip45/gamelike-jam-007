@@ -13,6 +13,7 @@ signal option_highlighted(integer:int)
 
 func _ready() -> void:
 	move_selector.call_deferred.call_deferred()
+	hold_cooldown.x = 0.2
 
 func _process(delta: float) -> void:
 	if !enabled: return

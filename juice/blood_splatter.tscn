@@ -18,6 +18,8 @@ fill_to = Vector2(0.50213677, 0.8311966)
 colors = PackedColorArray(1, 1, 1, 1, 0.34781694, 0.34781697, 0.3478169, 1)
 
 [node name="Node2D" type="CPUParticles2D" unique_id=1721142045]
+z_index = 2
+z_as_relative = false
 texture_filter = 1
 emitting = false
 amount = 16

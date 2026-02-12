@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dmwpxg008v257"]
+
+[ext_resource type="Script" uid="uid://pl5dja4uy058" path="res://UI/text_checkbox.gd" id="1_lwkvh"]
+
+[node name="ExtraJuiceBox" type="RichTextLabel" unique_id=31163288]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "[   ]"
+vertical_alignment = 1
+script = ExtResource("1_lwkvh")

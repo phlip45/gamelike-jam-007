@@ -4,24 +4,24 @@
 [ext_resource type="Script" uid="uid://bqygamak54rkq" path="res://armor.gd" id="2_55wly"]
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="3_8prks"]
 
-[sub_resource type="Resource" id="Resource_10b4k"]
+[sub_resource type="Resource" id="Resource_f4ufj"]
 script = ExtResource("3_8prks")
-hp_max = -20
-stremf = 10
-vision_radius = -2
+hp_max = -10
+stremf = 6
+vision_radius = 1
 metadata/_custom_type_script = "uid://s27656rvpvo7"
 
 [resource]
 script = ExtResource("2_55wly")
 equippable = true
 equip_slot = 2
-stats = SubResource("Resource_10b4k")
+stats = SubResource("Resource_f4ufj")
 name = "Glass Armor"
 name_decoration_start = "[color=#7ca925]"
 name_decoration_end = "[/color]"
 description = "A gleaming beacon to your allies! Wow is this thing [wave]bright[/wave]! It'd be a [color=yellow]bad idea[/color] to get hit in this thing."
 symbol = "["
-color = Color(0.48543257, 0.6615626, 0.14384273, 1)
+color = Color(0.7644, 0.98, 0.33319998, 1)
 type = 2
 rarity = ExtResource("1_f4ufj")
 metadata/_custom_type_script = "uid://bqygamak54rkq"

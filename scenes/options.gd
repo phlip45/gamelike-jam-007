@@ -6,6 +6,8 @@ class_name OptionsMenu
 @onready var voice: Control = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice
 @onready var exit: TextButton = $MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Exit
 @onready var deadzone: OptionSlider = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/Deadzone
+@onready var extra_juice_box: TextCheckbox = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ExtraJuiceBox
+@onready var hyperbole_box: TextCheckbox = $MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/HyperboleBox
 
 @onready var selector: Selector = $Selector
 @export var sounds:Dictionary[String, AudioStream]
@@ -34,11 +36,11 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	selector.option_selected.connect(option_selected)
-	selector.move_selector.call_deferred()
 	exit.pressed.connect(exit_press)
-	for value in selector.options.values():
-		value.highlight(false)
 	selector.option_highlighted.connect(highlight_option)
+	extra_juice_box.value = Global.Settings.extra_juice
+	hyperbole_box.value = Global.Settings.hyperbole
+	
 	
 func option_selected(val:Option):
 	chosen = val
@@ -64,8 +66,9 @@ func adjust(delta):
 		adjusting_finished.emit()
 
 func highlight_option(integer:Option):
-	if selector.options[integer] is OptionSlider:
-		var highlighted = selector.options[integer] as OptionSlider
+	if selector.options.size() < 1: return
+	if selector.options[integer].has_method("highlight"):
+		var highlighted = selector.options[integer]
 		highlighted.highlight(true)
 		selector.option_highlighted.connect(func(_useless:int):highlighted.highlight(false), CONNECT_ONE_SHOT)
 		
@@ -130,3 +133,13 @@ func _on_view_controls_pressed() -> void:
 	selector.enabled = false
 	await view_controls.finished
 	selector.enabled = true
+
+
+func _on_extra_juice_pressed() -> void:
+	Global.Settings.extra_juice = !Global.Settings.extra_juice
+	extra_juice_box.value = Global.Settings.extra_juice
+
+
+func _on_hyperbole_mode_pressed() -> void:
+	Global.Settings.hyperbole = !Global.Settings.hyperbole
+	hyperbole_box.value = Global.Settings.hyperbole

@@ -20,8 +20,10 @@ signal value_changed(new_value:float)
 func _ready() -> void:
 	label.text = label_name
 	update_visual()
-
+	modulate = dim_color
+	
 func highlight(highlighted:bool):
+	print("Setting %s to %shighlighted" % [name,"" if highlighted else "un"])
 	modulate = highlight_color if highlighted else dim_color
 
 func update_visual():

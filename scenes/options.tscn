@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://35e3y03gnkgy" path="res://UI/selector.tscn" id="2_yjkok"]
 [ext_resource type="PackedScene" uid="uid://cug214badn3j5" path="res://UI/text_button.tscn" id="3_kv8mn"]
 [ext_resource type="AudioStream" uid="uid://dxrj5potu1w8g" path="res://sound/sfx/ding.mp3" id="3_o7i7e"]
+[ext_resource type="PackedScene" uid="uid://dmwpxg008v257" path="res://UI/text_checkbox.tscn" id="6_o7i7e"]
 
 [node name="Options" type="Control" unique_id=1267375238]
 layout_mode = 3
@@ -61,22 +62,22 @@ size_flags_vertical = 3
 text = "Audio"
 vertical_alignment = 2
 
-[node name="Music" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1218075764 instance=ExtResource("1_c2u1v")]
-visible = false
-layout_mode = 2
-label_name = "Music"
-highlight_color = Color(1, 1, 1, 1)
-dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
-
 [node name="SFX" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1788845522 instance=ExtResource("1_c2u1v")]
 layout_mode = 2
 label_name = "SFX"
 highlight_color = Color(1, 1, 1, 1)
-dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+dim_color = Color(0.5882353, 0.5882353, 0.5882353, 1)
 
 [node name="Voice" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1258566954 instance=ExtResource("1_c2u1v")]
 layout_mode = 2
 label_name = "Voice"
+highlight_color = Color(1, 1, 1, 1)
+dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
+
+[node name="Music" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1218075764 instance=ExtResource("1_c2u1v")]
+visible = false
+layout_mode = 2
+label_name = "Music"
 highlight_color = Color(1, 1, 1, 1)
 dim_color = Color(0.5890956, 0.58909565, 0.5890954, 1)
 
@@ -101,6 +102,28 @@ text = "View Controls"
 [node name="FullScreen" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=1107188264 instance=ExtResource("3_kv8mn")]
 layout_mode = 2
 text = "Toggle Fullscreen"
+
+[node name="MarginContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=753260586]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ExtraJuice" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=1349485688 instance=ExtResource("3_kv8mn")]
+layout_mode = 2
+text = "Extra Hit Juice"
+
+[node name="ExtraJuiceBox" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=31163288 instance=ExtResource("6_o7i7e")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer" unique_id=555235837]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HyperboleMode" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2" unique_id=1994467699 instance=ExtResource("3_kv8mn")]
+layout_mode = 2
+text = "Hyperbole Mode"
+
+[node name="HyperboleBox" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2" unique_id=1561324365 instance=ExtResource("6_o7i7e")]
+layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1158498045]
 layout_mode = 2
@@ -133,11 +156,15 @@ options = {
 1: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice"),
 2: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/ViewControls"),
 3: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/FullScreen"),
-4: NodePath("../MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Exit")
+4: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ExtraJuice"),
+5: NodePath("../MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/HyperboleMode"),
+6: NodePath("../MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Exit")
 }
 
-[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Voice" to="." method="_on_voice_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Music" to="." method="_on_music_value_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/ViewControls" to="." method="_on_view_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/FullScreen" to="." method="_on_full_screen_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/ExtraJuice" to="." method="_on_extra_juice_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/HyperboleMode" to="." method="_on_hyperbole_mode_pressed"]

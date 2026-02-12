@@ -15,6 +15,14 @@ class_name UI
 @onready var ground_log: RichTextLabel = $UI/TopPanel/LeftPanel/MarginContainer/GroundLog
 @onready var pause_holder: Control = $PauseHolder
 
+var hp_hyperbole:int
+var hp_max_hyperbole:int
+var mp_hyperbole:int
+var mp_max_hyperbole:int
+var stremf_hyperbole:int
+var woowoo_hyperbole:int
+var whoosh_hyperbole:int
+
 var player:Player
 
 var hunger_words:Dictionary[float,String] = {
@@ -24,22 +32,31 @@ var hunger_words:Dictionary[float,String] = {
 	0.0001: "[color=red]Starving",
 	0: "[color=#222]Dying",
 }
+var hyperbolic_hunger_words:Dictionary[float,String] = {
+	.9: "[color=green]Couldn't eat another bite",
+	.5: "[color=white]No thanks, just ate",
+	.25: "[color=orange]Eh' I could eat",
+	0.0001: "[color=red]Warrior needs food badly",
+	0: "[color=#222]Not long for this world",
+}
 
 signal inventory_closed
 
 func _ready() -> void:
+	hp_hyperbole = randi_range(100,999)
+	hp_max_hyperbole = randi_range(100,999)
+	mp_hyperbole = randi_range(100,999)
+	mp_max_hyperbole = randi_range(100,999)
+	stremf_hyperbole = randi_range(100,999)
+	woowoo_hyperbole = randi_range(100,999)
+	whoosh_hyperbole = randi_range(100,999)
 	Global.ui = self
 	Global.ui_loaded()
 
 func connect_to_player(_player:Player):
 	player = _player
 	player.stats.stat_changed.connect(stat_changed)
-	hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
-	mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
-	hunger_text.text = "Hunger: "+ get_hunger_text()
-	stremf_text.text = "Stremf:" + str(player.stats.stremf)
-	woowoo_text.text = "Woowoo:" + str(player.stats.woowoo)
-	whoosh_text.text = "Whoosh:" + str(player.stats.whoosh)
+	stat_changed("",1)
 	
 enum BarType{
 	NULL, HP, MP
@@ -49,6 +66,19 @@ enum BarType{
 func _get_bar_string(amt:int, _max:int, type:BarType) -> String:
 	var percent:float = float(amt)/float(_max)
 	var characters_to_illuminate:int = ceil(43*percent) + 1 + 1*percent
+	if Global.Settings.hyperbole:
+		var full:bool = false
+		var zero:bool = false
+		if amt == _max:
+			full = true
+		if amt == 0:
+			zero = true
+		_max = _max * 1000 + (hp_max_hyperbole if type == BarType.HP else mp_max_hyperbole)
+		amt = amt * 1000 + (hp_hyperbole if type == BarType.HP else mp_hyperbole)
+		if full:
+			amt = _max
+		elif zero:
+			amt = 0
 	var text:String = "~- %s: %s/%s -~" % [("Health" if type == BarType.HP else "Mana"),amt,_max]
 	text = text.lpad(22 + floor(text.length()/2.0),"#")
 	text = text.rpad(43,"#")
@@ -62,26 +92,34 @@ func _get_bar_string(amt:int, _max:int, type:BarType) -> String:
 		text = "[color=%s]" % ("lightgreen" if type == BarType.HP else "lightblue")  + text
 	return text
 	
-func stat_changed(stat_name:String, _new_amount:int):
+func stat_changed(stat_name:String, new_amount:int):
+	if Global.Settings.hyperbole:
+		hyperbole_stats_changed(stat_name, new_amount)
+	hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
+	hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
+	mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
+	mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
+	hunger_text.text = "Hunger: "+ get_hunger_text()
+	hunger_text.text = "Hunger: "+ get_hunger_text()
+	stremf_text.text = "Stremf:" + (str(player.stats.stremf) if !Global.Settings.hyperbole else str(player.stats.stremf * 1000 + stremf_hyperbole))
+	woowoo_text.text = "Woowoo:" + (str(player.stats.woowoo) if !Global.Settings.hyperbole else str(player.stats.woowoo * 1000 + woowoo_hyperbole))
+	whoosh_text.text = "Whoosh:" + (str(player.stats.whoosh) if !Global.Settings.hyperbole else str(player.stats.whoosh * 1000 + whoosh_hyperbole))
+func hyperbole_stats_changed(stat_name:String, _new_amount:int):
 	match stat_name:
 		"hp":
-			hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
+			hp_hyperbole = randi_range(100,999)
 		"hp_max":
-			hp_bar.text = _get_bar_string(player.stats.hp, player.stats.hp_max,BarType.HP)
+			hp_max_hyperbole = randi_range(100,999)
 		"mp":
-			mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
+			mp_hyperbole = randi_range(100,999)
 		"mp_max":
-			mp_bar.text = _get_bar_string(player.stats.mp, player.stats.mp_max,BarType.MP)
-		"hunger":
-			hunger_text.text = "Hunger: "+ get_hunger_text()
-		"hunger_max":
-			hunger_text.text = "Hunger: "+ get_hunger_text()
+			mp_max_hyperbole = randi_range(100,999)
 		"stremf":
-			stremf_text.text = "Stremf:" + str(player.stats.stremf)
+			stremf_hyperbole = randi_range(100,999)
 		"woowoo":
-			woowoo_text.text = "Woowoo:" + str(player.stats.woowoo)
+			woowoo_hyperbole = randi_range(100,999)
 		"whoosh":
-			whoosh_text.text = "Whoosh:" + str(player.stats.whoosh)
+			whoosh_hyperbole = randi_range(100,999)
 
 func open_inventory(_inventory:Inventory):
 	inventory_ui.open(_inventory)
@@ -106,6 +144,9 @@ func get_hunger_text() -> String:
 	var hungriness:float = float(player.stats.hunger) / float(player.stats.hunger_max)
 	
 	for key in hunger_words.keys():
-		if hungriness >= key:
+		if hungriness >= key and !Global.Settings.hyperbole:
 			return hunger_words[key]
-	return "[color=#222]Dying"
+		elif hungriness >= key and Global.Settings.hyperbole:
+			return hyperbolic_hunger_words[key]
+			
+	return "[color=#222]Dead"

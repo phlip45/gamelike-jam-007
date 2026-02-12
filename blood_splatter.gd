@@ -4,6 +4,9 @@ class_name BloodSplatter
 static func create(_amount, coord:Vector2i, color:Color = Color.RED) -> void:
 	var splat:BloodSplatter = load("res://juice/blood_splatter.tscn").instantiate()
 	splat.amount = _amount * 3
+	if Global.Settings.hyperbole:
+		splat.scale_amount_min *= 3
+		splat.scale_amount_max *= 3
 	splat.global_position = Global.coord_to_position(coord)
 	splat.modulate = color
 	Global.current_level.add_child(splat)

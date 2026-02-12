@@ -3,8 +3,9 @@ class_name ItemHusk
 
 var coord:Vector2i
 @export var item:Item
-@onready var symbol: RichTextLabel = $Symbol
+#@onready var symbol: RichTextLabel = $Symbol
 const ITEM_HUSK = preload("uid://k3vwahreh1xd")
+@onready var symbol: Symbol = $Symbol
 
 signal destroyed
 

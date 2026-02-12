@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://o174sjbefcd5" path="res://sound/actor_sound_player.gd" id="12_ccbdt"]
 
 [node name="Enemy" type="Area2D" unique_id=2079047202 node_paths=PackedStringArray("actor_sound_player")]
+z_index = 2
 script = ExtResource("1_ttxdi")
 data = ExtResource("2_07tka")
 actor_name = "Goblin"

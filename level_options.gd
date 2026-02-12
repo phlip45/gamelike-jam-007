@@ -13,7 +13,7 @@ class_name LevelOptions
 @export var feature_pool:FeaturePool
 
 enum LevelLayoutType{
-	NULL, SIMPLE_ROOM_CORRIDOR, FOREST
+	NULL, SIMPLE_ROOM_CORRIDOR, FOREST, DRUNKARDS_WALK
 }
 
 func _init() -> void:

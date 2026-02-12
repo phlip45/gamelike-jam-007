@@ -1,4 +1,5 @@
 extends Node2D
+class_name Dungeon
 
 var _seed:int
 var rng:RandomNumberGenerator
@@ -9,15 +10,15 @@ var current_level:Level
 var player:Player
 
 func _ready() -> void:
-	
 	if _seed == 0:
 		_seed = randi()
 	player = load("res://player/player.tscn").instantiate()
 	current_level = setup_level(level_count)
 	add_child(current_level)
 
-func move_to_next_level():
-	level_count += 1
+func move_to_next_level(count_level:bool = true):
+	if count_level:
+		level_count += 1
 	if level_count > playlist.level_options_lookup.size():
 		get_tree().change_scene_to_file.call_deferred("res://scenes/win_screen.tscn")
 		return
@@ -34,6 +35,7 @@ func setup_level(level_num:int) -> Level:
 	var level_opts:LevelOptions =  playlist.level_options_lookup[level_num]
 	var level:Level = Level.create(level_opts)
 	level.level_finished.connect(move_to_next_level, CONNECT_ONE_SHOT)
+	level.level_finished_debug.connect(move_to_next_level.bind(false), CONNECT_ONE_SHOT)
 	level.player = player
 	level.tilemap = tilemap
 	return level

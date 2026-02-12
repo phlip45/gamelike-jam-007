@@ -32,10 +32,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("debug_bottom"):
 		stats.hp = randi_range( 2,2444)
-	if Input.is_action_pressed("debug_top"):
-		stats.hp += 1
+	if Input.is_action_just_pressed("debug_top"):
+		Global.current_level.finish_level_debug()
 	if Input.is_action_pressed("debug_left"):
 		stats.whoosh += 1
+	if Input.is_action_just_pressed("debug_right"):
+		Global.Settings.debug = !Global.Settings.debug
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if state != State.AWAITING_INPUT:
 		return
 	premove(delta)

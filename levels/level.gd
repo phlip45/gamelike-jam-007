@@ -21,6 +21,7 @@ var player:Player
 var options:LevelOptions
 
 signal level_finished
+signal level_finished_debug
 
 static func create(_options:LevelOptions = null) -> Level:
 	var level = Level.new()
@@ -33,17 +34,10 @@ static func create(_options:LevelOptions = null) -> Level:
 func _ready() -> void:
 	if !OS.is_debug_build():
 		Global.Settings.debug = false
-	if Global.Settings.debug:
-		player.stats.hp = 20000
-		player.stats.hp_max = 20000
 	enemy_pool = options.enemy_pool
 	item_pool = options.item_pool
 	feature_pool = options.feature_pool
 	setup()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug_top"):
-		generate_level()
 
 func setup():
 	Global.current_level = self
@@ -97,13 +91,8 @@ func setup_feature_manager():
 func generate_level(seeded:bool = false):
 	tilemap.clear()
 	var opts = options.level_layout_options
-	opts.rng_seed = options.level_seed
 	if seeded:
 		opts.rng_seed = 2622252045
-	#opts.num_rooms = Vector2i(3,40)
-	#opts.room_height = Vector2i(2,20)
-	#opts.room_width = Vector2i(2,8)
-	
 	layout = opts.generate()
 	pathfinder = Pathfinder.new()
 	pathfinder.initialize(layout)
@@ -197,6 +186,9 @@ func is_cell_walkable(coord:Vector2i) -> bool:
 
 func finish_level():
 	level_finished.emit()
+
+func finish_level_debug():
+	level_finished_debug.emit()
 
 func get_bumpables_at_location(coord:Vector2i) -> Array[Area2D]:
 	var areas:Array[Area2D]

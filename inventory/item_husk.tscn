@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnvsjuyr3di1d" path="res://inventory/item_husk.gd" id="1_58ik0"]
 [ext_resource type="Resource" uid="uid://dtorwcdjttur7" path="res://inventory/items/healing_potion.item.tres" id="2_3j7jb"]
+[ext_resource type="PackedScene" uid="uid://tmy3jabrxygd" path="res://actors/symbol.tscn" id="3_3j7jb"]
 [ext_resource type="Shape2D" uid="uid://ynnnm0tynmym" path="res://resources/char_circle.shape.tres" id="3_odexc"]
 
 [sub_resource type="Gradient" id="Gradient_g1dw6"]
@@ -18,9 +19,26 @@ script = ExtResource("1_58ik0")
 item = ExtResource("2_3j7jb")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=563512671]
+visible = false
 texture = SubResource("GradientTexture2D_58ik0")
 
-[node name="Symbol" type="RichTextLabel" parent="." unique_id=1780574727]
+[node name="Symbol" parent="." unique_id=1403436908 instance=ExtResource("3_3j7jb")]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "f"
+
+[node name="SymbolOld" type="RichTextLabel" parent="." unique_id=1780574727]
+visible = false
 texture_filter = 1
 offset_left = -23.0
 offset_top = -23.0

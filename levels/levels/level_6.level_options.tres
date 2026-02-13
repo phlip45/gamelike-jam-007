@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://p4tncs0q1flj" path="res://features/pools/test.feature_pools.tres" id="2_hq1fg"]
 [ext_resource type="Resource" uid="uid://bfkw6p02jv10j" path="res://actions/actions/attack.action.tres" id="3_6jmli"]
 [ext_resource type="Resource" uid="uid://cmrxqsmsbpwb6" path="res://inventory/pools/level_6.item_pool.tres" id="3_c2vuh"]
-[ext_resource type="Script" uid="uid://canvwpxplyqil" path="res://forest_options.level_layout.gd" id="4_bjw78"]
 [ext_resource type="Script" uid="uid://s27656rvpvo7" path="res://stats/stats.gd" id="4_d71uh"]
 [ext_resource type="Script" uid="uid://cin127un7ce85" path="res://enemies/brains/zombie.brain.gd" id="5_2xo5h"]
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="5_ngg8u"]
@@ -19,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://cam0xrniet4uv" path="res://rarities/uncommon.rarity.tres" id="13_f60a3"]
 [ext_resource type="Resource" uid="uid://d3ya786xjd3b3" path="res://enemies/datas/troll.enemy.tres" id="14_re5ck"]
 [ext_resource type="Script" uid="uid://bpsvcxcnc70ri" path="res://enemies/pools/enemy_pool.gd" id="15_gir35"]
+[ext_resource type="Script" uid="uid://d13em6jr23jb7" path="res://drunkard_walk_options.gd" id="18_cb7y0"]
 
 [sub_resource type="Resource" id="Resource_0bx2i"]
 resource_local_to_scene = true
@@ -86,15 +86,16 @@ use_guaranteed_spawns = true
 guaranteed_spawns = Array[ExtResource("1_cb7y0")]([ExtResource("14_re5ck"), ExtResource("14_re5ck")])
 metadata/_custom_type_script = "uid://bpsvcxcnc70ri"
 
-[sub_resource type="Resource" id="Resource_yo2sl"]
-script = ExtResource("4_bjw78")
+[sub_resource type="Resource" id="Resource_7vild"]
+script = ExtResource("18_cb7y0")
+walk_style = 1
 rng_seed = null
-metadata/_custom_type_script = "uid://canvwpxplyqil"
+metadata/_custom_type_script = "uid://d13em6jr23jb7"
 
 [resource]
 script = ExtResource("5_ngg8u")
-level_layout_type = 2
-level_layout_options = SubResource("Resource_yo2sl")
+level_layout_type = 3
+level_layout_options = SubResource("Resource_7vild")
 enemy_pool = SubResource("Resource_kghx5")
 item_pool = ExtResource("3_c2vuh")
 feature_pool = ExtResource("2_hq1fg")

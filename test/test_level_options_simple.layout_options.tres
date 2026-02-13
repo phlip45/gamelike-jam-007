@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelOptions" format=3 uid="uid://cdhfqrfmf05f0"]
+
+[ext_resource type="Resource" uid="uid://b26d48wr24jem" path="res://enemies/pools/level_1.tres" id="1_kh8kv"]
+[ext_resource type="Resource" uid="uid://p4tncs0q1flj" path="res://features/pools/test.feature_pools.tres" id="2_d6cnw"]
+[ext_resource type="Resource" uid="uid://buwgk8xb8xeje" path="res://inventory/pools/hobgoblin_loot.tres" id="3_8b6gi"]
+[ext_resource type="Script" uid="uid://ctkw5v52m1l0f" path="res://levels/simple_room_corridor_options.gd" id="4_bkw2a"]
+[ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="5_08rnr"]
+
+[sub_resource type="Resource" id="Resource_6c71k"]
+script = ExtResource("4_bkw2a")
+metadata/_custom_type_script = "uid://ctkw5v52m1l0f"
+
+[resource]
+script = ExtResource("5_08rnr")
+level_layout_options = SubResource("Resource_6c71k")
+enemy_pool = ExtResource("1_kh8kv")
+item_pool = ExtResource("3_8b6gi")
+feature_pool = ExtResource("2_d6cnw")
+metadata/_custom_type_script = "uid://xpe1aharownm"

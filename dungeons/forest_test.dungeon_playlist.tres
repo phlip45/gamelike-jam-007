@@ -1,12 +1,8 @@
 [gd_resource type="Resource" script_class="DungeonPlaylist" format=3 uid="uid://cqvmd2dx7655f"]
 
 [ext_resource type="Script" uid="uid://xpe1aharownm" path="res://level_options.gd" id="1_csllp"]
-[ext_resource type="Resource" uid="uid://d2idw01nb0gko" path="res://levels/levels/alternate_level_1.level_options.tres" id="2_sg6wl"]
 [ext_resource type="Script" uid="uid://cncbrwer1ceyl" path="res://dungeon_playlist.gd" id="6_nhdkq"]
 
 [resource]
 script = ExtResource("6_nhdkq")
-level_options_lookup = Dictionary[int, ExtResource("1_csllp")]({
-1: ExtResource("2_sg6wl")
-})
 metadata/_custom_type_script = "uid://cncbrwer1ceyl"

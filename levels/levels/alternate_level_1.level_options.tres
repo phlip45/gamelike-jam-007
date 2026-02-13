@@ -8,6 +8,8 @@
 
 [sub_resource type="Resource" id="Resource_01eqf"]
 script = ExtResource("4_7x3t4")
+num_tiles = 300
+max_tiles_walked = 150000
 walk_style = 1
 rng_seed = null
 metadata/_custom_type_script = "uid://d13em6jr23jb7"

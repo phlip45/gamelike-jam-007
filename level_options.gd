@@ -15,8 +15,3 @@ class_name LevelOptions
 enum LevelLayoutType{
 	NULL, SIMPLE_ROOM_CORRIDOR, FOREST, DRUNKARDS_WALK
 }
-
-func _init() -> void:
-	level_seed = randi() if level_seed == 0 else level_seed
-	item_seed = randi() if item_seed == 0 else item_seed
-	combat_seed = randi() if combat_seed == 0 else combat_seed

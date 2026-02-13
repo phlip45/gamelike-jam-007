@@ -4,7 +4,7 @@ class_name DrunkardWalkOptions
 ## Num tiles to walk
 @export var num_tiles:int = 250
 ## Number of tries to walk the requisite number of tiles
-@export var max_tiles_walked:int = 1000
+@export var max_tiles_walked:int = 1500
 ## How should this drunk man walk? Orthogonal or all over?
 @export var walk_style:WalkStyle = WalkStyle.MANHATTAN
 @export var rng_seed:int = randi()

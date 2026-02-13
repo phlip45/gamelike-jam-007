@@ -52,9 +52,9 @@ func setup_rng():
 	level_rng = RandomNumberGenerator.new()
 	item_rng = RandomNumberGenerator.new()
 	combat_rng = RandomNumberGenerator.new()
-	level_rng.seed = options.level_seed
-	item_rng.seed = options.item_seed
-	combat_rng.seed = options.combat_seed
+	level_rng.seed = options.level_seed if options.level_seed > 0 else randi()
+	item_rng.seed = options.item_seed if options.item_seed > 0 else randi()
+	combat_rng.seed = options.combat_seed if options.combat_seed > 0 else randi()
 
 func setup_turn_manager():
 	turn_manager = TurnManager.new()
@@ -93,6 +93,7 @@ func generate_level(seeded:bool = false):
 	var opts = options.level_layout_options
 	if seeded:
 		opts.rng_seed = 2622252045
+	opts.rng_seed = level_rng.seed
 	layout = opts.generate()
 	pathfinder = Pathfinder.new()
 	pathfinder.initialize(layout)

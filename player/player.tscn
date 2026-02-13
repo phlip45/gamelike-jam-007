@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://o174sjbefcd5" path="res://sound/actor_sound_player.gd" id="11_2ieo8"]
 
 [node name="Player" type="Area2D" unique_id=486927611 node_paths=PackedStringArray("actor_sound_player") groups=["player"]]
-z_index = 1
+z_index = 3
 script = ExtResource("1_g1dw6")
 walk_cooldown = Vector2(0, 0.4)
 unarmed_weapon = ExtResource("2_qjkh3")
